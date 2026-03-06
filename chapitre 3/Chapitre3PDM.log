@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  6 MAR 2026 14:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  6 MAR 2026 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -667,7 +667,7 @@ LaTeX Warning: Reference `(' on page 6 undefined on input line 239.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9]
-[10] [11] (Chapitre3PDM.aux)
+[10] [11] [12] (Chapitre3PDM.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -680,9 +680,9 @@ Package rerunfilecheck Info: File `Chapitre3PDM.out' has not changed.
 (rerunfilecheck)             Checksum: 3BEBD192FE0FA5BB1C44688D74C26E02;1772.
  ) 
 Here is how much of TeX's memory you used:
- 14077 strings out of 474486
- 222570 string characters out of 5753552
- 1949542 words of memory out of 5000000
+ 14078 strings out of 474486
+ 222577 string characters out of 5753552
+ 1952542 words of memory out of 5000000
  36088 multiletter control sequences out of 15000+600000
  642349 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -699,9 +699,9 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/Mi
 KTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/rsfs/
 rsfs10.pfb>
-Output written on Chapitre3PDM.pdf (11 pages, 256010 bytes).
+Output written on Chapitre3PDM.pdf (12 pages, 260275 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 40 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

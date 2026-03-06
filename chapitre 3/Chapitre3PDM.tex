@@ -436,10 +436,52 @@ Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{
 	 Dans la suite, nous omettons $\widetilde{\cdot}$ dans la notation pour plus de simplicité. Notons que $\overline{Y}^{\varepsilon,h_\varepsilon} - Y^h$ peut être décomposé en trois parties comme suit:
 	 \[
 	 \begin{aligned}
-	 	\overline{Y}^{\varepsilon,h_\varepsilon} - Y^h &=\Bigg[ \int_{0}^{t}\frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)}\Big[b_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})-b_s(X_s^0,\delta_{X_s^0})\Big]ds - \int_{0}^{t}\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)ds\Bigg]\\
-	 	&+\int_{0}^{t}\Big[\sigma_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})\dot{h}_\varepsilon(s)-\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\dot{h}(s)\Big]ds+\int_{0}^{t}\sigma_{s}()
+	 	\overline{Y}^{\varepsilon,h_\varepsilon} - Y^h &=\int_{0}^{t}\Big[b_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}}) - b_s(X_s^0,\delta_{X_{s}^{0}})\Big]ds + \int_{0}^{t}\frac{1}{\lambda(\varepsilon)}\sigma_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})dW_s \\&+\int_{0}^{t} \sigma_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})\dot{h}(s)ds - \int_{0}^{t}\Big(\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)+\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\dot{h}(s)\Big)ds\\
+	 	&=\Bigg[ \int_{0}^{t}\frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)}\Big[b_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})-b_s(X_s^0,\delta_{X_s^0})\Big]ds - \int_{0}^{t}\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)ds\Bigg]\\
+	 	&+\int_{0}^{t}\Big[\sigma_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})\dot{h}_\varepsilon(s)-\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\dot{h}(s)\Big]ds+\frac{1}{\lambda(\varepsilon)}\int_{0}^{t}\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_s^0})dW_s\\
+	 	&=:\sum_{i=1}^{3}I_i^{\varepsilon,h_\varepsilon}(t).
 	 \end{aligned}
 	 \]
+	 On a:
+	 \[
+	 \begin{aligned}
+	 I_1^{\varepsilon,h_\varepsilon}(t)&:=\Bigg[ \int_{0}^{t}\frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)}\Big[b_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})-b_s(X_s^0,\delta_{X_s^0})\Big]ds - \int_{0}^{t}\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)ds\Bigg]\\
+	 |I_1^{\varepsilon,h_\varepsilon}(t)| &: = \Bigg| \int_{0}^{t}\frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)}\Big[b_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})-b_s(X_s^0,\delta_{X_s^0})\Big]ds - \int_{0}^{t}\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)ds\Bigg|\\.
+	 	\end{aligned}
+	 \]
+	 D'après l'hypothése \textbf{H2} on a
+	 \[
+	 \begin{aligned}
+	 |I_1^{\varepsilon,h_\varepsilon}(t)| &\leq \int_{0}^{t}\Bigg|\int_{0}^{1}\nabla_{\overline{Y}_s^{\varepsilon,h_\varepsilon}}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))ds - \nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)\Bigg|ds\\.
+	 \end{aligned}
+	 \]
+	 On ajoute et on retranche par $\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))$ puis on applique l'inégalité triangulaire:
+	 \[
+	 \begin{aligned}
+	 	 |I_1^{\varepsilon,h_\varepsilon}(t)| &\leq \int_{0}^{t}\Bigg|\int_{0}^{1}\nabla_{(\overline{Y}_s^{\varepsilon,h_\varepsilon} - Y_s^h)}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))dr\Bigg|ds\\& + \int_{0}^{t}\Bigg|\int_{0}^{1}\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)) -\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)dr\Bigg|ds	\\
+	 	 &\leq \int_{0}^{t}\int_{0}^{1} \Big\|\nabla_{(\overline{Y}_s^{\varepsilon,h_\varepsilon} - Y_s^h)}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))\Big\|drds\\
+	 	 &+\int_{0}^{t}\int_{0}^{1}\Big\|\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)) -\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Bigg\|drds
+	 \end{aligned}
+	 \]
+	 d'après l'hypothése \textbf{H1} et \textbf{H2} on a
+	 \[
+	 \begin{aligned}
+\Big\|\nabla_{(\overline{Y}_s^{\varepsilon,h_\varepsilon} - Y_s^h)}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))\Big\|&\leq	K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|
+\end{aligned}
+	 \]
+	 \[
+	 \Big\|\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)) -\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\|\leq K(s)\Big(\Big|X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|
+	 \]
+	 Ainsi,
+	 \[
+	 \begin{aligned}
+	 	|I_1^{\varepsilon,h_\varepsilon}(t)| &\leq\int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|drds\\
+	 	&\leq \int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|X_s^0+r(X_s^0+\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|drds\\
+	 	&\leq  \int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|X_s^0+r\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}\Big|\Big)|Y^h_s|drds\\
+	 \end{aligned}
+	 \]
+	 
+	 
 	 \end{pr}
 	 
 	 
