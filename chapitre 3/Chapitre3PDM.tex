@@ -1,0 +1,455 @@
+\documentclass[12pt,a4paper,twoside]{report}%      autres choix : book, report
+\usepackage[utf8]{inputenc}%           gestion des accents (source)
+\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+\usepackage[french]{babel}%          gestion du fran�ais
+\usepackage{textcomp}%                 caract�res additionnels
+\usepackage{mathtools,amssymb}
+\usepackage{amsthm}
+\usepackage{xurl}
+\usepackage{mathrsfs}
+\usepackage{amsmath}% packages de l'AMS + mathtools
+\usepackage{lmodern}
+\usepackage[bottom=2.5cm,left=2.5cm,right=2.5cm,top=2.5cm]{geometry}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagestyle{fancy}
+\fancyhf{}
+\theoremstyle{definition}
+\newtheorem{dfn}{Définition}[section]
+\newtheorem*{pr}{\textbf{Preuve}}
+\newtheorem{rem}{\textit{Remarque}}[section]
+\newtheorem{thm}[dfn]{\textit{Théorème}}
+\newtheorem{prop}[dfn]{\textit{Proposition}}
+\newtheorem{cor}[dfn]{\textit{Corollaire}}
+\newtheorem{lem}[dfn]{\textit{Lemme}}
+\newtheorem{exm}[dfn]{\textit{Exemple}}
+\newtheorem{prp}[dfn]{\textbf{Propriété}}
+\newtheorem{for}[dfn]{\textit{Formule}}
+\numberwithin{equation}{section}
+\newtheorem{ex}{Exemple}[subsection]
+%\setcounter{page}{1}
+\title{ \textbf{Théorème Central Limite et Principe de Déviations Modérées pour les Équations Différentielles Stochastiques de McKean-Vlasov)}}
+\begin{document}
+	\tableofcontents
+	\chapter{Principe de Déviations Modérées pour l'équation différentielle stochastique de type Mckean-Vlasov}
+	 
+	  
+	  \section{Principe de déviation modère}
+	  \begin{thm}[Déviations modérées]\label{thm:3.1.1}
+	  	Soit \( X_1, \ldots, X_n \) une suite de vecteurs aléatoires i.i.d. à valeurs dans \(\mathbb{R}^d\) telle que \(\Lambda_X(\lambda) := \log E[e^{i\lambda(X_i)}] < \infty\) dans une boule autour de l'origine, \(E(X_i) = 0\), et \(\mathbf{C}\), la matrice de covariance de \(X_1\), soit inversible.  
+	  	On fixe une suite \(a_n \to 0\) telle que \(na_n \to \infty\) quand \(n \to \infty\), et on pose \(Z_n := \sqrt{\frac{a_n}{n}} \sum_{i=1}^n X_i = \sqrt{na_n}\hat{S}_n\).  
+	  	Alors, pour tout ensemble mesurable \(\Gamma\),
+	  	\begin{equation}
+	  	\begin{aligned}
+	  		-\frac{1}{2} \inf_{x \in \Gamma^o} \langle x, \mathbf{C}^{-1}x \rangle 
+	  		&\leq \liminf_{n \to \infty} a_n \log P(Z_n \in \Gamma) \notag \\
+	  		&\leq \limsup_{n \to \infty} a_n \log P(Z_n \in \Gamma) \notag \\
+	  		&\leq -\frac{1}{2} \inf_{x \in \bar{\Gamma}} \langle x, \mathbf{C}^{-1}x \rangle.
+	  	\end{aligned}
+  	\end{equation}
+	  \end{thm}
+	  \begin{pr}
+	  	La preuve complète de ce théorème peut être consultée dans [Livre de démbo]
+	  \end{pr}
+	 \begin{rem}
+	 	Le théorème (\ref{thm:3.1.1}) est représentatif de ce qu'on appelle le Principe des Déviations Modérées (MDP), dans lequel, pour une certaine fonction $\gamma(\cdot)$ et pour toute une gamme de suites $a_n\to 0$, les sites $\{\gamma(a_n)Y_n\}$ satisfont un Principe de Grandes Déviations avec la même fonction de taux. Ici, $Y_n=\sqrt{n}\hat{S}_n \text{ et } \gamma(a)=a^{\frac{1}{2}}$ (comme dans d'autres situations où $Y_n$ obéit au théorème de la limite centrale).
+	 \end{rem}
+	
+Nous présentons ci-dessous un lemme fondamental de la méthode de convergence faible, qui permet d’établir un principe de grandes déviations pour la famille de processus considérée, la convergence en distribution étant notée \( \to^* \)ce résultat est présenté dans [17 ' A moderate deviation principle for stochastic Volterra equation.'].
+	 
+	\begin{lem}\label{lem:3.1.2}
+			Pour tout \( \varepsilon > 0 \), soit \( \Gamma^\varepsilon \) une application mesurable de \( C([0, T]; \mathbb{R}^d) \) dans \( C([0, T]; \mathbb{R}^d) \). Supposons que \( \{\Gamma^\varepsilon\}_{\varepsilon > 0} \) satisfait les hypothèses suivantes : il existe une application mesurable \( \Gamma^0 : C([0, T]; \mathbb{R}^d) \to C([0, T]; \mathbb{R}^d) \) telle que
+		\begin{enumerate}
+			\item[(a)] Pour tout \( N < +\infty \) et toute famille \( \{h_\varepsilon : \varepsilon > 0\} \subset \mathscr{A}_N \) satisfaisant que \( h_\varepsilon \) converge en distribution comme variable aléatoire à valeurs \( S_N \), vers \( h \) lorsque \( \varepsilon \to 0 \), alors
+			\[
+			\Gamma^\varepsilon \left( W + \frac{1}{\sqrt{\varepsilon}} \int_0^\cdot \dot{h}_\varepsilon(s) ds \right) \to^* \Gamma^0 \left( \int_0^\cdot \dot{h}(s) ds \right) \quad \text{quand} \quad \varepsilon \to 0.
+			\]
+			\item[(b)] Pour tout \( N < +\infty \), l'ensemble \( \{\Gamma^0(\int_0^\cdot h(s) ds) : h \in S_N\} \) est un sous-ensemble compact de \( C([0, T]; \mathbb{R}^d) \).
+		\end{enumerate}
+		
+		Alors la famille \( \{\Gamma^\varepsilon\}_{\varepsilon > 0} \) satisfait un principe de grande déviation dans \( C([0, T]; \mathbb{R}^d) \) avec la fonction taux \( I \) donnée par
+		\[
+		I(g) := \inf_{h \in H : g = \Gamma^0(\int_0^\cdot \dot{h}(s) ds)} \left\{ \frac{1}{2} \int_0^T |\dot{h}(s)|^2 ds \right\}, \quad g \in C([0, T]; \mathbb{R}^d)
+		\]
+		avec \( \inf \emptyset = \infty \) par convention.
+	\end{lem} 
+\section{Principe de déviation modérée pour les EDS de type McKean--Vlasov}
+
+Dans le Chapitre~2, nous avons étudié les déviations de la solution $X_t^\varepsilon$ de l’équation~(Ref 2.1) par rapport à la solution limite $X_t^0$ définie par~(Ref 2.7), en analysant le comportement asymptotique de la trajectoire normalisée
+\begin{equation}\label{eq:3.2.1}
+\overline{X}_t^\varepsilon
+= \frac{1}{\sqrt{\varepsilon}\,\lambda(\varepsilon)}
+\left(X_t^\varepsilon - X_t^0\right),
+\qquad t \in [0,T].
+\end{equation}
+
+Cependant, l’échelle du théorème central limite ne permet de décrire que des fluctuations de faible amplitude autour de la trajectoire déterministe, et ne capture pas des déviations plus importantes. À l’inverse, le principe de grandes déviations, correspondant à une normalisation de l’ordre $1/\varepsilon$, décrit des événements extrêmement rares de probabilité exponentiellement petite.
+
+Dans ce chapitre, nous nous intéressons au comportement asymptotique de la trajectoire normalisée (\ref{eq:3.2.1}) dans un régime intermédiaire, dit de déviation modérée, où la fonction d’échelle $\lambda(\varepsilon)$ vérifie
+\begin{equation}\label{eq:3.2.2}
+\lambda(\varepsilon) \longrightarrow +\infty
+\quad \text{et} \quad
+\sqrt{\varepsilon}\,\lambda(\varepsilon) \longrightarrow 0,
+\qquad \text{lorsque } \varepsilon \to 0.
+\end{equation}
+
+Nous disposons d’un théorème portant sur le principe de déviation modérée pour la famille de processus $(X_t^\varepsilon)_{\varepsilon \in(0,1)}$ 
+\begin{thm}\label{thm:3.2.1}
+	Sous les hypothèses \textbf{(H1)} et \textbf{(H2)}, \(\overline{X}^{\varepsilon}\), définie par (2.8), satisfait un principe de grande déviation sur \(C([0, T]; \mathbb{R}^d)\) avec la fonction de taux \(I\) définie par
+	\begin{equation}\label{eq:3.2.3}
+		I(g) := \inf_{\{h \in \mathbb{H}; g = \Gamma^0 (\int_{0}^{.} h(s) ds)\}} \left\{ \frac{1}{2} \int_0^T |\dot{h}(s)|^2 ds \right\}, \quad g \in C([0, T]; \mathbb{R}^d),
+	\end{equation}
+	où, par convention, \(I(g) = \infty\) si \(\{h \in \mathbb{H}; g = \Gamma^0 (\int_{0}^{.} \dot{h}(s) ds)\} = \emptyset\) et \(Y_h := \Gamma^0 (\int_{0}^{0\cdot} h(s) ds)\) satisfait l'équation suivante :
+	\begin{equation}\label{eq:3.2.4}
+		dY^h_t = \left\{ \nabla_{Y^h_t} b_t (\cdot, \delta_{X_t^0}) (X_t^0) + \sigma_t (X_t^0, \delta_{X_t^0}) \dot{h}(t) \right\} dt.
+	\end{equation}
+\end{thm}
+	%\subsection{Démonstration du Théorème (\ref{thm:3.2.1}})
+À partir de (2.1), (2.7) et (2.8), on peut voir que $\overline{X}^\varepsilon$ satisfait l’équation suivante :
+\begin{equation}\label{eq:3.2.5}
+	\overline{X}_t = \frac{1}{\sqrt{\varepsilon} \lambda(\varepsilon)} \int_0^t [b_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0, \delta_{X_s^0})] ds + \frac{1}{\lambda(\varepsilon)} \int_0^t \sigma_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon}) dW_s.
+\end{equation}
+
+Dans la suite, nous cherchons à montrer que la loi de $\overline{X}_t^\varepsilon$ satisfait un principe de grandes déviations. À cette fin, nous rappelons d’abord que le principe de grandes déviations consiste à identifier un chemin déterministe autour duquel la diffusion se concentre avec une probabilité écrasante, de sorte que le mouvement stochastique peut être vu comme une petite perturbation aléatoire de ce chemin déterministe. Cela signifie en particulier que la loi de $\overline{X}_t^\varepsilon$ est proche d’une masse de Dirac si $\varepsilon$ est suffisamment petit. Nous procédons donc en deux étapes pour établir que la loi de $\overline{X}_t^\varepsilon$ satisfait un principe de grandes déviation.
+
+Premièrement, notons que $\mathcal{L}_{X_t^\varepsilon}$ converge en loi vers $\delta_{X_t^0}$ lorsque l’échelle de déviation $\lambda(\varepsilon)$ satisfait (\ref{eq:3.2.2}). Nous remplaçons alors $\mathcal{L}_{X_t^\varepsilon}$ par $\delta_{X_t^0}$ dans (\ref{eq:3.2.5}) et obtenons une équation différentielle stochastique approchée de (\ref{eq:3.2.5}) donnée par:
+\begin{equation}
+	\overline{Y}_t^\varepsilon = \frac{1}{\sqrt{\varepsilon} \lambda(\varepsilon)} \int_0^t [b_s(\widetilde{Y}_s^\varepsilon, \delta_{X_s^0}) - b_s(X_s^0, \delta_{X_s^0})] ds + \frac{1}{\lambda(\varepsilon)} \int_0^t \sigma_s(\widetilde{Y}_s^\varepsilon, \delta_{X_s^0}) dW_s,
+\end{equation}
+	 où 
+	 \[
+	 d\widetilde{Y}_t = b_t(\widetilde{Y}_t^\varepsilon, \delta_{X_t^0}) dt + \sqrt{\varepsilon} \sigma_t(\widetilde{Y}_t^\varepsilon, \delta_{X_t^0}) dW_t \text{ et } \overline{Y}_t = \frac{\widetilde{Y}_t^\varepsilon - X_t^0}{\sqrt{\varepsilon} \lambda(\varepsilon)}
+	 \]
+	 Nous établissons ensuite que la loi de $\overline{Y}_t^\varepsilon$ satisfait un principe de grandes déviations.
+	 
+	 Deuxièmement, nous affirmons que $\overline{X}^\varepsilon_t et \overline{Y}_t^\varepsilon$ sont exponentiellement équivalents. Par conséquent, la loi de $\overline{X}_t^\varepsilon$ satisfait un principe de grandes déviations avec la bonne fonction de taux $I(g)$ donnée en (\ref{eq:3.2.3}) du fait que le principe de grandes déviations ne distingue pas les familles exponentiellement équivalentes.
+	 
+	 Nous présentons ici l'équation contrôlée associée au système ; elle constitue le pivot de l'analyse asymptotique et de la détermination de la fonction de taux.
+	
+	 \subsection{Construction de l’équation contrôlée associée}
+	 \begin{thm}
+	 	Yamada-watanabe
+	 \end{thm} 
+	D'après le théorème de Yamada-Watanabe, l'unicité en loi et l'unicité trajectorielle de l'équation satisfaite par $\overline{Y}^\varepsilon$  garantissent l'existence d'une application mesurable
+	
+\[
+\Gamma^\varepsilon:C([0,T];\mathbb{R}^d)\to C([0,T];\mathbb{R}^d)
+\]
+telle que la solution puisse s'écrire comme une fonctionnelle du bruit directeur:
+	 \[
+	 \overline{Y}_{\cdot}^\varepsilon = \Gamma^\varepsilon\left(\frac{1}{\lambda(\varepsilon)}W\right).
+	 \]
+	 
+	On considère une famille de contrôles $h_\varepsilon\in \mathscr{A}_N$ tel que:
+	 \[
+	 \mathbb{E}_{\mathbb{P}} \left( \exp \left\{ \frac{1}{2} \int_0^T |\dot{h}_\varepsilon(s)|^2 ds \right\} \right) < \infty.
+	 \]
+	Cette condition de Novikov permet de définir la martingale exponentielle 
+	 \[R_T = \exp \left\{ - \int_0^T \dot{h}_\varepsilon(s) d \frac{W_s}{\lambda(\varepsilon)} - \frac{1}{2} \int_0^T |\dot{h}_\varepsilon(s)|^2 ds \right\}\].
+	 et la nouvelle mesure de probabilité $\mathbb{P}_\varepsilon=R_T\mathbb{P}$.
+	 Par le théorème de Girsanov, le processus
+	 \[
+	 \frac{1}{\lambda(\varepsilon)}\widetilde{W}_t:=\frac{1}{\lambda(\varepsilon)}W_t+\int_{0}^{t}\dot{h}_\varepsilon(s)ds.
+	 \] est un mouvement brownien sous $\mathbb{P}_\varepsilon$.
+	 En remplaçant le bruit $\frac{1}{\lambda(\varepsilon)}W_\cdot$ dans la fonctionnelle $\Gamma^\varepsilon$ par sa version déformée $ \frac{1}{\lambda(\varepsilon)}\widetilde{W}_\cdot$, on définit le processus contrôlé
+	 \[
+	  \overline{Y}_\cdot^{\varepsilon,h_\varepsilon} = \Gamma^\varepsilon \left( \frac{1}{\lambda(\varepsilon)} W_\cdot + \int_0^t \dot{h}_\varepsilon(s) ds \right).
+	 \]
+	 Ce processus vérifie l'équation différentielle stochastique contrôlée suivante :
+	 \begin{equation}\label{eq:3.2.7}
+	 	\begin{aligned}d \overline{Y}_\cdot^{\varepsilon,h_\varepsilon} =& \frac{1}{\sqrt{\varepsilon }\lambda(\varepsilon)} [b_t (Y_t^{\varepsilon,h_\varepsilon}, \delta_{X_t^0}) - b_t (X_t^0, \delta_{X_t^0})] dt \\&+ \frac{1}{\lambda(\varepsilon)} \sigma_t (Y_t^{\varepsilon,h_\varepsilon}, \delta_{X_t^0}) dW_t + \sigma_t (Y_t^{\varepsilon,h_\varepsilon}, \delta_{X_t^0}) \dot{h}_\varepsilon(t) dt,
+	 	\end{aligned}
+	 \end{equation}
+	 où \(Y_t^{\varepsilon,h_\varepsilon} := X_t^0 + \sqrt{\varepsilon} \lambda(\varepsilon) \overline{Y}_t^{\varepsilon,h_\varepsilon}\).
+	 
+	 Pour que le contenu soit autonome, nous donnons dans la sous-section suivante l'esquisse de la preuve de la loi de $\overline{Y}^\varepsilon$ satisfaisant un principe de grandes déviations.
+	 \subsection{Principe de grandes déviations pour $\overline{Y}^\varepsilon$}
+	 \begin{lem}\label{lem:3.2.2}
+	Sous les hypothèses de théorème (\ref{thm:3.2.1}) , la famille \((\overline{Y}^\varepsilon)_{\varepsilon > 0}\) satisfait un principe de grandes déviations dans $C([0,T];\mathbb{R}^d)$ muni de la topologie de la norme uniforme, avec la bonne fonction de taux $I(g)$ donnée en (\ref{eq:3.2.3})
+	\end{lem}
+	
+	D'après le Lemme (\ref{lem:3.1.2)}, pour achever la démonstration du Lemme (\ref{lem:3.2.2}), il suffit de vérifier les conditions (a) et (b) du Lemme (\ref{lem:3.1.2}).
+	Les lemmes suivants jouent un rôle clé dans la preuve du Lemme (\ref{lem:3.2.2}).
+	 
+	 \begin{lem}\label{lem:3.2.3}
+	 	Sous les hypothèses \textbf{(H1)} et (2.5) de \textbf{(H2)}, pour tout \(h \in \mathbb{H}\), l'équation (2.12) admet une unique solution \(Y^h_\cdot\) dans \(C([0,T]; \mathbb{R}^d)\). De plus, pour tout \(N > 0\), il existe une constante \(C_{N,T}\) telle que
+	 	
+	 	\begin{equation}\label{eq:3.2.8}
+	 		\sup_{h \in S_N} \left\{ \sup_{0 \leq t \leq T} |Y^h_t| \right\} \leq C_{N,T}.
+	 	\end{equation}
+	 \end{lem}
+	 \begin{pr}
+	 Par l'hypothése \textbf{(H1)} et \textbf{(H2)} les coefficients de (\ref{eq:3.2.4}) satisfait la condition lipschitiz donc l'équation (\ref{eq:3.2.4}) admet une solution unique $Y^h$ dans $C([0,T],\mathbb{R})^d$. Maintenant, nous allons montre que pour tout $N>0$, il existe une constante $C_{N,T}$ telle que \(\sup_{h \in S_N} \left\{ \sup_{0 \leq t \leq T} |Y^h_t| \right\} \leq C_{N,T}.\)
+	 
+	 On a:
+	 \[
+	 dY_t^h=\Bigg\{\nabla_{Y_t^h}b_t(\cdot,\delta_{X_t^0})(X_t^0) +\sigma_t(X_t^0,\delta_{X_t^0})\dot{h}(t)\Bigg\}dt.
+	 \]
+	 alors
+	 \[
+	  Y_t^h=\int_{0}^{t}\big\{\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0) +\sigma_s(X_s^0,\delta_{X_s^0})\dot{h}(s)\big\}ds.
+	 \]
+	 pour tout $t\in[0,T]$:
+	 \[
+	 \begin{aligned}
+	\sup_{0 \leq t \leq T}|Y_t^h|&=\sup_{0 \leq t \leq T}\Big|\int_{0}^{t}\big\{\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0) +\sigma_s(X_s^0,\delta_{X_s^0})\dot{h}(s)\big\}ds\Big|.\\
+	&\leq\int_{0}^{T}\Big|\big\{\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0) +\sigma_s(X_s^0,\delta_{X_s^0})\dot{h}(s)\big\}\Big|ds.
+	\end{aligned}
+	 \]	 
+	 En utilisant l'inégalité triangulaire et la continué de la norme par rapport a l'intégration on obtient:
+	 
+	 \[
+	 \begin{aligned}
+	 &\leq\int_{0}^{T}\Big\|\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\|ds +\int_{0}^{T}\Big\|\sigma_s(X_s^0,\delta_{X_s^0})\dot{h}(s)\Big\|ds.
+	 \end{aligned}
+	 \]
+	 Pour le premier terme, d'après l'hypothése (\textbf{H2}) on a 
+	 \[
+	 \Big\|\nabla_{Y_s^h} b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\| \leq K(s)(1+|X_s^0|+W_2(\delta_{X_s^0},\delta_0))|Y_s^h|
+	 \]
+	 et pour le deuxième terme, en utilisant l'inégalité (2.3) d'hypothèse (\textbf{H1})
+	 \[
+	 \Big\|\sigma_s(X_s^0,\delta_{X_s^0})\dot{h}(s)\Big\|\leq K(s)(1+|X_s^0| + W_2(\delta_{X_s^0},\delta_0))|\dot{h}(s)| \text{ or } W_s(\delta_{X_s^0},\delta_0)\leq |X_s^0|.
+	 \]
+	 Ainsi:
+	 \[\begin{aligned}
+	 \sup_{0 \leq t \leq T}|Y_t^h| &\leq \int_{0}^{T}K(s)(1+2|X_s^0|)|Y_s^h| ds +\int_{0}^{T}K(s)(1+2|X_s^0|)|\dot{h}(s)|ds.\\
+	 &\leq K(T)\Big(\int_{0}^{T}(1+2|X_s^0|)|Y_s^h|ds + \int_{0}^{T}(1+2|X_s^0|)|\dot{h}(s)| ds \Big).\\
+	 \end{aligned}
+	 \]
+	 En appliquant l'inégalité de Hölder au second terme du membre de droite, ainsi que le Lemme (2.2.3), et $h\in S_N$ on obtient
+	 
+	\[
+	\begin{aligned}
+	&\leq K(T)C_T \Big(\int_{0}^{T}|Y_s^h|ds + T^{\frac{1}{2}}\big(\int_{0}^{T}|\dot{h}(s)|^2	 ds\big)^{\frac{1}{2}}\Big).\\
+	&\leq K(T)C_T \Big(\int_{0}^{T}|Y_s^h|ds + \sqrt{TN}\Big).
+	\end{aligned}
+	\]
+	 En appliquant l'inégalité de Gronwall on a:
+	 \[\begin{aligned}
+	 \sup_{h \in S_N}\sup_{0 \leq t \leq T}|Y_t^h| &\leq K(T)C_T\sqrt{TN}\exp\{TK(T)C_T\}
+	 \text{ ou bien }.\\
+	 \sup_{h \in S_N}\sup_{0 \leq t \leq T}|Y_t^h| & \leq C_{T,N}.
+	 \end{aligned}
+	 \]
+	 \end{pr}
+	 Premièrement,nous prouvons que la condition(b) du Lemme \ref({lem:3.1.2}) est satisfaite.
+	 
+	 \begin{lem}
+	 	 Sous les hypothèses (H1) et (2.5) de (H2), pour tout nombre positif
+	 	$N<\infty$, la famille
+	 	\[K_N := \left\{ \Gamma^0 \left( \int_0^{\cdot} \dot{h}(s) ds \right); h \in S_N \right\},\]
+	 	est compacte dans \(C([0,T]; \mathbb{R}^d)\), où l'application \(\Gamma^0\) est définie dans le Théorème (\ref{thm:3.2.1}).
+	 \end{lem}
+	 \begin{pr}
+	 	\textbf{Preuve}\\ Pour tout \( N < \infty \), l'ensemble \( K_N \) est compact si la compacité de \( S_N \) et la continuité de l'application \(\Gamma^0\) de \( S_N \) vers \( C([0, T]; \mathbb{R}^d) \) sont vérifiées. Pour cela, il suffit de montrer que \(\Gamma^0\) est une application continue de \( S_N \) vers \( C([0, T]; \mathbb{R}^d) \). Soit \( h_n \to h \) dans \( S_N \) lorsque \( n \to \infty \). Alors
+	 	\[
+	 	\begin{aligned}
+	 		Y_t^{h_n} - Y_t^h &= \int_0^t \nabla_{(Y_s^{h_n} - Y_s^h)} b_s (\cdot, \delta_{X_s^0}) (X_s^0) ds + \int_0^t \sigma_s (X_s^0, \delta_{X_s^0}) (\dot{h}_n(s) - \dot{h}(s)) ds\\
+	 	\end{aligned}
+	 	\]
+	 	Supposons que:
+	 	\[
+	 	\begin{aligned}
+	 I_1^n(t) &: =	 \int_0^t \nabla_{(Y_s^{h_n} - Y_s^h)} b_s (\cdot, \delta_{X_s^0}) (X_s^0) ds.\\
+	 I_2^n(t) &:=  \int_0^t \sigma_s (X_s^0, \delta_{X_s^0}) (\dot{h}_n(s) - \dot{h}(s)) ds.
+	 	 	\end{aligned}
+	 	\]
+	 	Premièrement, on vas étudie le premier terme $I_1^n(t)$, pour tout $t\in [0;T]$ on a:
+	 	\[
+	 	\begin{aligned}
+	 	|I_1^n(t)| &= \Big|\int_{0}^{t}\nabla_{(Y_s^{h_n} - Y_s^h)}b_s(\cdot,\delta_{X_s^0})(X_s^0)ds\Big|\\
+	 	&\leq \int_{0}^{t}\Big\|\nabla_{(Y_s^{h_n} - Y_s^h)}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\|ds.
+	 	\end{aligned}
+	 	\]
+	 	D'après l'hypothése (\textbf{H2}) et (3.3) on a:
+	 	\[\begin{aligned}
+	 	\Big\|\nabla_{(Y_s^{h_n} - Y_s^h)}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\|&\leq K(s)(1+|X_s^0| + W_2(\delta_{X_s^0},\delta_0))|Y_s^{h_n}-Y_s^h|.\\ \text{ or } W_2(\delta_{X_s^0},\delta_0)\leq |X_s^0| \text{ alors }\\
+	 	&\leq K(s)(1 + 2|X_s^0|)|Y_s^{h_s}-Y_s^h|.
+	 	\end{aligned}
+	 	\]
+	 	Ainsi,
+	 	\[
+	 	|I_1^n(t)| \leq \int_{0}^{t} K(s)(1 + 2|X_s^0|)|Y_s^{h_s}-Y_s^hds|.
+	 	\]
+Pour tout $t\in [0;T]$ on a:
+\begin{equation}\label{eq:3.2.9}
+	\sup_{0 \leq t \leq T}	|I_1^n(t)| \leq C_T\int_{0}^{T} |Y_s^{h_s}-Y_s^h|ds.
+\end{equation}
+Soit  $g^n(t) = \int_0^t \sigma_s (X_s^0, \delta_{X_s^0}) \dot{h}_n(s) ds$. D'après (H1), inégalité de Hölder, le Lemme 3.2, et \( h_n, h \in S_N \), nous obtenons 
+\[
+\begin{aligned}
+|g^n(t)| &= |\int_{0}^{t}\sigma_s(X_s^0,\delta_{X_s^0})\dot{h}_n(t)ds|\\
+&\leq\Big(\int_{0}^{t}\|\sigma_s(X_s^0,\delta_{X_s^0})\|^2ds\Big)^\frac{1}{2}\Big(\int_{0}^{t}|\dot{h}_n(s)|^2ds\Big)^\frac{1}{2}\\
+	&\leq \Big(\int_{0}^{t}K(s)|1 + |X_s^0| + W_2(\delta_{X_s^0},\delta_0)|ds\Big)^\frac{1}{2}\Big(\int_{0}^{t}|\dot{h}_n(s)|^2ds\Big)^\frac{1}{2}\\
+	\text{ or } W_s(\delta_{X_s^0},\delta_0) &\leq |X_s^0| \text{ et en utilisant (3.3) nous avons: }\\
+	&\leq \Big(\int_{0}^{t}K(s)|1 + 2|X_s^0| ds\Big)^\frac{1}{2}\Big(\int_{0}^{t}|\dot{h}_n(s)|^2ds\Big)^\frac{1}{2}\leq C_{T,N}\leq\infty.
+\end{aligned}
+\]
+De même, pour tout $0\leq t_1\leq t_2\leq T,$
+\[\begin{aligned}
+	|g^n(t_2) - g^n(t_1)| &\leq \int_{t_1}^{t_2} \|\sigma_s (X_s^0, \delta_{X_s^0})\| |\dot{h}_n(s)| ds\\
+&\leq \int_{t_1}^{t_2} K(s)(1 + |X_s^0| + W_2(\delta_{X_s^0}, \delta_0)) |\dot{h}_n(s)| ds\\
+	&\leq \int_{t_1}^{t_2} K(s)(1 + 2|X_s^0|) |\dot{h}_n(s)| ds\\
+	&\leq C(T)\int_{t_1}^{t_2}|\dot{h}_n(s)|ds\\
+&\leq C(T)(t_2 - t_1)^{1/2} \left( \int_{t_1}^{t_2} |\dot{h}_n(s)|^2 ds \right)^{1/2}\\
+&\leq C(T, N)(t_2 - t_1)^{1/2}.
+\end{aligned}\]
+Ainsi, la famille de fonction $\{g^n\}_{n\geq 1}$ est équicontinue dans \(C([0, T]; \mathbb{R}^d) \). D'après le théorème  d'Ascoli-Arzelà, \(\{g^n\}_{n \geq 1}\) est relativement compacte dans \(C([0, T]; \mathbb{R}^d) \). Soit \( g \) un point limite de \(\{g^n\}_{n \geq 1}\). En remarquant que \( h_n \to h \) dans \( S_N \), nous avons
+\[\lim_{n \to \infty} \int_0^t \sigma_s (X_s^0, \delta_{X_s^0}) \dot{h}_n(s) ds = \int_0^t \sigma_s (X_s^0, \delta_{X_s^0}) \dot{h}(s) ds, \text{ pour tout } t \in [0, T],\]
+c'est-a-dire $\lim_{n \to \infty}\sup_{0 \leq t \leq T}|I_2^n(t)| = 0.$ Ceci combiné avec (\ref{eq:3.2.9}) donne
+\[
+\sup_{0 \leq t \leq T}|Y_t^{h_n}-Y_t^{h}|\leq C_T\int_{0}^{T}|Y_s^{h_n}-Y_s^h| ds + \sup_{0 \leq t \leq T}|I_2^n(t)|
+\]
+et par inégalité de Gronwall, nous obtenons
+\[
+\sup_{0 \leq t \leq T}|Y_t^{h_n}-Y_t^{h}|\leq\sup_{0 \leq t \leq T}|I_2^n(t)|\exp\{TC_T\}\to 0, \text{lorsque } n \to \infty.
+\]
+Ainsi, l'application $\Gamma^0$ est continue, ce qui complète de preuve.
+\end{pr}
+	 
+Avant de vérifier la condition (a), nous donnons une estimation pour le second moment de \(\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}\).	 
+\begin{lem}
+	Supposons que \((\mathbf{H1})\) soit vérifiée. Alors, il existe un \(\varepsilon_{0}\in(0,1)\) tel que pour une certaine constante \(C_{T}\),
+	
+	\begin{equation}\mathbb{E} \left( \sup_{0\leq t\leq T} |\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}|^{2} \right) \leq C_{T}, \quad \varepsilon \in (0,\varepsilon_{0}), \quad h_{\varepsilon} \in \mathcal{A}_{N}
+	\end{equation}
+	
+	où \(\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}\) est défini en (\ref{eq:3.2.7}).
+\end{lem}
+\begin{pr}
+	Remarquons que \(\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}\) peut être décomposé en les trois partie suivantes:
+	\[
+	\begin{aligned}
+		\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}} &= \int_{0}^{t} \frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)} [b_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) - b_{s}(X_{s}^{0}, \delta_{X_{s}^{0}})] ds\\ &+ \int_{0}^{t} \frac{1}{\lambda(\varepsilon)} \sigma_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) dW_{s} + \int_{0}^{t} \sigma_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) \dot{h}_{\varepsilon}(s) ds\\&=: \sum_{i=1}^{3} J_{i}^{\varepsilon,h_{\varepsilon}}(t).
+	\end{aligned}
+	\]
+	On a:
+	\[
+	\begin{aligned}
+	J_1^{\varepsilon,h_\varepsilon}(t) : &=\int_{0}^{t} \frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)} [b_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) - b_{s}(X_{s}^{0}, \delta_{X_{s}^{0}})] ds\\
+	|J_1^{\varepsilon,h_\varepsilon}(t)|^2&=\Big|\int_{0}^{t} \frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)} [b_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) - b_{s}(X_{s}^{0}, \delta_{X_{s}^{0}})] ds\Big|^2\\
+	\end{aligned}
+	\]
+ d'après l'hypothése \textbf{(H1)} et l'inégalité de Hölder nous avons
+ \[
+ \begin{aligned}
+ 	\sup_{0 \leq t \leq T}|J_1^{\varepsilon,h_\varepsilon}(t)|^2
+ 	&\leq\frac{T}{\varepsilon\lambda^2(\varepsilon)}\int_{0}^{T}\Big|b_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) - b_{s}(X_{s}^{0}, \delta_{X_{s}^{0}})\Big|^2ds\\
+ 	&\leq \frac{T}{\varepsilon\lambda^2(\varepsilon)}\int_{0}^{T}K^2(s)|Y_s^{\varepsilon,h_\varepsilon}-X_s^0|^2ds\\
+ 	&\leq \frac{T}{\varepsilon\lambda^2(\varepsilon)}\int_{0}^{T}K^2(s)|X_s^0 + \sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_{s}^{\varepsilon,h_{\varepsilon}} - X_s^0|^2ds\\
+ 	&\leq \frac{T}{\varepsilon\lambda^2(\varepsilon)}\int_{0}^{T}K^2(s) \varepsilon\lambda^2(\varepsilon) |\overline{Y}_{s}^{\varepsilon,h_{\varepsilon}}|^2ds\\
+ 	&\leq C_T\int_{0}^{T}|\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}|^2ds.
+ \end{aligned}
+ \]
+ Maintenant, nous prenons l'espérance, pour tout $t\in [0,T]$ on a:
+ \[
+ \mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_1^{\varepsilon,h_\varepsilon}(t)|^2
+ \Big)\leq C_T\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds
+ \]
+On a
+\[
+\begin{aligned}
+J_2^{\varepsilon,h_\varepsilon}(t) :& =\int_{0}^{t}\frac{1}{\lambda(\varepsilon)}\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_s^0})ds\\
+|J_2^{\varepsilon,h_\varepsilon}(t)|^2 : &= \Big|\int_{0}^{t}\frac{1}{\lambda(\varepsilon)}\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_s^0})ds\Big| ^2\\
+\text{ pour tout }t\in [0;T] \text{ on a }\\
+\sup_{0 \leq t \leq T}|J_2^{\varepsilon,h_\varepsilon}(t)|^2&\leq \Big|\int_{0}^{T}\frac{1}{\lambda(\varepsilon)}\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_s^0})ds\Big| ^2.
+\end{aligned}
+\]
+Cette inégalité nous conduit a utiliser l'inégalité de BGD, on obtient
+\[\begin{aligned}
+\mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_2^{\varepsilon,h_\varepsilon}(t)|^2\Big)&\leq \frac{C}{\lambda^2(\varepsilon)}\mathbb{E}\Big(\int_{0}^{T}\Big\|\sigma_s(Y^{\varepsilon,h_\varepsilon}_s,\delta_{X_{s}^{0}})\Big\|^2ds\Big) \\
+&\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}\mathbb{E}\Big\|\sigma_s(Y^{\varepsilon,h_\varepsilon}_s,\delta_{X_{s}^{0}})\Big\|^2ds\\
+\text{ d'après l'hypothése \textbf{H1} }\\
+&\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}K^2(s)\mathbb{E}\Big(1+|Y_s^{\varepsilon,h_\varepsilon}|+W_2(\delta_{X_{s}^{0}},\delta_0)\Big)^2ds\\
+&\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}3K^2(s)\mathbb{E}\Big(1+|Y_s^{\varepsilon,h_\varepsilon}|^2+W_2^2(\delta_{X_{s}^{0}},\delta_0)\Big)ds\\
+&\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}3K^2(s)\mathbb{E}\Big(1 + |X_s^0 + \sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_{s}^{\varepsilon,h_{\varepsilon}}|^2+|X_s^0|^2\Big)ds\\
+&\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}6K^2(s)\mathbb{E}\Big(1+\varepsilon\lambda^2(\varepsilon) |Y_s^{\varepsilon,h_\varepsilon}|^2 + |X_s^0|^2\Big)ds\\
+&\leq \frac{C_T}{\lambda^2(\varepsilon)}\int_{0}^{T}\Big(1+\varepsilon\lambda^2(\varepsilon)\mathbb{E}|Y_s^{\varepsilon,h_\varepsilon}|^2\Big)ds \text{ d'où }\\
+\mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_2^{\varepsilon,h_\varepsilon}(t)|^2\Big)&\leq \frac{C_T}{\lambda^2(\varepsilon)} + C_T\varepsilon \int_{0}^{T}\mathbb{E}|Y_s^{\varepsilon,h_\varepsilon}|^2ds
+\end{aligned}
+\]
+En appliquant l'inégalité de Hölder et en rappelant que \(h_{\epsilon} \in \mathcal{A}_{N}\), nous obtenons à partir de (3.3) et (3.4) que
+\[
+\begin{aligned}
+	J_3^{\varepsilon,h_\varepsilon}(t) :&= \int_{0}^{t} \sigma_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) \dot{h}_{\varepsilon}(s) ds\\
+	\Big|J_3^{\varepsilon,h_\varepsilon}(t)\Big|^2 &\leq\Big|\int_{0}^{t} \sigma_{s}(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}}) \dot{h}_{\varepsilon}(s) ds\Big|^2\\
+	\sup_{0 \leq t \leq T}\Big|J_3^{\varepsilon,h_\varepsilon}(t)\Big|^2 &\leq \int_{0}^{T}\|\sigma_s(Y_{s}^{\varepsilon,h_{\varepsilon}}, \delta_{X_{s}^{0}})\|^2ds\int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	&\leq \int_{0}^{T}K(s)(1+|Y_s^{\varepsilon,h_\varepsilon}|+W_2(\delta_{X_s^0},\delta_0))^2ds\int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	&\leq K^2(T)\int_{0}^{T}(1 + |X_s^0 +\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}| + W_2(\delta_{X_s^0},\delta_0))^2\int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	&\leq K^2(T)\int_{0}^{T}(1 + |X_s^0| + |\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}| + W_2(\delta_{X_s^0},\delta_0))^2\int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	\text{ or } W_2(\delta_{X_{s}^{0}},&\delta_0) \leq |X_s^0| \text{ alors on a }\\
+	&\leq3K^2(T)\int_{0}^{T}(1+|X_s^0|^2 +\varepsilon\lambda^2(\varepsilon)|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2+ |X_s^0|^2)ds \int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	&\leq 3K^2(T)\int_{0}^{T}(1+2|X_s^0|^2 +\varepsilon\lambda^2(\varepsilon)|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2)ds \int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	&\leq C_T(1 + \sup_{0 \leq t \leq T}|X_s^0|^2 +\varepsilon\lambda^2(\varepsilon)\sup_{0 \leq t \leq T}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2)\int_{0}^{T}|\dot{h}_\varepsilon(t)|^2ds\\
+	&\leq C_{T,N}(1 + \varepsilon\lambda^2(\varepsilon)\sup_{0 \leq t \leq T}|Y_s^{\varepsilon,h_\varepsilon}|^2)
+	\end{aligned}
+\]
+Prenant l'espérance, nous avons
+\[
+\mathbb{E}\Big(\sup_{0 \leq t \leq T}\Big|J_3^{\varepsilon,h_\varepsilon}(t)\Big|^2\Big) \leq C_{T,N}\Big(1 + \varepsilon\lambda^2(\varepsilon)\mathbb{E}\Big(\sup_{0 \leq t \leq T}|Y_s^{\varepsilon,h_\varepsilon}|^2\Big)\Big)
+\] 
+Ainsi, nous arrivons à
+\[\begin{aligned}
+\mathbb{E}\Big(\sup_{0\leq t\leq T}|\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}} |^2\Big)&\leq  C_T\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds +  \frac{C_T}{\lambda^2(\varepsilon)} + C_T\varepsilon \int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds\\ &+ C_{T,N}\Big(1 + \varepsilon\lambda^2(\varepsilon)\mathbb{E}\Big(\sup_{0 \leq t \leq T}|Y_s^{\varepsilon,h_\varepsilon}|^2\Big)\Big)\\
+&\leq C_T\Big(\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds + \frac{1}{\lambda^2(\varepsilon)}+\varepsilon\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds + 1\\& + \varepsilon\lambda^2(\varepsilon)\mathbb{E}\Big(\sup_{0 \leq t \leq T}|Y_s^{\varepsilon,h_\varepsilon}|^2\Big)\Big)\\
+\end{aligned}
+\]
+Prenons $\varepsilon \geq 0$, suffisamment petit tel que $C_T\varepsilon\lambda^2(\varepsilon)\leq\frac{1}{2}$ conduit à 
+\[
+\mathbb{E}\Big(\sup_{0 \leq t \leq T}|\overline{Y}_t^{\varepsilon,h_\varepsilon}|^2\Big) \leq C_T\Big(1+\frac{1}{\lambda^2(\varepsilon)}+(1+\varepsilon)\int_{0}^{T}\mathbb{E}\Big(\sup_{0\leq t\leq T}|\overline{Y}_s^{\varepsilon,h_\varepsilon}\Big)\Big)
+\]
+L'assertion désirée découle de l'inégalité de Gronwall,
+
+\[
+\mathbb{E}\Big(\sup_{0 \leq t \leq T}|\overline{Y}_t^{\varepsilon,h_\varepsilon}|^2\Big)\leq C_T(1+\frac{1}{\lambda^2(\varepsilon)})\exp\{T(1+\varepsilon)\}
+\]
+Puisque $\frac{1}{\lambda^2(t)}\to 0$ lorsque $\varepsilon\to0$, on en déduit que:
+\[
+\mathbb{E}\Big(\sup_{0 \leq t \leq T}|\overline{Y}_t^{\varepsilon,h_\varepsilon}|^2\Big)\leq C_T
+\]	
+\end{pr}
+Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{lem:3.1.2}).
+
+\begin{lem}
+	Sous les hypothèses \textbf{(H1)} et \textbf{(2.5) de (H2)}, pour tout $N \in \mathbb{N}$, soient $h_\epsilon$ et $h$ des éléments de $\mathscr{A}_N$ tels que $h_\epsilon \to h$ lorsque $\epsilon \to 0$. Alors,
+	\[
+	\Gamma^\epsilon\left( \frac{1}{\lambda(\epsilon)} W + \int_0^{\cdot} \dot{h}_\epsilon(s)\, ds \right)
+	\xrightarrow[\epsilon \to 0]{\text{loi}}
+	\Gamma^{0}\left( \int_0^{\cdot} \dot{h}(s)\, ds \right)
+	\quad \text{dans } C([0,T];\mathbb{R}^d).
+	\]
+\end{lem} 
+	 \begin{pr}
+	 Le théorème de représentation de Skorokhod	[3,Théorème 6.7,p 70] affirme qu'il existe un espace de probabilité $(\widetilde{\Omega},\widetilde{\mathcal{F}},(\widetilde{\mathcal{F}_t})_{t\geq 0},\widetilde{\mathbb{P}})$, un mouvement brownien $W$ sur cette base, ainsi qu'une famille de processus $\mathcal{F}_t-$prévisible $\{\widetilde{h}_\varepsilon;\varepsilon\geq 0\}$, prenant leurs valeurs dans $\mathscr{A}_N$, $\mathbb{P}-$presque sûrement, tels que la loi jointe de $(h^\varepsilon,h,W)$ sous $\mathbb{P}$ coïncide avec celle de $(\widetilde{h}^\varepsilon,\widetilde{h},\widetilde{W})$ sous $\mathbb{P}$ et
+	 \[
+	 \lim_{\lambda\to 0}\langle \widetilde{h}_\epsilon - \widetilde{h}, g \rangle = 0, \quad \text{ pour tout } g \in \mathbb{H}, \quad \mathbb{P}\text{-presque sûrement}.
+	 \]
+	 Soient $\widetilde{Y}^{\varepsilon,\widetilde{h}_\varepsilon}$ la solution de (\ref{eq:3.2.7}) en remplaçant $h_\varepsilon$ par $\widetilde{h}_\varepsilon$ et $W$ par $\widetilde{W}$, et soit $\widetilde{Y}^{\widetilde{h}}$ la solution de (\ref{eq:3.2.4}) en remplaçant $h$ par $\widetilde{h}$. Ainsi, pour conclure, il suffit de vérifié
+	 \[
+	 \lim_{\varepsilon\to0}\|\widetilde{Y}^{\varepsilon,\widetilde{h}_\varepsilon}-\widetilde{Y}^{\widetilde{h}}\| = 0, \quad \text{ en probabilité}.
+	 \]
+	 
+	 Dans la suite, nous omettons $\widetilde{\cdot}$ dans la notation pour plus de simplicité. Notons que $\overline{Y}^{\varepsilon,h_\varepsilon} - Y^h$ peut être décomposé en trois parties comme suit:
+	 \[
+	 \begin{aligned}
+	 	\overline{Y}^{\varepsilon,h_\varepsilon} - Y^h &=\Bigg[ \int_{0}^{t}\frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)}\Big[b_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})-b_s(X_s^0,\delta_{X_s^0})\Big]ds - \int_{0}^{t}\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0)ds\Bigg]\\
+	 	&+\int_{0}^{t}\Big[\sigma_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})\dot{h}_\varepsilon(s)-\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\dot{h}(s)\Big]ds+\int_{0}^{t}\sigma_{s}()
+	 \end{aligned}
+	 \]
+	 \end{pr}
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	% \subsection{Principe de grandes déviations de $\overline{Y}^\varepsilon$	
+\end{document}

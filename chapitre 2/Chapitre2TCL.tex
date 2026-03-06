@@ -1,0 +1,983 @@
+\documentclass[12pt,a4paper,twoside,fleqn]{book}%      autres choix : book, report
+\usepackage[utf8]{inputenc}%           gestion des accents (source)
+\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+\usepackage[french]{babel}%          gestion du fran�ais
+\usepackage{textcomp}%                 caract�res additionnels
+\usepackage{mathtools,amssymb}
+\usepackage{amsthm}
+\usepackage{xurl}
+\usepackage{mathrsfs}
+\usepackage{amsmath}% packages de l'AMS + mathtools
+\usepackage{lmodern}
+\usepackage[bottom=2.5cm,left=2.5cm,right=2.5cm,top=2.5cm]{geometry}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagestyle{fancy}
+\fancyhf{}
+\theoremstyle{definition}
+\newtheorem{dfn}{Définition}[section]
+\newtheorem*{pr}{\textbf{Preuve}}
+\newtheorem{rem}{\textit{Remarque}}[section]
+\newtheorem{thm}[dfn]{Théorème}
+\newtheorem{prop}[dfn]{\textit{Proposition}}
+\newtheorem{cor}[dfn]{\textit{Corollaire}}
+\theoremstyle{lemme}
+\newtheorem{lem}[dfn]{\textit{Lemme}}
+\newtheorem{exm}[dfn]{\textit{Exemple}}
+\newtheorem{prp}[dfn]{\textbf{Propriété}}
+\newtheorem{for}[dfn]{\textit{Formule}}
+\numberwithin{equation}{section}
+
+\setcounter{page}{1}
+\title{ \textbf{Théorème Central Limite et Principe de Déviations Modérées pour les Équations Différentielles Stochastiques de McKean-Vlasov)}}
+\begin{document}
+	\pagenumbering{arabic}
+	\pagestyle{plain}
+	%\maketitle
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	
+	\chapter{Théorème central limite pour la solution de l'équation différentielle stochastique de type McKean-Vlasov}
+	  \section{Théorème central limite classique}
+	 \subsection{Loi des grands nombres}
+	  \begin{dfn}
+	  	La suite $(X_n)_{n\geq 1}$ satisfait la loi faible des grands nombres si la suite de terme général $\frac{1}{n}\sum_{k=1}^{n}X_k$ converge vers 0 en probabilité.
+	  	
+	  	La suite $(X_n)_{n\geq1}$ satisfait la loi forte des grands nombres si la suite de terme général $\frac{1}{n}\sum_{k=1}^{n}$ converge vers 0 presque sûrement.
+	  \end{dfn}	
+	\begin{thm}
+		Soit $(X_n, n\in\mathbb{N}^*)$ une suite de variable aléatoire indépendantes de carré intégrable et de même loi. On note:
+		\[
+		\overline{X}_n=\frac{1}{n}\sum_{i=1}^{n}X_i
+		\] la moyenne empirique. La moyenne empirique converge en probabilité vers $\mathbb{E}(X_1)=\mu$: pour tout $\varepsilon>0$
+		\begin{equation}\label{eq:2.1.1}
+			\lim_{n \to \infty} \mathbb{P}\left(|\overline{X}_n - \mu|>\varepsilon\right)=0
+		\end{equation}
+		
+\end{thm}
+\begin{rem}
+	Le théorème ci-dessus est naturellement valable si les variables aléatoires $X_n$ sont indépendantes ou simplement indépendantes deux à deux.
+\end{rem}
+
+	La loi forte des grands nombres est une amélioration de la loi faible. En effet, la loi faible garantit seulement la convergence en probabilité de la moyenne empirique vers l’espérance, tandis que la loi forte établit la convergence presque sûre, ce qui donne un résultat plus puissant.
+\begin{thm}
+	 Soit $(X_n, n\in\mathbb{N}^*)$ une suite de variable aléatoire réelle ou vectorielles identiquement distribuées et intégrables (c'est-à-dire indépendantes, de même loi et telles que $\mathbb{E}(|X_n|)<\infty)$. Alors la moyenne empirique $\overline{X}_n=\frac{1}{n}\sum_{k=1}^{n}X_k$ converge presque sûrement vers $\mathbb{E}(X_1=\mu).$ Ainsi on a:
+	 
+	 \begin{equation}\label{eq:2.1.2}
+	 	\overline{X}_n \xrightarrow[k]{\text{p.s.}} \mu
+	 \end{equation}
+	 On a de plus que $\lim_{n \to \infty}\mathbb{E}\left(|\overline{X}_n-\mu|\right) =0$
+\end{thm}
+
+\subsection{Théorème centrale limite}
+Le théorème central limite (TCL) décrit les fluctuations autour de la moyenne et précise la vitesse de convergence donnée par la loi des grands nombres. Il constitue l’un des résultats fondamentaux de la théorie des probabilités.
+ 
+ \begin{thm}\label{thm:2.1.4}
+ 	Soit $(X_n)_{n\in\mathbb{N}^*}$ une suite de variable aléatoire réelles indépendante identiquement distribué de $L^2$.
+ 	
+ 	Posons:
+ 	\[
+ 	\mu = \mathbb{E}(X_1), \text{    } \sigma^2 = Var(X_1) \text{  } (0<\sigma<\infty);
+ 	\]
+ 	
+ 	\begin{equation}\label{eq:2.1.3}
+ 	S_n = X_1 + X_2 +...+ X_n,\text{      } \overline{X}_n=\frac{S_n}{n},\text{   }Y_n=\frac{S_n-n\mu}{\sigma\sqrt{n}}=\frac{\overline{X}_n -\mu}{\sigma/\sqrt{n}}
+ 	\end{equation}
+ 	Alors la suite $(Y_n)_{n\geq 1}$ converge en loi vers une variable aléatoire de loi $\mathcal{N}(0,1)$ c'est-à-dire que pour tout réel $x$ on a:
+ 	
+ 	\[
+ 	P(Y_n\leq x) \longrightarrow \int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-\frac{u^2}{2}}du \text{       } (n\to +\infty)
+ 	\]	
+ \end{thm}
+\begin{rem}
+	L'importance du Théorème central limite résidé dans le fait que pour $n$ grand les lois de probabilité (en général compliquées) de $S_n,\overline{X}_n$ peuvent être approchées par les lois normales $\mathcal{N}(n\mu,\sigma\sqrt{n}),\mathcal{N}(\mu,\sigma/\sqrt{n}).$
+\end{rem}	
+	
+\begin{exm}\textbf{(Moivre-Laplace)}
+	Considérons $(X_n)_{n\geq1}$ une suite de variable aléatoire identiquement distribuée, suivant la loi Bernoulli $p\varepsilon_1+q\varepsilon_0$ $(p+q=1)$. Alors $S_n$ suit la loi binomiale $B(n,p)$. On a $\mathbb{E}(S_n)=np$, $VarS_n=npq,$ et le théorème \ref{thm:2.1.4} affirme: La suite des variables aléatoire de terme général $Y_n=\frac{S_n-np}{\sqrt{npq}}$ converge en loi vers une variable aléatoires de loi $\mathcal{N}(0,1)$
+\end{exm}	
+\subsection{Théorème de Donsker}
+En théorie des probabilités, le Théorème de Donsker établit la convergence en loi d'une marche aléatoire vers un processus stochastique gaussien. Il est parfoit appelé le théorème central limite fonctionnel. Ce théorème est une référence pour la convergence en loi de marche aléatoires renormalisées vers un processus à temps continus. De nombreux théorèmes sont alors dits de "type Donsker"
+
+\begin{dfn}
+	Soient $(U_n)_{n\geq1}$ une suite de variable aléatoire indépendante identiquement distribue de moyenne nulle et variance $\sigma^2>0$
+	On interpole de marche aléatoire:
+	\[
+	S_n = U_1+U_2+...+U_n \text{      } S_0=0
+	\] de manière affine par morceaux en considérant le processus $(X_n(t))_{t\geq1}$ défini par 
+	
+	\begin{equation}\label{eq:2.1.4}
+		X_n(t) = \frac{1}{\sigma\sqrt{n}}\left(S_{ \lfloor nt\rfloor} + (nt -\lfloor nt\rfloor )U_{ \lfloor nt\rfloor +1}\right)
+	\end{equation}
+	pour tout $t>0$ et où $\lfloor x\rfloor$ désigne la partie entière de $x$.
+\end{dfn}
+\begin{lem}
+	Supposons que $X_n$ soit définir par , que $U_n$ soit stationnaire, et que 
+	\begin{equation}\label{eq:2.1.5}
+		\lim_{\lambda\to \infty}\lim_{n\to\infty}\sup\lambda^2\mathbb{P}\left[\max_{k\leq n}|S_k|\geq \lambda\sigma\sqrt{n}\right]=0
+	\end{equation}
+	Alors $(X_n)$ est tendue % relativement compacte en loi
+\end{lem}
+\begin{pr}
+	
+\end{pr}
+
+Considérons l'espace $\mathcal{C}([0,1])$ des fonction à valeurs et continues sur $[0,1]$ On munit $\mathcal{C}([0,1])$ de la tribu borélienne $\mathcal{B}$ et de la norme infini $\|\cdot\|$. Ainsi, $X_n$ est une variable aléatoire à valeurs dans $(\mathcal{C}([0,1]),\mathcal{B})$
+
+\begin{thm}\label{thm:1.1.8} (\textbf{Donsker})
+	Si $U_1, U_2,...,U_n$ sont indépendantes et identiquement distribuées avec une espérance nulle et une variance $\sigma^2$, et si $X_n$ est la fonction aléatoire définie par (1.1.3), alors $(X_n(t))$ converge en loi vers un mouvement Brownien standard $W=(W_t,t\geq0)$ quand $n$ tend vers l'infini. 
+\end{thm}
+\begin{pr}
+	
+\end{pr}
+
+
+Le Théorème \ref{thm:2.1.4} décrit la convergence des sommes normalisées de variables i.i.d. vers une loi normale, tandis que le Théorème \ref{thm:1.1.8} (Donsker) en donne une extension fonctionnelle vers le mouvement brownien. Ces deux théorèmes étudient les sommes discrètes de variables aléatoires. Dans la suite, nous nous intéressons au cas continu du théorème central limite, appliqué aux intégrales stochastiques, afin d’analyser le comportement autour des solutions d’équations différentielles stochastiques.
+
+\section{Théorème central limite pour Mckean-Vlasov}
+Dans le cas général, étudie les déviation de la solution $X_t^{\varepsilon}$ de l'équation différentielle stochastique de type McKean-Vlasov (ref chap I) par rapport à la solution $X_t^\varepsilon$ de l'EDS ordinaire (ref chap I) revient à analyser le comportement asymptotique de la trajectoire 
+\begin{equation}\label{}
+	\overline{X}_t^\varepsilon=\frac{1}{\sqrt{\varepsilon}\lambda(\varepsilon)}\left(X_t^\varepsilon-X_t^0\right), \text{                  }t\in[0,T]
+\end{equation} 
+\begin{itemize}
+	\item (PGD) Le cas de $\lambda(\varepsilon)=\frac{1}{\sqrt{\varepsilon}}$ fournit des estimations de grandes déviation[ref livre 11] a prouvé que la loi de la solution $X^\varepsilon$ satisfait un principe de grandes déviation en discutant de la tension exponentielle.
+
+\item (TCL) Si $\lambda(\varepsilon)\equiv1$, nous montrerons que $\frac{X^\varepsilon-X^0}{\sqrt{\varepsilon}}$ converge vers un processus stochastique dans un certain sens lorsque $\varepsilon\to0$
+\item (PDM) Pour comble l'écart entre l'échelle du théorème central limite (TCL) et celle des grandes déviation (PGD), le principe de déviation modérée (PDM) pour $X^\varepsilon$ consiste à étudier le principe de grandes déviation de la trajectoire \ref{eq:2.2.1}, où échelle de déviation $\lambda(\varepsilon)$ satisfait
+\begin{equation}\label{1.2.3}
+	\lambda(\varepsilon) \to \infty, \quad \sqrt{\varepsilon} \lambda(\varepsilon) \to 0, \quad \text{lorsque } \varepsilon \to 0.
+\end{equation}
+\end{itemize}
+
+Le premier résultats principal est l'étude du TCL pour $(X^\varepsilon)_{\varepsilon\in(0,1)}$, énonce comme suit:
+\begin{thm}\label{thm:2.2.1}
+	Sous les hypothèses (\textbf{H1}) et (\textbf{H2}),
+	\begin{equation}
+		\mathbb{E}\left(\sup_{0\leq t \leq T}\left|\frac{X_t^\varepsilon-X_t^0}{\sqrt{\varepsilon}}-Z_t\right|^p
+		\right)\lesssim \varepsilon
+	\end{equation}
+	où $Z_t$ est solution de 
+	\begin{equation}\label{eq:2.2.4}
+		\begin{aligned}
+	dZ_t &= \nabla_{Z_t} b_t (\cdot, \delta_{X_t^0}) (X_t^0) dt + \mathbb{E} \langle D^L b_t (y, \cdot) (\delta_{X_t^0}) (X_t^0), Z_t\rangle |_{y = X_t^0} dt + \sigma_t (X_t^0, \delta_{X_t^0}) dW_t,\\
+	Z_0&=0
+	\end{aligned}
+	\end{equation}
+\end{thm}
+
+Avant de donner la preuve du Théorème \ref{thm:2.2.1} nous préparons les propositions et lemmes suivants
+
+\begin{prp}\label{prp:2.2.2}
+	Soit $(\Omega,\mathcal{F},\mathbb{P})$ un espace de probabilité sans atomes, et soient $X,Y\in L^2(\Omega\to \mathbb{R}^d,\mathbb{P})$ avec $\mathcal{L}_X=\mu$. Si $X$ et $Y$ sont bornées et $f$ est $L-$différentiable en $\mu$, soit $f\in C_b^1(\mathcal{P}_2(\mathbb{R}^d)).$ alors:
+	
+	\begin{equation}\label{eq:2.2.5}
+		\lim_{\varepsilon\to0}\frac{f(\mathcal{L}_{X+\varepsilon Y} - f(\mu))}{\varepsilon} = |\mathbb{E}\langle D^Lf(\mu)(X),Y\rangle|\leq\|D^Lf(\mu)\|\sqrt{\mathbb{E}|Y|^2}
+	\end{equation}
+	Par conséquent,
+	\begin{equation}\label{eq:2.2.6}
+		\left| \lim_{\varepsilon\downarrow 0}\frac{f(\mathcal{L}_{X+\varepsilon Y} - f(\mu))}{\varepsilon}\right| = |\mathbb{E}\langle D^Lf(\mu)(X),Y\rangle |\leq \|D^Lf(\mu)\|\sqrt{\mathbb{E}|Y|^2}
+	\end{equation}
+\end{prp}
+\begin{pr}
+	Pour commencer, notons que le $L-$différentiel $D^Lf(\mu)$ est dans $L^2(\mathbb{R}^d,\mu)$ et que l'inégalité provient directement de l'inégalité de Cauchy-Schwarz dans cet espace. Pour toute application $\phi\in L^2(\mathbb{R}^d,\mu)$ telle que $\phi(X)=\mathbb{E}[Y|X],$ on a
+	\[
+	\begin{aligned}
+	|\mathbb{E} \langle D^Lf(\mu)(X),Y \rangle| &= |\mathbb{E}\langle D^Lf(\mu)(X),\phi(X)\rangle |\\ &= |\mu(\langle D^Lf(\mu),\phi\rangle)|\leq \|D^Lf(\mu)\|\cdot\|\phi\|_{L^2(\mu)}\\&=
+	\|D^Lf(\mu)\|\left(\mathbb{E}|\mathbb{E}(Y|X)|^2\right)^{\frac{1}{2}}\leq \|D^Lf(\mu)\|\sqrt{\mathbb{E}|Y|^2}
+	\end{aligned}
+	\] 
+	
+	Nous démontrons ci-dessous l'équation \ref{eq:2.2.5} pour les deux situations indiquées, respectivement
+	
+	(1) Supposons que $X$ et $Y$ soient bornées, pour toutes variable aléatoire à valeur dans $\mathbb{R}^d$ $\xi$. Posons
+	\[
+	F(\xi) = f(\mathcal{L}_\xi)\]
+	Ensuite, soit $(\overline{\Omega},\overline{\mathcal{F}},\overline{\mathbb{P}})$ un espace de probabilité polonais sans atome, et soit $\overline{X}\in L^2(\overline{\Omega}\to \mathbb{R}^d,\overline{\mathbb{P})}$ tel que $\mathcal{L}_{\overline{X}|\overline{\mathbb{P}}}=\mu$, où $\mathcal{L}_{\cdot|\overline{\mathbb{P}}}$ désigne la loi d'une variable aléatoire sous $\overline{\mathbb{P}}$, D'après le proposition de dérivabilité de Fréchet si $\overline{F}(\overline{X}) = f(\mathcal{L}_{Y|\overline{\mathbb{P}}})$, $\overline{Y}\in L^2(\overline{\Omega}\to \mathbb{\overline{P}})$ qui est différentiable au sens de Fréchet en $\overline{X}$ avec dérivée $D\overline{F}(\overline{X}) = D^Lf(\mu)(\overline{X})$ alors
+	
+	\begin{equation}\label{eq:2.2.7}
+		\lim_{\varepsilon\downarrow 0}\frac{f(\mathcal{L}_{X+\varepsilon Y})- f(\mathcal{L}_X)-\varepsilon\mathbb{E}\langle D^Lf(\mu)(X),Y\rangle}{\varepsilon} = 0
+	\end{equation}
+	De maniéré équivalente,  \ref{eq:2.2.5} est vérifié. Ci dessous, nous construisons le $\overline{X}$ et $(\overline{\Omega},\overline{\mathcal{F}},\overline{\mathbb{P}})$
+	souhaite tel que:
+	\[ D\overline{F}(\overline{X}) = D^Lf(\mu)(\overline{X})\]
+	
+	Un choix nature pour $(\overline{\Omega},\overline{\mathcal{F}},\overline{\mathbb{P}})$ est $(\mathbb{R}^d,\mathcal{B}(\mathbb{R}^d),\mu)$ mais pour garantir la propriété d'absence d’atomes, nous prenons
+	\[
+	(\overline{\Omega},\overline{\mathcal{F}},\overline{\mathbb{P}}) = (\mathbb{R}^d\times\mathbb{R}, \mathcal{B}(\mathbb{R}^d\times\mathbb{R}), \mu\times\lambda)
+	\]
+	où $\lambda$ est la mesure gaussienne standard sur $\mathbb{R}$, alors $(\overline{\Omega},\overline{\mathcal{F}},\overline{\mathbb{P}})$ est un espace de probabilité polonais sans atomes
+	
+	Posons
+	\[
+	\overline{X}(\overline{\omega}) = x, \overline{\omega} = (x,r)\in\mathbb{R}^d\times\mathbb{R}
+	\]
+		On a $\mathcal{L}_{\overline{X}} = \mu$. De plus, posons
+		\[
+		\tilde{f}(\tilde{\mu}) = f(\tilde{\mu}(\cdot\times\mathbb{R})),\text{    } \tilde{\mu}\in\mathcal{P}_2(\mathbb{R}\times\mathbb{R})
+		\]
+	Il es facile de voir que $L-$différentiabilité de $f$ en $\mu$ implique simplement celle de $\tilde{f}$ en $\mu\times\delta_0$ avec 	
+	\begin{equation}\label{eq:2.2.8}
+		D^L\tilde{f}(\mu\times\delta_0)(x,r) = (D^Lf(\mu)(x),0),\text{     } (x,r)\in\mathbb{R}^d\times\mathbb{R}
+\leq	\end{equation}
+	
+	Enfin, sur l'espace de probabilité $(\Omega,\mathcal{F},\mathbb{R})$. On a
+	
+	\begin{equation}\label{eq:2.2.9}
+		F(Y) = f(\mathcal{L}_Y)=\tilde{f}(\mathcal{L}_{(Y,0)}),\text{    } Y:=(Y,0)\in L^2(\Omega\to \mathbb{R}^d\times\mathbb{R},\mathcal{F},\mathbb{P})
+	\end{equation}
+	Soit $\overline{X}= (X,0)\in L^2(\Omega\to\mathbb{R}^d\times\mathbb{R},\mathcal{F},\mathbb{P})$. D'après (le propriété de différentiable de Frechet Chap I) la formule \ref{eq:2.2.7} vaut pour $(\tilde{X},\tilde{Y},\tilde{f},\mu)$ c'est-à-dire
+		\begin{equation}\label{eq:2.2.10}
+		\lim_{\varepsilon\downarrow 0}\frac{\tilde{f}(\mathcal{L}_{\tilde{X}+\varepsilon\tilde{Y}}) -\tilde{f}(\mathcal{L}_{\tilde{X}})-\mathbb{E}\langle D^L\tilde{f}(\mu\times\delta_0),\varepsilon\tilde{Y}\rangle}{\varepsilon} = 0
+	\end{equation}
+	
+	En combinant cela avec \ref{eq:2.2.8} et \ref{eq:2.2.9} nous obtient la limite \ref{eq:2.2.7}. Donc \ref{eq:2.2.5} est vérifier
+	
+	
+	(2) Soit $f\in C^{(0,1)}(\mathcal{P}_2(\mathbb{R}^d))$ et soit $\mu\in\mathcal{P}_2(\mathbb{R}^d)$ et $X\in L^2(\Omega\to\mathbb{R}^d,\mathbb{P})$ avec $\mathcal{L}_X = \mu$
+	
+	Pour tout $n\geq 1$ posons
+	\[
+	x_n = \frac{x}{\sqrt{1+n^{-1}|x|^2}}, \text{   } x\in\mathbb{R}^d
+	\]
+		D'après \ref{eq:2.2.5} pour $X$ et $Y$ bornées, et pour tout $n\geq1$ On a:
+		
+		\begin{equation}\label{eq:2.2.11}
+			\begin{aligned}
+			f(\mathcal{L}_{X_n+\varepsilon Y_n}) - f(\mathcal{L}_{X_n}) &= \int_{0}^{\varepsilon}\frac{d}{ds}f(\mathcal{L}_{X_n+\varepsilon Y_n}) ds\\
+			&= \int_{0}^{\varepsilon}\mathbb{E}\langle D^Lf(\mathcal{L}_{X_n+\varepsilon Y_n})(X_n+\varepsilon Y_n), Y_n\rangle ds
+			\end{aligned}
+		\end{equation}
+		
+		
+	Puisque $f\in C^{(0,1)}(\mathcal{P}_2(\mathbb{R}^d))$. Il en résulte que 
+	\[
+	\sup_{n\geq 1, s\in[0,\varepsilon]}\|D^Lf(\mathcal{L}_{X_n+s Y_n})\|<\infty
+	\]
+	\[
+	\lim_{n\to \infty}f(\mathcal{L}_{X_n+\varepsilon Y_n}) - f(\mathcal{L}_{X_n}) = f(\mathcal{L}_{X+\varepsilon Y}) - f(\mathcal{L}_X)
+	\] et pour tout $s\in[0,\varepsilon]$ 
+	\[
+	\lim_{n\to \infty}\mathbb{E}\left( |X-X_n|^2 + |Y-Y_n|^2 +|D^Lf(\mathcal{L}_{X_n+sY_n})(X_n+sY_n) - D^Lf(\mathcal{L}_{X+sY})(X+sY)|^2\right) = 0
+	\]
+	Ainsi, en laissant $n\to\infty$ dans \ref{eq:2.2.11}. On obtient finalement:
+	\begin{equation}\label{eq:2.2.12}
+		f(\mathcal{L}_{X+\varepsilon Y}) - f(\mathcal{L}_X) = \int_{0}^{\varepsilon}\mathbb{E}\langle D^Lf(\mathcal{L}_{X+sY})(X + sY),Y\rangle ds, \text{    }\varepsilon>0
+	\end{equation}	
+	Cela implique \ref{eq:2.2.5}. Plus précisément, il est facile de voir que $\{\mathcal{L}_{X+sY}\}$ est compact dans $\mathcal{P}_2(\mathbb{R}^d)$. Ainsi, $f\in C^{(0,1)}(\mathcal{P}_2(\mathbb{R}^d))$ implique	
+	\begin{equation}\label{eq:2.2.13}
+		\begin{aligned}
+		A&:= \sup_{s\in [0,1]}\sqrt{\mathbb{E}\left(|D^Lf(\mathcal{L}_{X+sY})(X+sY)|^2 \right)}\\
+		&=\sup_{s\in[0,1]}\|D^Lf(\mathcal{L}_{X+sY})\|_{L^2(\mathcal{L}_{X+sY})} < \infty
+		\end{aligned}
+	\end{equation}
+	En combinant cela avec la propriété de continuité de $D^Lf$ sur $\mathbb{R}^d\times\mathcal{L}(\mathbb{R}^d)$. On conclut que: 
+	\[
+	\lim_{\varepsilon \downarrow0} D^Lf(\mathcal{L}_{X+\varepsilon Y})(X+\varepsilon Y) = D^Lf(\mathcal{L}_X)(X) \text{ faiblement dans } L^2(\Omega\to \mathbb{R}^d,\mathbb{P}
+	\]
+	En particulier,	
+	\begin{equation}\label{eq:2.2.14}
+		\lim_{\varepsilon\downarrow 0} \mathbb{E}\langle D^Lf(\mathcal{L}_{X+\varepsilon Y})(X+\varepsilon Y)(X + \varepsilon Y),Y\rangle = \mathbb{E}\langle D^Lf(\mathcal{L}_X)(X),Y\rangle
+	\end{equation}
+	De plus \ref{eq:2.2.13} implique
+	\[
+	\sup_{s\in[0,1]}\mathbb{E}|\langle D^Lf(\mathcal{L}_{X+sY})(X+sY),Y\rangle| \leq A\sqrt{\mathbb{E}|Y|^2}< \infty
+	\]
+	Grâce à cela, et en tenant compte des équations \ref{eq:2.2.12} et \ref{eq:2.2.14}, on peut appliquer le théorème de convergence dominée pour justifier le passage à la limite.
+	\[
+	\begin{aligned}
+	\lim_{\varepsilon\downarrow0}\frac{f(\mathcal{L}_{X+\varepsilon Y})-f(\mathcal{L}_X)}{\varepsilon} &= \lim_{\varepsilon\downarrow0}\frac{1}{\varepsilon}\int_{0}^{\varepsilon}\mathbb{E}\langle D^Lf(\mathcal{L}_{X+sY})(X+sY),Y\rangle ds\\
+		&= \mathbb{E}\langle D^Lf(\mathcal{L}_X)(X),Y\rangle
+	\end{aligned}
+	\]
+	
+\end{pr}
+L'équation différentielle stochastique de type McKean-Vlasov (ref chap I) admet une solution unique, comme démontré dans (ref [25]). Dans ce qui suit, nous présentons un lemme fournissant des estimations uniformes des moments d'ordre $p$ pour les processus $X_t^\varepsilon,X_t^0$ 
+
+\begin{lem}
+	Sous l'hypothèse (\textbf{H1}), pour tout $p\geq2$, on a l'estimation suivants sur les moments p-ièmes uniformes pour les solutions $X_t^\varepsilon$ et $X_t^0$:
+	
+	\begin{equation}\label{eq:2.2.15}
+		\mathbb{E}\left(\sup_{0\leq t\leq T}|X_t^\varepsilon|^p  \right)\vee\left(\sup_{0\leq t \leq T}|X_t^0|^p\right)<\infty
+	\end{equation}
+	où les trajectoires $X_t^\varepsilon$ et $X_t^0$ sont respectivement les solution des l'équation différentielle stochastique McKean-Vlasov avec terme de diffusion et de sa trajectoire limite déterministe (1.2.6 Dans le chpI) et (1.2.12 dans le chpI) 
+avec la condition initiale $X_0^0=X_0^\varepsilon=x\in\mathbb{R}^d$	
+\end{lem}
+\begin{pr}
+Il découle facilement de $\textbf{H}_1$ que 
+\begin{equation}\label{eq:2.2.16}
+	|b_t(x,\mu)|\vee \|\sigma_t(x,\mu)\|\leq K(t)(1+|x| + \mathbb{W}_2(\mu,\delta_0))
+\end{equation}
+Par définition de l'équation de différentielle stochastique de type McKean-Vlasov on a une forme intégrale
+\[
+X_t^\varepsilon = x +\int_{0}^{t}b_s(X_t^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds + \sqrt{\varepsilon}\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) dW_s
+\]
+pour tout $t\geq 0$
+On a
+\[
+|X_t^\varepsilon| = \left| x +\int_{0}^{t}b_s(X_t^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds + \sqrt{\varepsilon}\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) dW_s\right|
+\]
+En procédant à une élévation à la puissance $p\geq 2$ et en appliquant l'inégalité $|a+b+c|^p\leq 3^{p-1}(|a|^p + |b|^p + |c|^p)$ puis prenant le $\sup $ il résulte que:
+\[
+\sup_{0\leq t \leq T}|X_t^\varepsilon|^p \leq 3^{p-1}\left[ |x|^p + \sup_{0\leq t \leq T}\left|\int_{0}^{t}b_s(X_s\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds\right|^p +\sup_{0\leq t \leq T}\left|\sqrt{\varepsilon}\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\right|^p\right]
+\]
+En prenant l’espérance pour les deux membres et en utilisant la linéarité de l’espérance, nous obtenons :
+\begin{equation}\label{eq:2.2.17}
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|X_t^\varepsilon|^p\right) &\leq 3^{p-1}\Bigg[ |x|^p + \mathbb{E}\left(\sup_{0\leq t \leq T}\left|\int_{0}^{t}b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds\right|^p\right)\\
+&\quad+\mathbb{E}\left(\sup_{0\leq t \leq T}\left|\sqrt{\varepsilon}\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\right|^p\right) \Bigg]
+\end{aligned}
+\end{equation}
+On traite d’abord le deuxième terme apparaissant dans le deuxième membre de l’inégalité \ref{eq:2.2.17}, avant de s’intéresser au troisième terme.
+En appliquant l’inégalité de Hölder, il en résulte que :
+\[
+\left|\int_{0}^{T}b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds\right|^p \leq T^{p-1}\int_{0}^{T}\left|b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\right|^pds\]
+En prenant l’espérance des deux membres, on obtient:
+\[
+\mathbb{E}\left|\int_{0}^{T}b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds\right|^p \leq T^{p-1}\mathbb{E}\int_{0}^{T}\left|b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\right|^pds
+\]
+Par utilisation de \ref{eq:2.2.16} et l'inégalité $|a+b+c|^p\leq 3^{p-1}(|a|^p + |b|^p + |c|^p)$ nous obtenons :
+\[
+	\begin{aligned}
+	\mathbb{E}\left|\int_{0}^{T}b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds\right|^p &\leq T^{p-1}\mathbb{E}\int_{0}^{T}\left(K(s)(1 + |X_s^\varepsilon| +\mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)^pds \\
+	&\leq T^{p-1}3^{p-1}\mathbb{E}\int_{0}^{T}K^p(s)\left(1 +|X_t^\varepsilon|^p + \mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)ds\\
+	& \leq T^{p-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\left(1 +|X_t^\varepsilon|^p + \mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)ds \\
+	\text{Nous appliquons}&\text{ l'inégalité de Jensen on a} \\
+	& \leq T^{p-1}K^p(T)3^{p-1} \int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p + \mathbb{E}\mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)ds \\
+	\text{Or }  \mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)&\leq(\mathbb{E}|X_s^\varepsilon|^2)^{\frac{p}{2}} \text{nous avons}\\
+	&\leq T^{p-1}K^p(T)3^{p-1} \int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p + (\mathbb{E}|X_s^\varepsilon|^2)^\frac{p}{2}\right)ds \\ 
+	%\text{d'après l'inégalité de Jensen on a} \\
+	&\leq T^{p-1}K^p(T)3^{p-1} \int_{0}^{T}\left(1 + 2\mathbb{E}|X_s^\varepsilon|^p\right)ds \\
+	& \leq T^{p-1}K^p(T)3^{p} \int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds\\
+	%\text{on pose $ C_1(T,p) =T^{p-1}K^p(T)3^{p} $ donc on a}\\	
+	\end{aligned}
+	\]
+	\begin{equation}\label{eq:2.2.18}
+	\mathbb{E}\left|\int_{0}^{T}b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})ds\right|^p \leq T^{p-1}K^p(T)3^{p}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds
+	\end{equation}
+Après avoir étudié le deuxième termes, nous nous concentrons maintenant sur le troisième terme. Pour tout $ 0\leq t\leq T$ en utilisant l'inégalité de Burkholder-Davis-Gundy(BDG), pour tout $p\geq2$ il existe $C_p> 0$ tel que:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|^p\right)\leq C_p \mathbb{E}\left(\int_{0}^{T}\|\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\|^2ds\right)^{\frac{p}{2}}
+\]
+En utilisant l'inégalité de Hölder on obtient:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|^p\right)\leq C_p T^{\frac{p}{2}-1}\mathbb{E}\left(\int_{0}^{T}\|\sigma_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon})\|^pds\right)
+\]
+Nous utilisons le \ref{eq:2.2.16} et l'inégalité $|a+b+c|^p\leq 3^{p-1}(|a|^p + |b|^p + |c|^p)$ nous obtenons :
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|^p\right)&\leq C_p T^{\frac{p}{2}-1}\mathbb{E}\int_{0}^{T}\left(K(s)(1 + |X_s^\varepsilon| +\mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)^p ds\\
+&\leq C_p T^{\frac{p}{2}-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\left(1 +|X_t^\varepsilon|^p + \mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)ds\\
+\text{D'après l'inégalité de Jensen on a} \\
+&\leq C_p T^{\frac{p}{2}-1}K^p(T)3^{p-1}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p + \mathbb{E}\mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)ds \\
+\text{Or $ \mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\leq(\mathbb{E}|X_s^\varepsilon|^2)^{\frac{p}{2}}$, ainsi}\\
+&\leq C_p T^{\frac{p}{2}-1}K^p(T)3^{p-1}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p + (\mathbb{E}|X_s^\varepsilon|^2)^\frac{p}{2}\right)ds \\ 
+%\text{d'après l'inégalité de Jensen on a} \\
+&\leq C_p T^{\frac{p}{2}-1}K^p(T)3^{p-1}\int_{0}^{T}\left(1 + 2\mathbb{E}|X_s^\varepsilon|^p\right)ds \\
+&\leq C_p T^{\frac{p}{2}-1}K^p(T)3^{p}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds
+\end{aligned}
+\]
+Alors, pour tout $0< s\leq t\leq T$, $p\geq2$ et $\varepsilon\geq0$, nous avons le résultats suivants
+\begin{equation}\label{eq:2.2.19}
+	\varepsilon^{\frac{p}{2}}\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|^p\right)\leq C_p T^{\frac{p}{2}-1}K^p(T)3^{p}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds
+\end{equation}
+Alors, d'après les inégalités \ref{eq:2.2.18} et \ref{eq:2.2.19}, l'inégalité \ref{eq:2.2.17} dévient:
+\begin{equation}\label{eq:2.2.20}
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|X_t^\varepsilon|^p\right) &\leq 3^{p-1}\Big[|x|^p +T^{p-1}K^p(T)3^{p}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds\\&+  C_p T^{\frac{p}{2}-1}K^p(T)3^{p}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds \Big]\\
+&\leq  3^{p-1}|x|^p + C(T,p)\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds
+\end{aligned}
+\end{equation}
+Ensuite, on a $ dX_t^0 = b_t(X_t^0,\delta_{X_t^0})dt$, la forme intégrale de cette équation différentielle:
+\[
+X_t^0 = x + \int_{0}^{t}b_s(X_s^0,\delta_{X_t^0})ds\text{ pour tout $t\geq 0$}
+\]
+En procédant à une élévation à la puissance $p\geq 2$ et en appliquant l'inégalité $|a+b|^p\leq 2^{p-1}(|a|^p + |b|^p)$ puis prenant le $\sup $ il résulte que:
+\begin{equation}\label{eq:2.2.21}
+	\sup_{0\leq t \leq T}|X_t^0|^p \leq 2^{p-1}\left(|x|^p + \Big|\int_{0}^{T}b_s(X_s^0,\delta_{X_s^0})ds\Big|^p\right)
+\end{equation}
+Nous allons déterminé le majorité du $2^{nd}$ terme dans le $2^{nd}$ membre en utilisant l'inégalité de Hölder et \ref{eq:2.2.16}
+\[
+\begin{aligned}
+\Big|\int_{0}^{T}b_s(X_s^0,\delta_{X_s^0})ds\Big|^p&\leq T^{p-1}\int_{0}^{T}\Big|b_s(X_s^0,\delta_{X_s^0})\Big|^p ds\\
+&\leq  T^{p-1}\int_{0}^{T}\left(K^p(s)(1 +|X_s^0| + \mathbb{W}_2(\delta_{X_s^0},\delta_0))\right)^pds\\
+&\leq  T^{p-1}K^p(T)\int_{0}^{T}3^{p-1}\left(1 + |X_s^0|^p + \mathbb{W}_2^p(\delta_{X_s^0},\delta_0)\right)ds\\
+\text{Or $\mathbb{W}_2^p(\delta_{X_s^0},\delta_0)\leq |X_s^0|^p$} \text{ alors}\\
+&\leq T^{p-1}K^p(T)3^{p-1}\int_{0}^{T} \left(1 + 2|X_s^0|^p\right)ds\\
+& \leq T^{p-1}K^p(T)3^{p}\int_{0}^{T} \left(1 + |X_s^0|^p\right)ds
+\end{aligned}
+\]
+Ainsi, pour tout $0< s\leq t\leq T$ et $p\geq2$
+\[
+	\Big|\int_{0}^{T}b_s(X_s^0,\delta_{X_s^0})ds\Big|^p\leq T^{p-1}K^p(T)3^{p}\int_{0}^{T} \left(1+|X_s^0|^p\right)
+\]
+Alors, \ref{eq:2.2.21} dévient:
+\begin{equation}
+\begin{aligned}\label{eq:2.2.22}
+\sup_{0\leq t \leq T}|X_t^0|^p &\leq 2^{p-1}\left(|x|^p +T^{p-1}K^p(T)3^{p}\int_{0}^{T} \left(1+|X_s^0|^p\right)\right)\\
+\sup_{0\leq t \leq T}|X_t^0|^p &\leq 2^{p-1}|x|^p +C(T,p)\int_{0}^{T} \left(1+|X_s^0|^p\right)
+\end{aligned}
+\end{equation}
+Comme les trajectoires $t\to \mathbb{E}|X_t^\varepsilon|$ et $t\to X_t^0$ sont continues, on peut appliquer l’inégalité de Gronwall aux relations \ref{eq:2.2.20} et \ref{eq:2.2.22}
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|X_t^\varepsilon|^p\right)&\leq  3^{p-1}|x|^p + C(T,p)\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p\right)ds\\
+&\leq 3^{p-1}|x|^p + C(T,p)T + C(T,p)\int_{0}^{T}\mathbb{E}|X_s^\varepsilon|^pds\\
+&\leq \left(3^{p-1}|x|^p + C(T,p)T\right)\exp(C(T,p)T)
+\end{aligned}
+\]
+Pour tout $t\geq 0$ et $p\geq2$ le membre de droite de l’inégalité précédente est fini.On en déduit que:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|X_t^\varepsilon|^p\right)< \infty
+\]
+De même pour l'inégalité \ref{eq:2.2.22} on obtient:
+\[
+\sup_{0\leq t \leq T}|X_t^0|^p\leq \left(2^{p-1}|x|^p + C(T,p)T\right)\exp(C(T,p)T)<\infty
+\]
+Il en résulte que
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|X_t^\varepsilon|^p\right)\vee \sup_{0\leq t \leq T}|X_t^0|^p< \infty
+\]
+\end{pr}
+
+\begin{lem}\label{lem:2.2.4}
+	Sous les hypothèses $(\textbf{H1})$ et $(\textbf{H2})$, pour tout $p\geq2$
+		\begin{equation}\label{eq:2.2.23}
+		\mathbb{E}\left[\sup_{0\leq t \leq T}|Z_t^\varepsilon|^p\right] \vee \mathbb{E}\left[\sup_{0\leq t \leq T}|Z_t|^p\right]<\infty
+	\end{equation}
+	où l'on pose $Z_t^\varepsilon:=\frac{X_t^\varepsilon-X_t^0}{\sqrt{\varepsilon}}$, la fluctuation centrée de la trajectoire, et $Z_t$ la solution du système linéarisé associée, définie précisément par l'équation \ref{eq:2.2.4}
+\end{lem}
+\begin{pr}
+Le processus stochastique $Z_t^\varepsilon$ est défini par $Z_t^\varepsilon=\frac{1}{\sqrt{\varepsilon}}(X_t^\varepsilon-X_t^0)$, alors d'après le (2.1 numeros dans l'article et 2.7(Chap I)) $Z_t^\varepsilon$ satisfaits a
+\[
+dZ_t^\varepsilon = \frac{1}{\sqrt{\varepsilon}}\left(b_t(X_t^\varepsilon,\mathcal{L}_{X_t^\varepsilon})-b_t(X_t^0,\delta_{X_t^0})\right)dt+\sigma_t(X_t^\varepsilon,\mathcal{L}_{X_t^\varepsilon})dW_t
+\]
+Pour montre que $\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon|^p\right)<\infty$ pour tout $p\geq 2$ il suffit de prouve que 
+\begin{equation}\label{eq:2.2.24}
+\mathbb{E}\left( \sup_{0\leq t \leq T}|X_t^\varepsilon-X_t^0|^p \right)<C(T,p)\varepsilon^{\frac{p}{2}}
+\end{equation}
+Alors:
+ \[
+ |X_t^\varepsilon - X_t^0| = \Big|\left(\int_{0}^{t}b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0,\delta_{X_s^0})\right)ds + \sqrt{\varepsilon}\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|
+ \]
+En élevant l'expression à la puissance $p\geq 2$ et en appliquant l'inégalité classique $ |a+b|^p \leq 2^{p-1}(|a|^p + |b|^p),$ puis en prenant le supremum sur $[0,T]$, nous obtenons:
+\[
+\begin{aligned}
+\sup_{0\leq t \leq T} |X_t^\varepsilon - X_t^0|^p &\leq 2^{p-1}\Big( \sup_{0\leq t \leq T}\Big|\int_{0}^{t}\Big|\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0,\delta_{X_s^0})\right)ds\Big|^p\\&+\sqrt{\varepsilon}\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|^p \Big)
+\end{aligned}
+\]
+En prenant l’espérance pour les deux membres et en utilisant la linéarité de l’espérance, nous obtenons :
+\begin{equation}\label{eq:2.2.25}
+	\begin{aligned}
+		\mathbb{E}\left(\sup_{0\leq t \leq T} |X_t^\varepsilon - X_t^0|^p\right) &\leq 2^{p-1}\Big( \mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{T}\Big|\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0,\delta_{X_s^0})\right)ds\Big|^p\right)\\&+\varepsilon^{\frac{p}{2}}\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{T}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\Big|^p\right) \Big)
+	\end{aligned}
+\end{equation}
+Nous étudions d’abord le premier terme du membre de droite, en utilisant l'inégalité de Hölder et l'inégalité (Équation 1.2.11 chap I)
+\[
+\begin{aligned}
+\Big|\int_{0}^{T}\Big|\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0,\delta_{X_s^0})\right)ds\Big|^p&\leq T^{p-1}\int_{0}^{T}\left| b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right|^pds\\
+&\leq T^{p-1}\int_{0}^{T}\left(K(s)(|X_s^\varepsilon-X_s^0| + \mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0}))\right)^pds\\
+&\leq T^{p-1}\int_{0}^{T}K^p(s)(|X_s^\varepsilon-X_s^0|+ \mathbb{W}_s(\mathcal{L}_{X_s^\varepsilon}, \delta_{X_s^0}))^p ds\\
+&\leq T^{p-1}K^p(T)2^{p-1}\int_{0}^{T}\left(|X_s^\varepsilon-X_s^0|^p + \mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})\right)ds
+\end{aligned}
+\]
+Or $\mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})\leq \left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{p}{2}}$ et prenant l'espérance, nous obtenons:
+\[
+\begin{aligned}
+\mathbb{E}\Big|\int_{0}^{T}\Big|\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0,\delta_{X_s^0})\right)ds\Big|^p&\leq (2T)^{p-1}K^p(T)\mathbb{E}\int_{0}^{T}\Big((|X_s^\varepsilon-X_s^0|^p\\ &+\left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{p}{2}}\Big)ds\\
+\text{d'après l'inégalité de Jensen}\\
+&\leq (2T)^{p-1}K^p(T)\int_{0}^{T}\Big(\mathbb{E}|X_s^\varepsilon-X_s^0|^p\\ &+\mathbb{E}|X_s^\varepsilon-X_s^0|^p\Big)ds\\
+&\leq (2T)^{p-1}K^p(T)\int_{0}^{T}2\mathbb{E}|X_s^\varepsilon-X_s^0|^pds\\
+&\leq2^pT^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}|X_s^\varepsilon-X_s^0|^pds
+\end{aligned}
+\]
+Ainsi, pour tout $0< s\leq t\leq T$ et pour tout $p\geq2$ nous avons l'estimation suivants:
+\begin{equation}\label{eq:2.2.26}
+	\mathbb{E}\Big|\int_{0}^{T}\Big|\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0,\delta_{X_s^0})\right)ds\Big|^p\leq 2^pT^{p-1}K^p(T))\int_{0}^{T}\mathbb{E}|X_s^\varepsilon-X_s^0|^pds
+\end{equation}
+Après avoir établi l'estimation du premier terme, il reste maintenant à estimer le second, en utilisant l'inégalité de Burkholder-Davis-Gundy(BDG),pour tout $p\geq2$ il existe $C_p>0$
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\Big|^p\right)\leq C_p\mathbb{E}\left(\int_{0}^{T}\|\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\|^2ds\right)^{\frac{p}{2}}
+\]
+D'après l'inégalité \ref{eq:2.2.16} on a: $\|\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\|\leq K(s)\left(1 + |X_s^\varepsilon| + \mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)$
+alors nous obtenons:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\Big|^p\right)&\leq C_p\mathbb{E}\left(\int_{0}^{T}K^2(s)\left( 1+|X_s^\varepsilon| + \mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_0) \right)^2ds\right)^{\frac{p}{2}}\\
+\text{d'après l'inégalité de Hölder}\\
+&\leq C_p T^{\frac{p}{2}-1} \mathbb{E}\int_{0}^{T}K^p(s)\left(1+|X_s^\varepsilon| + \mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)^pds\\
+&\leq C_pT^{\frac{p}{2}-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\left(1 + |X_s^\varepsilon|^p + \mathbb{W}_s^p(\mathcal{L}_{X_s^\varepsilon},\delta_0)\right)ds
+\end{aligned}
+\]
+Or $\mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_{0})\leq \left(\mathbb{E}|X_s^\varepsilon|^2\right)^{\frac{p}{2}}\leq\mathbb{E}|X_s^\varepsilon|^p$ et en utilisant l'inégalité de Jensen donc on a:
+\[
+\begin{aligned}	
+\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\Big|^p\right)&\leq  C_pT^{\frac{p}{2}-1}K^p(T)3^{p-1}\int_{0}^{T}\left(1 + \mathbb{E}|X_s^\varepsilon|^p + \mathbb{E}|X_s^\varepsilon|^p\right)ds\\
+&\leq C_pT^{\frac{p}{2}-1}K^p(T)3^{p-1}\int_{0}^{T}\left(1 + 2\mathbb{E}|X_s^\varepsilon|^p\right)ds\\
+&\leq C_pT^{\frac{p}{2}-1}K^p(T)3^p \int_{0}^{T}(1 + \mathbb{E}|X_s^\varepsilon|^p)ds
+\end{aligned}
+\]
+Pour $0< s \leq t\leq T$ nous avons:
+\[
+	\varepsilon^{\frac{p}{2}}\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\Big|^p\right)\leq \varepsilon^{\frac{p}{2}}C_pT^{\frac{p}{2}-1}K^p(T)3^p\int_{0}^{T}(1+\mathbb{E}|X_s^\varepsilon|^p)ds
+\]
+D'après \ref{eq:2.2.15} $\mathbb{E}|X_s^\varepsilon|^p$ est fini et prenant le $\max$ donc:
+\begin{equation}\label{eq:2.2.27}
+		\varepsilon^{\frac{p}{2}}\mathbb{E}\left(\sup_{0\leq t \leq T}\Big|\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})\Big|^p\right)\leq \varepsilon^{\frac{p}{2}}C(T,p)
+\end{equation}
+On combine les \ref{eq:2.2.26} et \ref{eq:2.2.27} alors \ref{eq:2.2.25} devient:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T} |X_t^\varepsilon - X_t^0|^p\right)&\leq C(T,p)\int_{0}^{T}\mathbb{E}|X_s^\varepsilon-X_s^0|^p ds + \varepsilon^{\frac{p}{2}}C(T,p)\\
+\text{ou bien}\\
+\mathbb{E}\left(\sup_{0\leq t \leq T} |X_t^\varepsilon - X_t^0|^p\right)&\leq \varepsilon^{\frac{p}{2}}C(T,p) + C(T,p)\int_{0}^{T}\mathbb{E}|X_s^\varepsilon-X_s^0|^p ds
+\end{aligned}
+\]
+Cette expression nous conduit à utiliser l’inégalité de Grönwall:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T} |X_t^\varepsilon - X_t^0|^p\right)\leq \varepsilon^{\frac{p}{2}}C(T,p)\exp\left(C(T,p)T\right) \text{d'où \ref{eq:2.2.24}, et par déduction on obtient}
+\]
+\[
+\begin{aligned}
+\mathbb{E}\left(\frac{1}{\varepsilon^{\frac{p}{2}}}\sup_{0\leq t \leq T}|X_t^\varepsilon-X_t^0|^p\right)&\leq C(T,p)\exp\left(C(T,p)T\right)\\
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon|^p\right)&\leq C(T,p)\exp\left(C(T,p)T\right) \text{ alors }\\
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon|^p\right)&<\infty
+\end{aligned}
+\]
+D'après \ref{eq:2.2.4} on a\[\begin{aligned}
+dZ_t &= \nabla_{Z_t} b_t (\cdot, \delta_{X_t^0}) (X_t^0) dt + \mathbb{E} \langle D^L b_t (y, \cdot) (\delta_{X_t^0}) (X_t^0), Z_t\rangle |_{y = X_t^0} dt + \sigma_t (X_t^0, \delta_{X_t^0}) dW_t, %\text{ avec $Z_0=0$}
+\\
+Z_t &= \int_{0}^{t}\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)ds + \int_{0}^{t}\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s \rangle|_{y=X_s^0}ds +\int_{0}^{t}\sigma_s(X_s^0,\delta_{X_s^0})dW_s
+\end{aligned}
+\]En élevant l'expression à la puissance $p\geq 2$ et en appliquant l'inégalité classique $ |a+b+c|^p \leq 3^{p-1}(|a|^p + |b|^p +|c|^p),$ puis en prenant le supremum sur $[0,T]$, nous obtenons:
+\[
+\begin{aligned}
+\sup_{0\leq t \leq T}|Z_t|^p&\leq 3^{p-1}\Big(\sup_{0\leq t \leq T}\left|\int_{0}^{t}\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)ds\right|^p \\&+\sup_{0\leq t \leq T}\left|\int_{0}^{t}\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s\rangle|_{y=X_s^0}ds\right|^p\\
+&+\sup_{0\leq t \leq T}\left|\int_{0}^{t}\sigma_s(X_s^0,\delta_{X_s^0})dW_s\right|^p\Big)
+\end{aligned}
+\]
+En prenant l’espérance des deux membres et en utilisant la linéarité de l’espérance, on obtient :
+\begin{equation}
+\begin{aligned}\label{eq:2.2.28}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t|^p\right)&\leq 3^{p-1}\Big(\mathbb{E},\left(\sup_{0\leq t \leq T}\left|\int_{0}^{t}\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)ds\right|^p\right) \\&+\mathbb{E}\left(\sup_{0\leq t \leq T}\left|\int_{0}^{t}\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s\rangle|_{y=X_s^0}ds\right|^p\right)\\
+	&+\mathbb{E}\left(\sup_{0\leq t \leq T}\left|\int_{0}^{t}\sigma_s(X_s^0,\delta_{X_s^0})dW_s\right|^p\right)\Big)
+\end{aligned}
+\end{equation}
+Posons:
+\[
+\begin{aligned}
+I_t^1 &:= \int_{0}^{t}\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)ds\\
+I_t^2 & :=\int_{0}^{t}\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s\rangle|_{y=X_s^0}ds\\
+M_t&:= \int_{0}^{t}\sigma_s(X_s^0,\delta_{X_s^0})dW_s
+\end{aligned}
+\]
+premièrement pour l'estimation $I_t^1$, en utilisant l'inégalité de Hölder on obtient:
+\[
+\begin{aligned}
+	\sup_{0\leq t \leq T}|I_t^1|^p&\leq T^{p-1}\int_{0}^{T}\left\|\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0}(X_s^0))\right\|^pds \\ 
+\end{aligned}
+\]
+d'après \textbf{(H1)} il existe une fonction croissante  $K:[0,\infty)\to [0,\infty)$ pour tout $0<s\leq t$ tel que: $\|\nabla b_s(\cdot,\mu)(x)\|\leq K(s)$ donc:
+\[
+\begin{aligned}
+	\sup_{0\leq t \leq T}|I_t^1|^p&\leq T^{p-1}\int_{0}^{T}K^p(s)|Z_s|^pds\leq T^{p-1}K^p(T)\int_{0}^{T}|Z_s|^pds 
+\end{aligned}
+\]
+prenant l'espérance et nous avons:
+\[
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|I_t^1|^p\right)\leq T^{p-1}K^p(T)\mathbb{E}\int_{0}^{T}|Z_s|^pds \text{ ,d'après l'inégalité de Jensen on a  }
+\]
+\begin{equation}\label{eq:2.2.29}
+	\begin{aligned}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|I_t^1|^p\right)&\leq T^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}|Z_s|^pds\\
+	&\leq C(T,p)\int_{0}^{T}\mathbb{E}|Z_s|^pds
+\end{aligned}
+\end{equation}
+posons $N_s:=D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0)$ alors $I_t^2$ dévient: $I_t^2:=\int_{0}^{t}\mathbb{E}\langle N_s,Z_s\rangle|_{y=X_s^0},$ mais pour tout $p\geq 0$ et en utilisant l'inégalité de Hölder on a:
+\[
+\left|\int_{0}^{T}\mathbb{E}\langle N_s,Z_s\rangle ds\right|^p\leq T^{p-1}\int_{0}^{T}\|\mathbb{E}\langle N_s,Z_s\rangle \|^pds
+\]
+puis d'après l'hypothèse \textbf{(H1)} qui contrôle le norme tangentielle de $D^Lb$ on a\\ $\|D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0)\|_{T_{\delta_{X_s^0}}}\leq K(s)$  pour tout $0<s\leq t$ on obtient alors $\left(\mathbb{E}\|N_s\|^2\right)^{\frac{1}{2}}\leq K(s)$, mais $D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0)|_{y=X_s^0}$ est exactement la qualité évalue en la variable aléatoire $X_t^0$ donc $\left(\mathbb{E}\|N_s|_{y=X_s^0}\|^2\right)^{\frac{1}{2}}\leq K(s)$, maintenant la cauchy-Shawarz applique à l'espérance donne $\|\mathbb{E}\langle N_s,Z_s\rangle\| \leq \left(\mathbb{E}\|N_s\|^2\right)^{\frac{1}{2}}\left(\mathbb{E}|Z_s|^2\right)^{\frac{1}{2}}
+$, par déduction 
+\[
+\left|\int_{0}^{T}\mathbb{E}\langle N_s,Z_s\rangle ds\right|^p\leq T^{p-1}\int_{0}^{T}K^p(s)\left(\mathbb{E}|Z_s|^2\right)^{\frac{p}{2}}ds\leq T^{p-1}K^p(T)\int_{0}^{T}\left(\mathbb{E}|Z_s|^2\right)^{\frac{p}{2}}ds
+\]
+donc:
+\[\mathbb{E}\left(\sup_{0\leq t \leq T}|I_s^2|^p\right)\leq T^{p-1}K^p(T)\int_{0}^{T}\left(\mathbb{E}|Z_s|^2\right)^{\frac{p}{2}}ds\]
+d'après l'inégalité de Jensen on obtient:
+\begin{equation}\label{eq:2.2.30}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|I_s^2|^p\right)\leq C(T,p)\int_{0}^{T}\mathbb{E}|Z_s|^pds
+\end{equation}
+Maintenant, nous allons traite le stochastique $M_t$, en utilisant l'inégalité de BDG il existe une $C_p\geq0$ tel que:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t|^p\right)&\leq C_p\mathbb{E}\left(\int_{0}^{T}\|\sigma_s(X_s^0,\delta_{X_s^0})\|^2ds\right)^{\frac{p}{2}} \text{ d'après l'inégalité de Hölder on obtient: }\\
+&\leq C_pT^{\frac{p}{2}-1}\mathbb{E}\left(\int_{0}^{T}\|\sigma_s(X_s^0,\delta_{X_s^0})\|^p\right)ds
+\end{aligned}
+\]
+d'après l'inégalité \ref{eq:2.2.15} et \ref{eq:2.2.16}
+\[
+\begin{aligned}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t|^p\right)&\leq C_pT^{\frac{p}{2}-1}\mathbb{E}\left(\int_{0}^{T}\left(K(s)(1 + |X_s| + \mathbb{W}_2(\delta_{X_s^0},\delta_{0}))\right)^p\right)\\
+	&\leq C_pT^{\frac{p}{2}-1}3^{p-1}\mathbb{E}\left(\int_{0}^{T}K^p(s)(1 + |X_s|^p +\mathbb{W}_2^p(\delta_{X_s^0},\delta_{0}))\right)\\ &\text{ or } \mathbb{W}_2^p(\delta_{X_s^0},\delta_{0})\leq \left(\mathbb{E}|X_s^0|^2\right)^{\frac{p}{2}}\leq\mathbb{E}|X_s^0|^p\\
+	&\leq C_pT^{\frac{p}{2}-1}3^{p-1}\mathbb{E}\left(\int_{0}^{T}K^p(s)(1 + |X_s|^p + \mathbb{E}|X_s^0|^p)ds\right)\\
+		\text{ En utilisant l'inégalité de Jensen} &\text{ et par linéarité de l'espérance on a:}\\
+		&\leq C_pT^{\frac{p}{2}-1}3^{p-1}K^p(T)\int_{0}^{T}(1+\mathbb{E}|X_s^0|^p + \mathbb{E}|X_s^0|^p)ds\\
+		&\leq C_pT^{\frac{p}{2}-1}3^{p}K^p(T)\int_{0}^{T}\left(1 + \mathbb{E}|X_s^0|^p\right)ds		
+\end{aligned}
+\]
+d'où:
+\begin{equation}\label{eq:2.2.31}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t|^p\right)\leq C_pT^{\frac{p}{2}-1}3^{p}K^p(T)\int_{0}^{T}\left(1+\mathbb{E}|X_s^0|^p\right)ds
+\end{equation}
+D'après l'inégalité \ref{eq:2.2.29}, \ref{eq:2.2.30} et \ref{eq:2.2.31} l'inégalité \ref{eq:2.2.28} dévient:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t|^p\right)&\leq C(T,p)\int_{0}^{T}\mathbb{E}|Z_s|^pds + C(T,p)\int_{0}^{T}\mathbb{E}|Z_s|^pds\\ &+C_pT^{\frac{p}{2}-1}3^{p}K^p(T)\int_{0}^{T}\left(1+\mathbb{E}|X_s^0|^p\right)ds\\
+&\text{ d'après \ref{eq:2.2.15} on a: }\\
+&\leq C(T,p)\int_{0}^{T}\mathbb{E}|Z_s|^pds+C(T,p)\\
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t|^p\right)&\leq C(T,p)\left(1 +\int_{0}^{T}\mathbb{E}|Z_s|^pds\right)
+\end{aligned}
+\]
+Cette expression nous conduit à appliquer l’inégalité de Gronwall
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t|^p\right)\leq C(T,p)\exp(C(T,p)T)
+\]
+Ainsi, pour tout $t\geq0$ et $p\geq2$ il résulte que :
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon|^p\right)\vee\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t|^p\right)<\infty
+\]
+\end{pr}
+Finalement, nous parvenons ainsi à établir le théorème \ref{thm:2.2.1}, dont la démonstration est à présent complète.
+\subsection{ Preuve du Théorème \ref{thm:2.2.1}}
+Rappelons les deux équations sous forme intégrale :
+\[\begin{aligned}
+	\text{ Pour}\\
+	Z_t^\varepsilon&=\frac{X_t^\varepsilon-X_t^0}{\sqrt{\varepsilon}} \text{ donnée:}\\
+Z_t^\varepsilon &=\int_{0}^{t}\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)ds +\int_{0}^{t}\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})dW_s\\
+&\text{ Pour $Z_s$ de \ref{eq:2.2.4}}\\
+Z_s &= \int_{0}^{t}\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)ds + \int_{0}^{t}\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s\rangle|_{y=X_s^0}ds + \int_{0}^{t}\sigma_s(X_s,\delta_{X_s^0})dW_s
+\end{aligned}
+\]
+En prenant la différence $Z_t^\varepsilon-Z_t$ on obtient une soustraction qui s’effectue composante par composante
+\[\begin{aligned}
+Z_t^\varepsilon-Z_t &=\int_{0}^{t}\Big\{ \frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)-\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)\\&+ \mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s\rangle|_{y=X_s^0}\Big\}ds
++\int_{0}^{t}\Big\{\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-\sigma_s(X_s^0,\delta_{X_s^0})\Big\}ds
+\end{aligned}
+\]
+Décomposition de $b_s$ on a:
+\[b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})=b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon}) +b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\] En diviser par $\sqrt{\varepsilon}$ donne deux premier terme structure
+\begin{equation}\label{eq:2.2.32}
+	\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})\right) \text{ et }\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)
+\end{equation}
+puis on ajoute et soustraire par $\nabla_{Z_s^\varepsilon}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0)$ et $\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0}),Z_s^\varepsilon\rangle|_{y=X_s^0}$
+.Pour le première bloc on écrit:
+\[
+\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})\right)-\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0)
+\]
+comme
+\[\begin{aligned}
+&\left(\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})\right)-\nabla_{Z_s^\varepsilon}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0)\right) +\\ &\left(\nabla_{Z_s}b_s(\cdot,\delta_{X_s^0})(X_s^0) -\nabla_{Z_s^\varepsilon}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0) \right)
+\end{aligned}
+\]
+Et pour le second bloc:
+\[
+\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right) - \mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0}),Z_s\rangle|_{y=X_s^0}
+\]
+s'écrit
+\[
+\begin{aligned}
+&\left(\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)-\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s^\varepsilon\rangle\right)\\+
+&\left(\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0})(X_s^0),Z_s^\varepsilon\rangle-\mathbb{E}\langle D^Lb_s(y,\cdot)(\delta_{X_s^0}),Z_s\rangle|_{y=X_s^0}\right)
+\end{aligned}
+\]
+En remplaçant ces écritures dans l'expression de $ Z_t^\varepsilon-Z_t $ nous obtenons, après regroupement, l'identité souhaitée :
+\[
+\begin{aligned}
+	Z_t^\varepsilon - Z_t &= \int_0^t \left(\frac{1}{\sqrt{\varepsilon}}(b_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0, \mathcal{L}_{X_s^\varepsilon})) - \nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0)\right)ds\\
+	&+ \int_0^t \left(\frac{1}{\sqrt{\varepsilon}}(b_s(X_s^0, \mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0, \delta_{X_s^0})) - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\right)ds\\
+	&+ \int_0^t \left(\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\right)ds\\
+	&+ \int_0^t \left(\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0} - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s\rangle|_{y=X_s^0}\right)ds\\
+	&+ \int_0^t \left(\sigma_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon}) - \sigma_s(X_s^0, \delta_{X_s^0})\right)dW_s
+\end{aligned}\]
+Supposons $Z_t^\varepsilon - Z_t=:\sum_{i=1}^{4}J_t^{\varepsilon,i} + M_t^\varepsilon$ avec:
+\[
+\begin{aligned}
+J_t^{\varepsilon,1}&:=\int_0^t \left(\frac{1}{\sqrt{\varepsilon}}(b_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0, \mathcal{L}_{X_s^\varepsilon})) - \nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0)\right)ds\\
+J_t^{\varepsilon,2}&:=\int_0^t \left(\frac{1}{\sqrt{\varepsilon}}(b_s(X_s^0, \mathcal{L}_{X_s^\varepsilon}) - b_s(X_s^0, \delta_{X_s^0})) - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\right)ds\\
+J_t^{\varepsilon,3}&:=\int_0^t \left(\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\right)ds\\
+J_t^{\varepsilon,4}&:= \int_0^t \left(\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0} - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s\rangle|_{y=X_s^0}\right)ds\\
+M_t^\varepsilon&:= \int_0^t \left(\sigma_s(X_s^\varepsilon, \mathcal{L}_{X_s^\varepsilon}) - \sigma_s(X_s^0, \delta_{X_s^0})\right)dW_s
+\end{aligned}
+\]
+Nous allons estimer chacun des termes dans $L^p$. 
+Pour le terme stochastique $M_t^\varepsilon$, en utilisant l'inégalité de BDG, pour tout $p\geq2$ il existe $C_p\geq0$ on a:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t^\varepsilon|^p\right)\leq C_p\mathbb{E}\left(\int_{0}^{T}\|\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-\sigma_s(X_s^0,\delta_{X_s^0})\|^2ds\right)^{\frac{p}{2}}
+\]
+D’après l’hypothèse \textbf{H1} il existe un fonction croissante $K:[0,\infty)\to[0,\infty)$, telle que $\|\sigma_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-\sigma_s(X_s^0,\delta_{X_s^0})\|\leq K(s)\left(|X_s^\varepsilon-X_s^0|+\mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})\right)$ et par conséquent nous obtenons que:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t^\varepsilon|^p\right)&\leq C_p\mathbb{E}\left(\int_{0}^{T}K^2(s)\left(|X_s^\varepsilon-X_s^0|+\mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})\right)^2ds\right)^{\frac{p}{2}}\\
+&\leq C_p\mathbb{E}\left(\int_{0}^{T}2K^2(s)\left(|X_s^\varepsilon-X_s^0|^2+\mathbb{W}_2^2(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})\right)ds\right)^{\frac{p}{2}}\\
+&\leq C_p2^{\frac{p}{2}}K^p(T)\mathbb{E}\int_{0}^{T}\left(\left(|X_s^\varepsilon-X_s^0|^2+\mathbb{W}_2^2(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})\right)ds\right)^{\frac{p}{2}}\\
+\text{or } \mathbb{W}_2^2(\mathcal{l}_{X_s^\varepsilon},\delta_{X_s^0})&\leq \mathbb{E}|X_s^\varepsilon-X_s^0|^2 \text{ alors }\\
+\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t^\varepsilon|^p\right)&\leq C_p2^{\frac{p}{2}}K^p(T)\mathbb{E}\int_{0}^{T}\left(\left(|X_s^\varepsilon-X_s^0|^2 +\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)ds\right)^{\frac{p}{2}}
+\end{aligned}
+\]
+cette expression nous conduit a utiliser l'inégalité de Jensen et Hölder nous obtenons:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t^\varepsilon|^p\right)&\leq C_p2^{\frac{p}{2}}K^2(T)T^{\frac{p}{2}-1}\int_{0}^{T}2^{\frac{p}{2}-1}\left(\mathbb{E}|X_s^\varepsilon-X_s^0|^p +\mathbb{E}|X_s^\varepsilon-X_s^0|^p\right) ds\\
+&\leq C_p2^{\frac{p}{2}}K^2(T)T^{\frac{p}{2}-1}\int_{0}^{T}2^{\frac{p}{2}-1}2\mathbb{E}|X_s^\varepsilon-X_s^0|^pds\\
+&\leq C_p2^pK^2(T)T^{\frac{p}{2}-1}\int_{0}^{T}\mathbb{E}|X_s^\varepsilon-X_s^0|^pds
+\end{aligned}
+\]
+alors pour tout $t\geq0$, $p\geq0$ et $\varepsilon\geq0$ on a:
+\begin{equation}\label{eq:2.2.33}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|M_t^\varepsilon|^p\right)\leq C_p2^pK^2(T)T^{\frac{p}{2}-1}\varepsilon^{\frac{p}{2}}\int_{0}^{T}\mathbb{E}|Z_s^\varepsilon|^pds
+\end{equation}
+Pour l'estimation de $J_t^{\varepsilon,1}$.on utilise le théorème de la moyenne pour deux points $x\text{ et }y$:
+\[
+b_s(y,\mu)-b_s(x,\nu)=\int_{0}^{1}\nabla b_s(x+r(y-x),\mu)(y-x)dr
+\]Appliqué avec $y=X_s^\varepsilon,x=X_s^0$ et $\mu=\mathcal{L}_{X_s^\varepsilon}$, on obtient
+\[
+\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)=\int_{0}^{1}\nabla b_s(X_s^0+r(X_s^\varepsilon-X_s^0),\mathcal{L}_{X_s^\varepsilon})Z_s^\varepsilon dr
+\]
+Puisque $\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0)$ est dérivée directionnelle au point $X_s^0$ de direction $Z_s^\varepsilon$ donc
+\[
+\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^\varepsilon)-b_s(X_s^0,\delta_{X_s^0})\right)-\nabla_{Z_s^\varepsilon}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0)=\int_{0}^{1}\nabla_{Z_s^\varepsilon} b_s(R_s^\varepsilon(r),\mathcal{L}_{X_s^\varepsilon}) - \nabla_{Z_s^\varepsilon} b_s(X_s^0,\delta_{X_s^0})\]
+où $R_s^\varepsilon(r) = X_s^0+r(X_s^\varepsilon-X_s^0),r\in[0,1]$\\
+D'après l'hypothèse \textbf{H2}(ref chap I) on a
+\[
+\|\nabla_{Z_s^\varepsilon} b_s(R_s^\varepsilon(r),\mathcal{L}_{X_s^\varepsilon}) - \nabla_{Z_s^\varepsilon} b_s(X_s^0,\delta_{X_s^0})\|\leq K(s)\left(\int_{0}^{1}\left(|R_s^\varepsilon(r)-X_s^0| +\mathbb{W}_s(\mathcal{L}_{R_s^\varepsilon(r)},\delta_{X_s^0})\right)dr\right)|Z_s^\varepsilon|
+\]
+or $\mathbb{W}_2(\mathcal{L}_{R_s^\varepsilon(r)},\delta_{X_s^0})\leq\left(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2\right)^{\frac{1}{2}}$ alors l'inégalité ci-dessus devient
+\[
+\|\nabla_{Z_s^\varepsilon} b_s(R_s^\varepsilon(r),\mathcal{L}_{X_s^\varepsilon}) - \nabla_{Z_s^\varepsilon} b_s(X_s^0,\delta_{X_s^0})\|\leq K(s)\left(\int_{0}^{1}\left(|R_s^\varepsilon(r)-X_s^0|+ \left(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2\right)^{\frac{1}{2}}\right)dr\right)|Z_s^\varepsilon|
+\]
+Intégrant et élevant puissance $p\geq2$,prenant sup puis espérance membre a membre et on obtient:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,1}|^p\right)\leq \mathbb{E}\left(\int_{0}^{T} K(s)\left(\int_{0}^{1}\left(|R_s^\varepsilon(r)-X_s^0|+ \left(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2\right)^{\frac{1}{2}}\right)dr\right)|Z_s^\varepsilon|ds\right)^p
+\]Nous appliquons l'inégalité de Hölder puis l'inégalité de Jensen, on obtient:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,1}|^p\right)&\leq T^{p-1}\int_{0}^{T}K^p(s)\mathbb{E}\left(\int_{0}^{1}\left(|R^\varepsilon_s-X_s^0| +\left(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2\right)^{\frac{1}{2}}\right)dr\right)^p|Z_s^\varepsilon|^pds\\
+&\leq T^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}\Big(\int_{0}^{1}\Big(|X_s^0 + r(X_s^\varepsilon-X_s^0)-X_s^0| +\\& \left(\mathbb{E}|X_s^0+r(X_s^\varepsilon-X_s^0)-X_s^0|^2\right)^{\frac{1}{2}}\Big)dr\Big)^p|Z_s^\varepsilon|^pds\\
+&\leq T^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}\left(\int_{0}^{1}\left(|r(X_s^\varepsilon-X_s^0)| + \left(\mathbb{E}|r(X_s^\varepsilon-X_s^0)|^2\right)^{\frac{1}{2}}\right)dr\right)^p|Z_s^\varepsilon|^pds\\
+&\leq T^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}\left(\frac{1}{2}|X_s^\varepsilon-X_s^0|+\frac{1}{2}\left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{1}{2}}\right)^p|Z_s^\varepsilon|^pds\\
+&\leq T^{p-1}K^p(T)2^{p-1}\int_{0}^{T}\mathbb{E}\left(\frac{1}{2^p}|X_s^\varepsilon-X_s^0|^p +\frac{1}{2^{p}}\left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{p}{2}}\right)|Z_s^\varepsilon|^pds
+\end{aligned}
+\]Ainsi, d'après l'inégalité de Jensen, nous obtenons
+\[
+\begin{aligned}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,1}|^p\right)&\leq T^{p-1}K^p(T)2^{p-1}\int_{0}^{T}\mathbb{E}\left(\frac{1}{2^p}|X_s^\varepsilon-X_s^0|^p +\frac{1}{2^{p}}\mathbb{E}|X_s^\varepsilon-X_s^0|^p\right)|Z_s^\varepsilon|^pds\\
+	&\leq T^{p-1}K^p(T)2^{p-1}\int_{0}^{T}\left(\frac{1}{2^p}\mathbb{E}|X_s^\varepsilon-X_s^0|^0+\frac{1}{2^p}\mathbb{E}|X_s^\varepsilon-X_s^0|^p\right)ds\\
+	&\leq T^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}|X_s^\varepsilon-X_s^0|^p|Z_s^\varepsilon|^pds
+\end{aligned}
+\]
+En multipliant par $\varepsilon\geq0$ et diviser par $\varepsilon$ nous obtenons:
+\begin{equation}\label{eq:2.2.34}
+	\begin{aligned}
+		\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,1}|^p\right)&\leq T^{p-1}K^p(T)\varepsilon^{\frac{p}{2}}\int_{0}^{T}\mathbb{E}|Z^\varepsilon_s|^p\mathbb{E}|Z_s^\varepsilon|^pds\\
+		&\leq T^{p-1}K^p(T)\varepsilon^{\frac{p}{2}}\int_{0}^{T}\mathbb{E}|Z^\varepsilon_s|^{2p}ds
+	\end{aligned}
+\end{equation}
+Ensuite, nous utilisons le proposition \ref{prp:2.2.2} et la dérivation en loi pour la mesure $\mu=\mathcal{L}_{X_s^\varepsilon}$ et $\nu=\delta_{X_s^0}$
+\[
+b_s(x,\mu)-b_s(y,\nu) = \int_{0}^{1}\mathbb{E}\langle D^Lb_s(x,\cdot)(\nu+r(\nu-\mu))(Y_r),\tilde{Y}-Y\rangle
+\]
+nous obtenons la formulation d'approximation
+\[
+\begin{aligned}
+	\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)&=\int_{0}^{1}\mathbb{E}\langle D^Lb_s(y,\cdot)(\mathcal{L}_{R_s^\varepsilon(r)})(R_s^\varepsilon(r)),Z_s^\varepsilon\rangle|_{y=X_s^0} dr
+\end{aligned}
+\]
+Ainsi,
+\[
+\begin{aligned}
+&\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)-\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0} =\\& \int_{0}^{1}\mathbb{E}\langle D^Lb_s(y,\cdot)(\mathcal{L}_{R_s^\varepsilon(r)})(R_s^\varepsilon(r)),Z_s^\varepsilon\rangle|_{y=X_s^0} dr - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0} =\\
+&\int_{0}^{1}\left(\mathbb{E}\langle D^Lb_s(y,\cdot)(\mathcal{L}_{R_s^\varepsilon(r)})(R_s^\varepsilon(r)),Z_s^\varepsilon\rangle|_{y=X_s^0}  - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\right)dr
+\end{aligned}
+\]
+nous prenons la norme euclidienne et utilisons l'inégalité de Hölder
+\[
+\begin{aligned}&\Big|\frac{1}{\sqrt{\varepsilon}}\left(b_s(X_s^0,\mathcal{L}_{X_s^\varepsilon})-b_s(X_s^0,\delta_{X_s^0})\right)-\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\Big|\leq\\
+&\Big|\int_{0}^{1}\left(\mathbb{E}\langle D^Lb_s(y,\cdot)(\mathcal{L}_{R_s^\varepsilon(r)})(R_s^\varepsilon(r)),Z_s^\varepsilon\rangle |_{y=X_s^0} - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\right)dr\Big|\leq\\
+&\int_{0}^{1}\Big|\left(\mathbb{E}\langle D^Lb_s(y,\cdot)(\mathcal{L}_{R_s^\varepsilon(r)})(R_s^\varepsilon(r)),Z_s^\varepsilon\rangle|_{y=X_s^0}  - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\right)\Big|dr
+\end{aligned}
+\]
+puisque $X_s^\varepsilon,X_s^0$ et $Z_s^\varepsilon$ appartiennent à l’espace $L^2(\Omega\to\mathbb{R})$ on peut utiliser l'hypothèse \textbf{(H2)} et nous obtenons:
+\[
+\begin{aligned}
+	&\int_{0}^{1}\Big|\left(\mathbb{E}\langle D^Lb_s(y,\cdot)(\mathcal{L}_{R_s^\varepsilon(r)})(R_s^\varepsilon(r)),Z_s^\varepsilon\rangle|_{y=X_s^0}  - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0}\right)\Big|dr\leq\\
+	&\int_{0}^{1}K(s)\left(|R_s^\varepsilon(r)-X_s^0| + \mathbb{W}_2(\mathcal{L}_{R_s^\varepsilon(r)},\delta_{X_s^0})+ (\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2)^{\frac{1}{2}}\right)(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{1}{2}}dr
+\end{aligned}
+\]
+nous utilisons l'inégalité ci-dessus pour majorer l'estimation $J_t^{\varepsilon,2}$ donc en intégrant, élevant puissance $p\leq2$ et prenant $\sup$ puis l'espérance, nous obtenons
+\[\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,2}|^p\right)	&\leq\mathbb{E}\Big(\int_{0}^{T}\Big(\int_{0}^{1}K(s)\Big(|R_s^\varepsilon(r)-X_s^0| + \mathbb{W}_2(\mathcal{L}_{R_s^\varepsilon(r)},\delta_{X_s^0})\\
+&+(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2)^{\frac{1}{2}}\Big)(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{1}{2}}dr\Big) ds\Big)^p
+\end{aligned}\\
+\]
+Cette expression nous conduit a utiliser l'inégalité de Hölder
+\[
+\begin{aligned}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,2}|^p\right)&\leq T^{p-1}\mathbb{E}\int_{0}^{T}K^p(s)\Big(\int_{0}^{1}\Big(|R_s^\varepsilon(r)-X_s^0| + \mathbb{W}_2(\mathcal{L}_{R_s^\varepsilon(r)},\delta_{X_s^0})\\
+	&+(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2)^{\frac{1}{2}}\Big)^pdr\Big)((\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}} ds\\
+	&\leq T^{p-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\Big(\int_{0}^{1}|R_s^\varepsilon(r)-X_s^0|^p+\mathbb{W}_2^p(\mathcal{L}_{R_s^\varepsilon},\delta_{X_s^0})\\
+	&+\left(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2\right)^{\frac{p}{2}}dr\Big)(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+\end{aligned}
+\]
+$\mathbb{W}_2(\mathcal{L}_{R_s^\varepsilon})\leq(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2)^{\frac{1}{2}}$ alors cette inégalité dévient
+	\[
+\begin{aligned}	
+	&\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,2}|^p\right)\leq T^{p-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\Big(\int_{0}^{1}|R_s^\varepsilon-X_s^0|^p+(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2)^{\frac{p}{2}}\\
+	&+\left(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2\right)^{\frac{p}{2}}dr\Big)(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+	&\leq  T^{p-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\Big(\int_{0}^{1}|R_s^\varepsilon-X_s^0|^p+2(\mathbb{E}|R_s^\varepsilon(r)-X_s^0|^2)^{\frac{p}{2}}\Big)dr(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+	&\leq T^{p-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\Big(\int_{0}^{1}|r(X_s^\varepsilon-X_s^0)|^p+2(\mathbb{E}|r(X_s^\varepsilon-X_s^0)|^2)^{\frac{p}{2}}\Big)dr(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+	&\leq T^{p-1}K^p(T)3^{p-1}\mathbb{E}\int_{0}^{T}\Big(\frac{1}{2^p}|X_s^\varepsilon-X_s^0|^p+\frac{1}{2^{p-1}}(\mathbb{E}|X_s^\varepsilon-X_s^0|^2)^{\frac{p}{2}}\Big)(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+\end{aligned}
+\]Nous appliquons l'inégalité de Jensen, nous obtenons:
+\[
+\begin{aligned}
+&\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,2}|^p\right)\\&\leq T^{p-1}K^p(T)3^{p-1} \int_{0}^{T}\mathbb{E}\Big(\frac{1}{2^p}|X_s^\varepsilon-X_s^0|^p+\frac{1}{2^{p-1}}\mathbb{E}|X_s^\varepsilon-X_s^0|^p\Big)(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+&\leq T^{p-1}K^p(T)3^{p-1} \int_{0}^{T}\left(\frac{1}{2^p}\mathbb{E}|X_s^\varepsilon-X_s^0|^p+\frac{1}{2^{p-1}}\mathbb{E}|X_s^\varepsilon-X_s^0|^p\right)(\mathbb{E}|Z_s^\varepsilon|^2)^\frac{p}{2}ds\\
+&\leq T^{p-1}K^p(T)3^{p-1}\frac{1}{2^{p-1}} \int_{0}^{T} \mathbb{E}|X_s^\varepsilon-X_s^0|^p(\mathbb{E}|Z_s^\varepsilon|^2)^{\frac{p}{2}}ds\\
+&\leq T^{p-1}K^p(T)3^{p-1}\frac{1}{2^{p-1}} \int_{0}^{T} \mathbb{E}|X_s^\varepsilon-X_s^0|^p\mathbb{E}|Z_s^\varepsilon|^pds
+\end{aligned}
+\]
+Nous multiplions par $\varepsilon\geq0$ et diviser par $\varepsilon$ le deuxieme membre de cette inégalité. Nous avons dans cas:
+\begin{equation}\label{eq:2.2.35}
+	\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,2}|^p\right)&\leq T^{p-1}K^p(T)3^{p-1}\frac{1}{2^{p-1}}\varepsilon^{\frac{p}{2}} \int_{0}^{T} \mathbb{E}|Z_s^\varepsilon|^p\mathbb{E}|Z_s^\varepsilon|^pds\\
+&\leq  T^{p-1}K^p(T)3^{p-1}\frac{1}{2^{p-1}}\varepsilon^{\frac{p}{2}} \int_{0}^{T} \mathbb{E}|Z_s^\varepsilon|^{2p}ds
+\end{aligned}
+\end{equation}
+Nous avons $J_t^{\varepsilon,3}$, alors en élevant puissance par $p\geq2$ et prenant l'espérance ceci entraine  
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,3}|^p\right)\leq\mathbb{E}\Big|\int_{0}^{T}\left(\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\right)ds\Big|^p
+\]
+Nous appliquons l'inégalité de Hölder dans cette inégalité ci-dessus et nous obtenons
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,3}|^p\right)\leq T^{p-1}\mathbb{E}\int_{0}^{T}\Big\|\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\Big\|^pds
+\end{aligned}
+\]
+Nous allons maintenant ajouter et soustraire par $\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0)$ et nous avons une nouvelle inégalité suivants:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,3}|^p\right)
+&\leq T^{p-1}\mathbb{E}\int_{0}^{T}\Big\|\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0) -\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0)  \\&+ \nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\Big\|^pds\\
+\text{ d'après l'inégalité}&\text{ triangulaire nous avons}\\
+&\leq T^{p-1}\mathbb{E}\int_{0}^{T}\Big(\Big\|\nabla_{Z_s^\varepsilon}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0) -\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0)\Big\|^p\\
+&+ \Big\|\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\Big\|^p\Big)ds
+\end{aligned}
+\]
+Nous appliquons le propriété de dérivée directionnelle dans le premier terme de deuxième membre nous avons
+\[
+\begin{aligned}
+	\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t|^p\right)
+	&\leq T^{p-1} \mathbb{E}\int_{0}^{T}\Big(\Big\|\nabla_{Z_s^\varepsilon-Z_s}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0)\Big\|^p\\ &+ \Big\|\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\Big\|^p\Big)ds
+\end{aligned}
+\]
+Pour tout $0< s\leq t\leq T$, nous appliquons les hypothèses \textbf{(H1)} et \textbf{(H2)} alors il existe une fonction croissante $K:  [0,\infty)\to [0,\infty)$ telle que:
+\[
+\begin{aligned}
+	\Big\|\nabla_{Z_s^\varepsilon-Z_s}b_s(\cdot, \mathcal{L}_{X_s^\varepsilon})(X_s^0)\Big\|^p&\leq K^p(s)|Z_s^\varepsilon-Z_s|^p \text{ et }\\
+	 \Big\|\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\Big\|^p&\leq K^p(s)\mathbb{W}_2^p(\mathcal{L}_{X_s^\varepsilon},\delta_{X_s^0})|Z_s|^p\\
+	 \text{ or } \mathbb{W}_2(\mathcal{L}_{X_s^\varepsilon}-\delta_{X_s^0})\leq \left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{1}{2}} &\text{ alors nous avons une nouvelle inégalité}\\
+	 \Big\|\nabla_{Z_s}b_s(\cdot,\mathcal{L}_{X_s^\varepsilon})(X_s^0) - \nabla_{Z_s}b_s(\cdot, \delta_{X_s^0})(X_s^0)\Big\|^p&\leq K^p(s)\left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{p}{2}}|Z_s|^p
+\end{aligned}
+\]
+Cette inégalité nous conduit à une nouvelle inégalité sur  $\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t|^p\right)$, ce qui nous permet d’obtenir.
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,3}|^p\right)
+&\leq T^{p-1} \mathbb{E}\int_{0}^{T} \Big(  K^p(s)|Z_s^\varepsilon-Z_s|^p +K^p(s) \left(\mathbb{E}|X_s^\varepsilon-X_s^0|^2\right)^{\frac{p}{2}}|Z_s|^p \Big)ds\\
+\end{aligned}
+\]
+Nous appliquons l'inégalité de Jensen dans cette situation, nous obtenons:
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,3}|^p\right)
+&\leq T^{p-1}\int_{0}^{T} K^p(s)\mathbb{E}\Big(|Z_s^\varepsilon-Z_s|^p +\mathbb{E}|X_s^\varepsilon-X_s^0|^{p}|Z_s|^p\Big)ds\\
+&\leq T^{p-1}K^p(T)\int_{0}^{T}\Big(\mathbb{E}|Z_s^\varepsilon-Z_s|^p +\mathbb{E}|X_s^\varepsilon-X_s^0|^p\mathbb{E}|Z_s|^p\Big)ds
+\end{aligned}
+\]
+pour tout $\varepsilon\geq2$ on obtenons:
+\begin{equation}\label{eq:2.2.36}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,3}|^p\right)\leq T^{p-1}K^p(T)\int_{0}^{T}\left(\mathbb{E}|Z_s^\varepsilon-Z_s|^p + \varepsilon^{\frac{p}{2}}\mathbb{E}|Z_s^\varepsilon|^p\mathbb{E}|Z_s|^{p}\right)ds
+\end{equation}
+Ensuite, nous avons l'estimation $J_t^{\varepsilon,4}$, pour tout $0< s\leq t\leq T$ nous avons
+\[\begin{aligned}
+&\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon\rangle|_{y=X_s^0} - \mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s\rangle|_{y=X_s^0}=\\
+&\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon-Z_s\rangle|_{y=X_s^0}
+\end{aligned}
+\]
+Ainsi,
+\[\begin{aligned}
+J_t^{\varepsilon,4}&:=\int_{0}^{t}\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon-Z_s\rangle|_{y=X_s^0}ds\text{ par la norme euclidienne nous avons}\\
+|J_t^{\varepsilon,4}|&= \Big|\int_{0}^{t}\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon-Z_s\rangle|_{y=X_s^0}ds\Big|
+\end{aligned}
+\]
+En élevant puissance $p\geq2$ puis prenant le sup et l'espérance et nous avons
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,2}|^p\right)\leq \mathbb{E}\Big|\int_{0}^{T}\mathbb{E}\langle D^L b_s(y, \cdot)(\delta_{X_s^0})(X_s^0), Z_s^\varepsilon-Z_s\rangle|_{y=X_s^0}ds\Big|^pds 
+\]
+après avoir utiliser l'inégalité de Hölder deux fois, nous avons
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,4}|^p\right)\leq T^{p-1}\mathbb{E}\int_{0}^{T}\left(\mathbb{E}\|D^Lb_s(\delta_{X_s^0})(X_s^0)\|^2\right)^{\frac{p}{2}}\left(\mathbb{E}|Z_s^\varepsilon-Z_s|^2\right)^{\frac{p}{2}}ds
+\]
+d'après l'inégalité de Jensen, nous obtenons
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,4}|^p\right)\leq T^{p-1}\int_{0}^{T}\mathbb{E}\|D^Lb_s(\delta_{X_s^0})(X_s^0)\|^p\mathbb{E}|Z_s^\varepsilon-Z_s|^p ds
+\]
+dans le norme de l'espace tangentielle $T_{\delta_{X_s^0},2}$ nous pouvons utiliser l'inégalité dans l'hypothése \textbf{(H1)}. Il existe une fonction croissante $K:[0,\infty)\to[0,\infty)$ telle que 
+\[
+\|D^Lb_s(\delta_{X_s^0})(X_s^0)\|\leq K(s)
+\]
+Ainsi,
+\begin{equation}\label{eq:2.2.37}
+	\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|J_t^{\varepsilon,4}|^p\right)&\leq T^{p-1}\int_{0}^{T} K^p(s)\mathbb{E}|Z_s^\varepsilon-Z_s|^p ds\\
+&\leq T^{p-1}K^p(T)\int_{0}^{T}\mathbb{E}|Z_s^\varepsilon-Z_s|^p ds
+\end{aligned}
+\end{equation}
+ En rassemblant les estimation  \ref{eq:2.2.33}, \ref{eq:2.2.34}, \ref{eq:2.2.35},  \ref{eq:2.2.36} et \ref{eq:2.2.37} dans $\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_s^\varepsilon-Z_s|^p\right)$ nous obtenons
+\[\begin{aligned}
+&\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon - Z_t|^p \right)\\
+&\leq T^{p-1}K^p(T)\varepsilon^{\frac{p}{2}}\int_{0}^{T}\mathbb{E}|Z^\varepsilon_s|^{2p}ds
++ T^{p-1}K^p(T)3^{p-1}\frac{1}{2^{p-1}}\varepsilon^{\frac{p}{2}} \int_{0}^{T} \mathbb{E}|Z_s^\varepsilon|^{2p}ds\\
+&+ T^{p-1}K^p(T)\int_{0}^{T}\left(\mathbb{E}|Z_s^\varepsilon-Z_s|^p+ \varepsilon^{\frac{p}{2}}\mathbb{E}|Z_s^\varepsilon|^p\mathbb{E}|Z_s|^{p}\right)ds+T^{p-1}K^p(T)\int_{0}^{T} \mathbb{E}|Z_s^\varepsilon-Z_s|^p ds\\
+&+ C_p2^pK^2(T)T^{\frac{p}{2}-1}\varepsilon^{\frac{p}{2}}\int_{0}^{T}\mathbb{E}|Z_s^\varepsilon|^pds\\
+&\leq C(T,p)\Big\{ \varepsilon^{\frac{p}{2}}\int_{0}^{T}\mathbb{E}|Z_s^\varepsilon|^{2p}ds + \int_{0}^{T}\mathbb{E}|Z_s^\varepsilon-Z_s|^p ds +\varepsilon^{\frac{p}{2}}\int_{0}^{T} \mathbb{E}|Z_s^\varepsilon|^p\mathbb{E}|Z_s|^p ds\Big\}
+\end{aligned}
+\]
+Nous appliquons le lemme \ref{lem:2.2.4}, nous obtenons donc
+\[
+\begin{aligned}
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon - Z_t|^p \right)&\leq \varepsilon^{\frac{p}{2}} C(T,p) + C(T,p)\int_{0}^{T}\mathbb{E}|Z_s^\varepsilon-Z_s|^pds
+\end{aligned}
+\]
+Cette inégalité nous amène à appliquer l'inégalité de Gronwall. Il vient alors:
+\[
+\mathbb{E}\left(\sup_{0\leq t \leq T}|Z_t^\varepsilon - Z_t|^p \right)\leq \varepsilon^{\frac{p}{2}} C(T,p) \exp\left(C(T,p)T\right)
+\]
+ L’assertion souhaitée est obtenue en faisant tendre $\varepsilon\to0$
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

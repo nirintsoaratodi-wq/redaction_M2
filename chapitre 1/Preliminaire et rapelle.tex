@@ -1,0 +1,268 @@
+\documentclass[12pt,a4paper,twoside]{book}%      autres choix : book, report
+\usepackage[utf8]{inputenc}%           gestion des accents (source)
+\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+\usepackage[french]{babel}%          gestion du fran�ais
+\usepackage{textcomp}%                 caract�res additionnels
+\usepackage{mathtools,amssymb}
+\usepackage{amsthm}
+\usepackage{xurl}
+\usepackage{mathrsfs}
+\usepackage{amsmath}% packages de l'AMS + mathtools
+\usepackage{lmodern}
+\usepackage[bottom=2.5cm,left=2.5cm,right=2.5cm,top=2.5cm]{geometry}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagestyle{fancy}
+\fancyhf{}
+\theoremstyle{definition}
+\newtheorem{dfn}{Définition}[section]
+\newtheorem*{pr}{\textbf{Preuve}}
+\newtheorem{rem}{\textit{Remarque}}[section]
+\newtheorem{thm}[dfn]{\textit{Théorème}}
+\newtheorem{prop}[dfn]{\textit{Proposition}}
+\newtheorem{cor}[dfn]{\textit{Corollaire}}
+\newtheorem{lem}[dfn]{\textit{Lemme}}
+\newtheorem{exm}[dfn]{\textit{Exemple}}
+\newtheorem{prp}[dfn]{\textbf{Propriété}}
+\newtheorem{for}[dfn]{\textit{Formule}}
+\numberwithin{equation}{section}
+\newtheorem{ex}{Exemple}[subsection]
+%\setcounter{page}{1}
+\title{ \textbf{Théorème Central Limite et Principe de Déviations Modérées pour les Équations Différentielles Stochastiques de McKean-Vlasov)}}
+\begin{document}
+	\maketitle
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	
+		\chapter{Rappel et Préliminaire}
+Soient \( |\cdot| \) et \( \langle \cdot, \cdot \rangle \) respectivement la norme euclidienne et le produit scalaire dans \( \mathbb{R}^d \)
+	\section{Quelque définition des espaces et distance}
+	\begin{dfn}
+		contenu...
+	\end{dfn}
+	\begin{dfn}
+		Un espace métrique $X$ est une espace Polonais de $X$ est séparable et il existe une distance complète induisant la topologie de $X$.
+	\end{dfn}
+	\begin{dfn}
+		Soit $\mathcal{P}(\mathbb{R}^d)$ l'espace des mesures de probabilité sur $\mathbb{R}^d$.\\
+		On note $\mathcal{P}_2(\mathbb{R}^d)$ est le sous-ensemble des mesure de probabilité sur $\mathbb{R}^d$ possédant un moment d'ordre deux fini, c'est-à-dire:
+		\[
+		\mathcal{P}_2(\mathbb{R}^d) = \left\{ \mu \text{ probabilité sur }\mathbb{R}^d : \mu(|\cdot|^2) = \int_{\mathbb{R}^d} |x|^2\mu(dx)<\infty
+		\right\} 
+		\]
+		où $\mu(f):=\int fd\mu$ pour un fonction mesurable $f$
+	\end{dfn}
+	\begin{rem}
+		Le moment d'ordre 2 garantit que l'on peut définir des distances entre mesures via la distance de Wasserstein $W_2$
+	\end{rem}
+	\begin{dfn}
+		Soient $\mu$ et $\nu\in\mathcal{P}_2(\mathbb{R}^d)$, la distance de Wasserstein d'ordre 2 entre $\mu$ et $\nu$ est définie par la formule:
+		\[
+		W_2(\mu, \nu) := \left( \inf_{\pi \in \mathcal{C}(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} |x - y|^2 \, \pi(dx, dy) \right)^{1/2}, 
+		\quad \mu, \nu \in \mathcal{P}_2(\mathbb{R}^d),
+		\]
+		où $\mathcal{C}(\mu,\nu)$ désigne l'ensemble des couplages de $\mu$ et $\nu$; c'est-à-dire que $\pi\in\mathcal{C}(\mu,\nu)$ est une mesure de probabilité sur $\mathbb{R}^d\times\mathbb{R}^d$ telle que $\pi(\cdot\times\mathbb{R}^d) = \mu$ et $\pi(\mathbb{R}^d\times\cdot)=\nu$.
+	\end{dfn}
+	\begin{prop}
+		L'espace de mesure de probabilité $\mathcal{P}_2(\mathbb{R}^d)$ est une espace polonais pour distance Wasserstein
+	\end{prop}
+	\begin{pr}
+		à recherche
+	\end{pr}
+	
+	%\begin{dfn}
+%	Pour toute $\mu\in\mathcal{P}_2(\mathbb{R}^d)$, l'espace tangente en $\mu$ est donné par:
+
+%	\[T_{\mu,2}=L^{2}(\mathbb{R}^{d}\to\mathbb{R}^{d};\mu):=\{\phi:\mathbb{R}^{d}\to\mathbb{R}^{d}\text{ est mesurable avec }\mu(|\phi|^{2})<\infty\}		\]
+%	\end{dfn}
+%Pour $\phi\in T_{\mu,2}$
+%\[\|\phi\|_{T_{\mu,2}}^{2}=\int_{\mathbb{R}^{d}}|\phi(x)|^{2}\mu(\mathrm{d}x).\] est la norme canonique de l'espace $T_{\mu,2}$
+\section{Équation différentielle stochastique de type McKean-Vlasov}
+\subsection{Équation différentielle stochastiques classique}
+\begin{dfn}
+	Une équation différentielle stochastique (SDE) sur $\mathbb{R}^d$ est une équation de la forme:
+	\begin{equation}
+		dX_t = b(t,X_t)dt + \sigma(t,X_t)dB_t, X_0 = x_0\in\mathbb{R}^d
+	\end{equation}
+	où:
+	\begin{itemize}
+		\item $B_t$ est un mouvement brownien standard de dimension $d$.
+		\item $b:[0,T]\times\mathbb{R}^d\longrightarrow\mathbb{R}^d$ est la dérivée drift
+		\item $\sigma:[0,T]\times\mathbb{R}^{d\times d}$ est la diffusion.
+	\end{itemize}
+\end{dfn}
+\begin{thm}[Théorème d’existence et d’unicité pour les équations différentielles stochastiques]
+	Soit $T > 0$ et soient 
+	\[
+	b : [0,T] \times \mathbb{R}^n \to \mathbb{R}^n, 
+	\quad 
+	\sigma : [0,T] \times \mathbb{R}^n \to \mathbb{R}^{n \times m}
+	\]
+	des fonctions mesurables satisfaisant
+	\begin{equation} \label{eq:lin_growth}
+		|b(t,x)| + |\sigma(t,x)| \leq C(1+|x|), 
+		\quad \forall (t,x) \in [0,T]\times \mathbb{R}^n,
+	\end{equation}
+	pour une certaine constante $C$, où 
+	\[
+	|\sigma(t,x)|^2 = \sum_{i,j} \sigma_{ij}^2(t,x).
+	\]
+	
+	De plus, supposons que
+	\begin{equation} \label{eq:lipschitz}
+		|b(t,x)-b(t,y)| + |\sigma(t,x)-\sigma(t,y)| \leq D |x-y|, 
+		\quad \forall x,y \in \mathbb{R}^n, \, t \in [0,T],
+	\end{equation}
+	pour une certaine constante $D$.
+	
+	Soit $Z$ une variable aléatoire indépendante de la $\sigma$-algèbre 
+	$\mathcal{F}^{(m)}$ engendrée par $(B_s)_{s \geq 0}$, et telle que
+	\[
+	\mathbb{E}[x_0^2] < \infty.
+	\]
+	
+	Alors, l’équation différentielle stochastique
+	\[
+	dX_t = b(t,X_t)\,dt + \sigma(t,X_t)\,dB_t, 
+	\quad 0 \leq t \leq T, 
+	\quad X_0 = x_0,
+	\]
+	admet une solution unique $X_t(\cdot)$, continue en $t$, et vérifiant :
+	\begin{equation}
+		X_t(\cdot) \text{ est adaptée à la filtration } 
+		\mathcal{F}^{x_0}_t \text{ engendrée par } x_0 \text{ et } (B_s)_{s \leq t},
+	\end{equation}
+	et
+	\begin{equation} 
+		\mathbb{E}\!\left[\int_0^T |X_t|^2 \, dt\right] < \infty.
+	\end{equation}
+\end{thm}
+
+\subsection{Équation différentielle stochastique de type McKean-Vlasov (MV-SDE)}
+Dans cette section, nous rappelons l’équation différentielle stochastique de McKean–Vlasov (MV-SDE), définie sur l’espace euclidien $(\mathbb{R}^d, \langle \cdot, \cdot \rangle ,|\cdot|)$. 
+Soit $(\Omega,\mathcal{F}_t,\{\mathcal{F}_t\}_{t\geqslant 0},\mathbb{P})$ un espace de probabilité filtré complet et $\mathcal{L}_{X^\varepsilon_t}$ désigne la loi du processus stochastique $X^\varepsilon_t$.
+\begin{dfn}
+	Une équation différentielle stochastique de type Mckean-Vlasov (MV-SDE) sur $(\mathbb{R}^d, \langle \cdot, \cdot \rangle ,|\cdot|)$ est de la forme:
+	\begin{equation}
+		dX_t^\varepsilon = b_t(X_t^\varepsilon,\mathcal{L}(X_t^\varepsilon))dt +\sqrt{\varepsilon}\sigma_t(X_t^\varepsilon,\mathcal{L}(X_t^\varepsilon))dW_t,\text{    } X_0^\varepsilon=x
+	\end{equation}
+	où $\varepsilon > 0$ est appelé le para
+	mètre d'échelle.Ici, $W_t$ est une mouvement brownien standard $d-$dimensionnel.
+\end{dfn}
+\subsubsection{Hypothèses sur les coefficients}
+\textbf{(H1)} Les coefficients $b : [0, \infty) \times \mathbb{R}^d \times \mathcal{P}_2(\mathbb{R}^d) \to \mathbb{R}^d$ et $\sigma : [0, \infty) \times \mathbb{R}^d \times \mathcal{P}_2(\mathbb{R}^d) \to \mathbb{R}^{d \otimes d}$ sont continus. Il existe une fonction croissante $K : [0, \infty) \to [0, \infty)$ telle que
+\begin{equation}
+	\max\left\{ \|\nabla b_t(\cdot, \mu)(x)\|, \| D^L b_t(x, \cdot)(\mu) \|_{T_{\mu,2}} \right\} \leq K(t), \quad t \geq 0,\ x \in \mathbb{R}^d,\ \mu \in \mathcal{P}_2(\mathbb{R}^d),
+\end{equation}
+\begin{equation}
+	\|\sigma_t(x, \mu) - \sigma_t(y, \nu)\| \leq K(t)(|x - y| + \mathbb{W}_2(\mu, \nu)), \quad t \geq 0,\ x, y \in \mathbb{R}^d,\ \mu, \nu \in \mathcal{P}_2(\mathbb{R}^d),
+\end{equation}
+et
+\begin{equation}
+	|b_t(0, \delta_0)| + \|\sigma_t(0, \delta_0)\| \leq K(t), \quad t \geq 0.
+\end{equation}
+
+\textbf{(H2)} Le coefficient $b_t(x, \mu)$ est différentiable par rapport à $x$ et $\mu$, respectivement, et les fonctions dérivées satisfont
+\begin{equation}
+	\|\nabla b_t(., \mu)(x) - \nabla b_t(., \nu)(y)\| \leq K(t)(|x - y| + \mathbb{W}_2(\mu, \nu)),
+\end{equation}
+\[
+\begin{aligned}
+	&\left| \mathbb{E}\left[ \langle D^L b_t(x, \cdot)(\mathcal{L}_X)(X), \phi \rangle \right] 
+	- \mathbb{E}\left[ \langle D^L b_t(y, \cdot)(\mathcal{L}_Y)(Y), \phi \rangle \right] \right| \\
+	&\leq K(t)\left( |x - y| + \mathbb{W}_2(\mathcal{L}_X, \mathcal{L}_Y) + \left( \mathbb{E}[|X - Y|^2] \right)^{1/2} \right) \left( \mathbb{E}[|\phi|^2] \right)^{1/2}
+\end{aligned}
+\]
+
+pour tout $t \geq 0$, $x, y \in \mathbb{R}^d$, $\mu, \nu \in \mathcal{P}_2(\mathbb{R}^d)$ et $X, Y, \phi \in L^2(\Omega \to \mathbb{R}^d, \mathbb{P}$
+\begin{rem}
+	D'après (H1), on a pour tout $t\geq0$ $x,y\in\mathbb{R}^d,\mu,\nu\in\mathcal{P}_2(\mathbb{R}^d)$ que:
+	\begin{equation}
+		|b_t(x, \mu) - b_t(y, \nu)| \leq K(t)(|x - y| + \mathbb{W}_2(\mu, \nu)).
+	\end{equation}
+\end{rem}
+
+Intuitivement, lorsque le paramétré $\varepsilon$ tend vers 0 dans (1.2.6), le terme de diffusion disparaître et on obtient l'équation différentielle ordinaire suivante:
+\begin{equation}
+	dX_t^0=b_t(X^0_t,\delta_{X_t^0})dt.
+\end{equation}
+avec la même donnée initiale que (1.2.6), c'est-à-dire $X_0^0=x$. Comme $x$ est déterministe, on déduit que $\delta_{X^0_\cdot}$ est une mesure de Dirac centrée sur la trajectoire $X^0$
+\section{Dérivée de Lions}
+Pour tout $\mu\in\mathcal{P}_2(\mathbb{R}^d)$, on définit l'espace tangent en $\mu$ par
+\[
+T_{\mu,2} = L^2(\mathbb{R})^d\longrightarrow \mathbb{R}^d :=\left\{\phi:\mathbb{R}^d\longrightarrow\mathbb{R}^d \text{ est mesurable avec }\int_{\mathbb{R}^d}|\phi(x)|^2\mu(dx)<\infty\right\}
+\]
+la norme associé est donnée par:
+\[
+\|\phi\|^2_{T_{\mu,2}}:=\int_{\mathbb{R}^d}|\phi(x)|^2\mu(dx)\] 
+
+\begin{dfn}
+	Soit $f:\mathcal{P}_2(\mathbb{R}^d)\longrightarrow\mathbb{R}^d$ un fonction continue, et $I_d$ la carte identité sur $\mathbb{R}^d$
+	
+	\begin{enumerate}
+		\item Si, pour tout $\mu\in\mathcal{P}_2(\mathbb{R}^d)$, on a
+		\[
+		T_{\mu,2}\ni\phi \mapsto D^L_{\phi}f(\mu):=\lim_{\varepsilon\to 0}\frac{f(\mu\circ(I_d+\varepsilon\phi)^{-1})-f(\mu)}{\varepsilon}\in\mathbb{R}
+		\]
+		et que cette limite définit un fonctionnel linéaire borné, alors on dit que $f$ est intrinsèquement différentiable en $\mu$, et on note $D^L_{\phi}f(\mu)$ la dérivée intrinsèque de $f$ en $\mu$
+
+	\item Si, pour tout $\mu\in\mathcal{R}_2(\mathbb{R})$, on a
+	\[
+\lim_{\|\phi\|_{T_{\mu,2}} \to 0} \frac{|f(\mu \circ (I_d + \phi)^{-1}) - f(\mu) - D^L_\phi f(\mu)|}{\|\phi\|_{T_{\mu,2}}} = 0.
+ \]
+ alors on dit que $f$ est $L-$différentiable en $\mu$, et l'on note $D_\mu f(\mu)$ la $L-$dérivée (ou dérivée de Lions) de $f$ en $\mu$
+\\ Dans ce cas, par le théorème de représentation de Riez, l'élément unique $D^Lf(\mu)\in T_{\mu,2}$ satisfaisant
+ \[
+ \langle D^L f(\mu), \phi \rangle_{T_{\mu,2}} := \int_{\mathbb{R}^d} \langle D^L f(\mu)(x), \phi(x) \rangle \mu(dx) = D^L_\phi f(\mu), \quad \forall \phi \in T_{\mu,2},
+ \]
+ \item  On écrit \( f \in C^1(\mathcal{P}_2(\mathbb{R}^d)) \) si \( f \) est \( L \)-différentiable en tout point \( \mu \in \mathcal{P}_2(\mathbb{R}^d) \), et la dérivée \( L \)-dérivée admet version \( D^L f(\mu)(x) \) jointe continu en \( (x, \mu) \in \mathbb{R}^d \times \mathcal{P}_2(\mathbb{R}^d) \). Si de plus, \( D^L f(\mu)(x) \) est bornée, on dénote \( f \in C_b^1(\mathcal{P}_2(\mathbb{R}^d)) \).
+ 
+ Pour une fonction à valeurs vectorielles $f = (f_i)$, ou une fonction à valeurs matricielles $f = (f_{ij})$ avec des composantes $L$-différentiables, on écrit
+ \[
+ D^L_\phi f(\mu) = (D^L_\phi f_i(\mu)), \quad \text{ou} \quad D^L_\phi f(\mu) = (D^L_\phi f_{ij}(\mu)), \quad \mu \in \mathcal{P}_2(\mathbb{R}^d).
+ \] 
+ 	\end{enumerate}
+\end{dfn}
+
+
+\section{Principe de grandes déviation (PGD) et Principe de déviation modéré (PDM)}
+\subsection{Principe de grandes déviation (PGD)}
+Le principe des grandes déviation (PGD) décrit le comportement asymptotique d'une famille de mesures de probabilité $\{\mu_\varepsilon\}_{\varepsilon>0}$ définit sur un espace topologique $(X,\mathcal{B}_X)$, lorsque $\varepsilon \to 0$, au moyen d'une fonction de taux, à travers des bornes exponentielles supérieures et inférieures portants sur les probabilités des ensembles mesurables de $X$.
+\begin{dfn}
+	Soit $X$ un espace polonais muni de la tribu borélienne $\mathcal{B}$.  
+	On dit qu’une fonction $I : X \to [0, \infty]$ est une \emph{fonction de taux} (rate function) si :  
+	\begin{enumerate}
+		\item $I$ n’est pas identiquement égale à $+\infty$ ;
+		\item $I$ est semi-continue inférieurement ;
+		\item pour tout $L \geq 0$, l’ensemble $\{x \in X : I(x) \leq L\}$ est compact.
+	\end{enumerate}
+\end{dfn}
+
+\begin{dfn}
+	Une famille $\{\mu_\varepsilon\}$ de mesures de probabilité sur $(X, \mathcal{B})$ 
+	est dite satisfaire le \textbf{principe des grandes déviations} (PGD) 
+	de fonction de taux $I$ si:
+	\begin{equation}
+		\varlimsup_{\varepsilon \downarrow 0} \varepsilon\log\mu_\varepsilon (F)\leq -\inf_{x\in F}I(x)
+	\end{equation}
+	pour tout ensemble fermé $F$ de $X$ et
+	\begin{equation}
+	\varliminf_{\varepsilon \downarrow 0} \varepsilon\log\mu_\varepsilon(G)\geq -\inf_{x\in G}
+	\end{equation}
+	pour tout ensemble ouvert non vide $G$ de $X$  
+	\end{dfn}
+
+\section{Théorème centrale limite (TCL)}
+
+
+
+
+
+
+
+\end{document}
