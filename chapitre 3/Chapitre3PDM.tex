@@ -315,7 +315,8 @@ Avant de vérifier la condition (a), nous donnons une estimation pour le second 
 \begin{lem}
 	Supposons que \((\mathbf{H1})\) soit vérifiée. Alors, il existe un \(\varepsilon_{0}\in(0,1)\) tel que pour une certaine constante \(C_{T}\),
 	
-	\begin{equation}\mathbb{E} \left( \sup_{0\leq t\leq T} |\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}|^{2} \right) \leq C_{T}, \quad \varepsilon \in (0,\varepsilon_{0}), \quad h_{\varepsilon} \in \mathcal{A}_{N}
+	\begin{equation}\label{eq:3.2.10}
+		\mathbb{E} \left( \sup_{0\leq t\leq T} |\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}|^{2} \right) \leq C_{T}, \quad \varepsilon \in (0,\varepsilon_{0}), \quad h_{\varepsilon} \in \mathcal{A}_{N}
 	\end{equation}
 	
 	où \(\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}\) est défini en (\ref{eq:3.2.7}).
@@ -346,10 +347,8 @@ Avant de vérifier la condition (a), nous donnons une estimation pour le second 
  \end{aligned}
  \]
  Maintenant, nous prenons l'espérance, pour tout $t\in [0,T]$ on a:
- \[
- \mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_1^{\varepsilon,h_\varepsilon}(t)|^2
- \Big)\leq C_T\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds
- \]
+ \[ \mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_1^{\varepsilon,h_\varepsilon}(t)|^2
+ \Big)\leq C_T\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds \]
 On a
 \[
 \begin{aligned}
@@ -469,19 +468,58 @@ Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{
 \Big\|\nabla_{(\overline{Y}_s^{\varepsilon,h_\varepsilon} - Y_s^h)}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))\Big\|&\leq	K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|
 \end{aligned}
 	 \]
-	 \[
-	 \Big\|\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)) -\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\|\leq K(s)\Big(\Big|X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|
+	 \[\begin{aligned}
+	 &\Big\|\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)) -\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Big\|\\&\leq K(s)\Big(\Big|X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)-X_s^0\Big|\Big)|Y^h_s|
+	 \end{aligned}
 	 \]
 	 Ainsi,
 	 \[
 	 \begin{aligned}
-	 	|I_1^{\varepsilon,h_\varepsilon}(t)| &\leq\int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|drds\\
-	 	&\leq \int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|X_s^0+r(X_s^0+\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|drds\\
-	 	&\leq  \int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|X_s^0+r\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}\Big|\Big)|Y^h_s|drds\\
+	 	|I_1^{\varepsilon,h_\varepsilon}(t)| &\leq\int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|drds\\
+	 	&\leq \int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|r(X_s^0+\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}-X_s^0)\Big|\Big)|Y^h_s|drds\\
+	 	&\leq  \int_{0}^{t}\int_{0}^{1}K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|drds\\&+\int_{0}^{t}\int_{0}^{1}K(s)\Big(\Big|r\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon}\Big|\Big)|Y^h_s|drds.\\
 	 \end{aligned}
 	 \]
-	 
-	 
+	 On intègre par rapport a variable $r$ et d'après (\ref{eq:3.2.8}) ,(\ref{eq:3.2.10}), nous avons un nouvel inégalité donne:
+	 \[
+	 \begin{aligned}
+	 	\sup_{0 \leq t \leq T}|I_1^{\varepsilon,h_\varepsilon}(t)| &\leq K(T) \int_{0}^{T}\Big|\overline{Y}^{\varepsilon,h_\varepsilon}-Y_s^h\Big|ds +K(T) \int_{0}^{T} \frac{\sqrt{\varepsilon}\lambda(\varepsilon)}{2}\big|\overline{Y}^{\varepsilon,h_\varepsilon}\big|\big|Y_s^h\big|ds\\
+	 	\mathbb{E}\Big(\sup_{0 \leq t \leq T}|I_1^{\varepsilon,h_\varepsilon}(t)|^2\Big)&\leq C_T\Big(\int_{0}^{T}\mathbb{E}\Big|\overline{Y}^{\varepsilon,h_\varepsilon}-Y_s^h\Big|^2ds + \varepsilon\lambda^2(\varepsilon)\Big)
+	 \end{aligned}
+	 \]
+	 Pour l'estimation $I_2^{\varepsilon,h_\varepsilon}(t)$ on a
+	 \[
+	 |I_2^{\varepsilon,h_\varepsilon}(t)| :=\big|\int_{0}^{t}\big[\sigma_s(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})\dot{h}_\varepsilon(s) - \sigma_s(X_s^0,\delta_{X_{s}^{0}})\dot{h}(s)\big]ds\Big|
+	 \]
+	On ajoute et on retranche par $\sigma_s(X_s^0,\delta_{X_{s}^{0}})\dot{h}_\varepsilon(s)$
+ puis on applique l'inégalité triangulaire:
+ 	 \[
+ 	 \begin{aligned}
+ 	 |I_2^{\varepsilon,h_\varepsilon}(t)| &\leq \big|\int_{0}^{t}\big(\sigma_{s}(Y_s^{\varepsilon,h\varepsilon},\delta_{X_s^0})-\sigma_s(X_s^0,\delta_{X_{s}^{0}})\big)\dot{h}_\varepsilon(s)ds\big| + \big|\int_{0}^{t}\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})(\dot{h}_\varepsilon(s)-\dot{h}(s))ds\big|\\
+ 	 &\leq \int_{0}^{t}\big\|\sigma_{s}(Y_s^{\varepsilon,h\varepsilon},\delta_{X_s^0})-\sigma_s(X_s^0,\delta_{X_{s}^{0}})\big\|\big|\dot{h}_\varepsilon(s)\big|ds + \int_{0}^{t}\big\|\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\big\|\big|\dot{h}_\varepsilon(s)-\dot{h}(s))\big|ds.
+ 	 \end{aligned}
+ 	 \]
+	 D'après l'hypothése \textbf{(H1)} et l'inégalité (3.4) nous avons une nouvelle inégalité:
+	 \[
+	 \begin{aligned}
+	 	|I_2^{\varepsilon,h_\varepsilon}(t)| &\leq \int_{0}^{t}K(s)\big|Y_s^{\varepsilon,h_\varepsilon}-X_s^0\big|\big|\dot{h}(s)\big|ds+\int_{0}^{t}K(s)\big(1 + \big|X_s^0\big|\big)\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|ds\\
+	 	&\leq \int_{0}^{t}K(s)\big|X_s^0+\sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon} -X_s^0\big|\big|\dot{h}(s)\big|ds + \int_{0}^{t}K(s)\big(1 + \big|X_s^0\big|\big)\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|ds\\
+	 	&\leq \int_{0}^{t}K(s)\sqrt{\varepsilon}\lambda(\varepsilon)\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}\big|\big|\dot{h}(s)\big|ds + \int_{0}^{t}K(s)\big(1 + \big|X_s^0\big|\big)\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|ds.\\
+	 	 \end{aligned}
+	 \]
+	 En élevant à la puissance $2$ membre à membre et en utilisant l'inégalité de Hölder et (3.4), nous avons
+	 \[
+	 \begin{aligned}
+	 	|I_2^{\varepsilon,h_\varepsilon}(t)|^2 &\leq C_T\varepsilon\lambda^2(\varepsilon)\int_{0}^{t}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}\big|^2ds\int_{0}^{t}\big|\dot{h}(s)\big|^2ds + C_T\int_{0}^{t}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2ds
+	 \end{aligned}
+	 \]
+	 Ainsi, par (3.3)
+	\[
+	\begin{aligned}
+		\mathbb{E}\big(\sup_{0 \leq t \leq T}|I_2^{\varepsilon,h_\varepsilon}(t)|^2\big)&\leq C_T\big(\varepsilon\lambda^2(\varepsilon) + \int_{0}^{t}\mathbb{E}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2ds\big)
+	\end{aligned}
+	\]
+	
 	 \end{pr}
 	 
 	 
