@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  10 MAR 2026 20:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  11 MAR 2026 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -677,7 +677,12 @@ Overfull \hbox (2.5475pt too wide) detected at line 509
 [][]
  []
 
-[12] [13] (Chapitre3PDM.aux)
+[12]
+Overfull \hbox (6.58449pt too wide) detected at line 537
+[][]
+ []
+
+[13] (Chapitre3PDM.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -709,7 +714,7 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/Mi
 KTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/rsfs/
 rsfs10.pfb>
-Output written on Chapitre3PDM.pdf (13 pages, 264537 bytes).
+Output written on Chapitre3PDM.pdf (13 pages, 266006 bytes).
 PDF statistics:
  230 PDF objects out of 1000 (max. 8388607)
  41 named destinations out of 1000 (max. 500000)

@@ -519,7 +519,28 @@ Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{
 		\mathbb{E}\big(\sup_{0 \leq t \leq T}|I_2^{\varepsilon,h_\varepsilon}(t)|^2\big)&\leq C_T\big(\varepsilon\lambda^2(\varepsilon) + \int_{0}^{t}\mathbb{E}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2ds\big)
 	\end{aligned}
 	\]
-	
+	Pour l'estimation $I_3^{\varepsilon,h_\varepsilon}(t)$, d'apres l'inégalité de BDG
+	\[
+	\begin{aligned}
+	\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|I_3^{\varepsilon,h_\varepsilon}(t)\big|^2\big)&\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}\mathbb{E}\big\|\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}})\big\|^2ds
+	\end{aligned}
+	\]
+	On ajoute et on retranche le terme $\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})$ à l'intérieur de l'espérance, puis on applique l'inégalité
+	$|a+b|^2 \leq 2\big(|a|^2+|b|^2\big)$.
+	\[
+	\begin{aligned}
+		\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|I_3^{\varepsilon,h_\varepsilon}(t)\big|^2\big)&\leq  \frac{2C}{\lambda^2(\varepsilon)} \int_{0}^{T}\mathbb{E}\Big(\big\|\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_{s}^{0}}) -\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\big\|^2 + \big\|\sigma_{s}(X_s^0,\delta_{X_{s}^{0}})\big\|^2\Big)ds\\
+		&\leq \frac{2C}{\lambda^2(\varepsilon)} \int_{0}^{T}\mathbb{E}\Big(K^2(s)\big|Y_s^{\varepsilon,h_\varepsilon} -X_s^0\big|^2 + K^2(s)(1+|X_s^0|)^2\Big)ds\\
+		&\leq \frac{2C}{\lambda^2(\varepsilon)} \int_{0}^{T}\mathbb{E}\Big(K^2(s)\big|X_s^0 + \sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_s^{\varepsilon,h_\varepsilon} -X_s^0\big|^2+K^2(s)(1+|X_s^0|)^2\Big)ds\\
+		&\leq \frac{2CK^2(T)}{\lambda^2(\varepsilon)}\int_{0}^{T}\mathbb{E}\Big( \varepsilon\lambda^2(\varepsilon)\big| \overline{Y}_s^{\varepsilon,h_\varepsilon}\big|^2+(1+|X_s^0|)^2\Big)ds\\
+	\end{aligned}
+	\]
+	D'après (3.3) on obtient:
+	\[
+	\begin{aligned}
+		\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|I_3^{\varepsilon,h_\varepsilon}(t)\big|^2\big)&\leq C_T\big(\frac{1}{\lambda^2(\varepsilon)} +\varepsilon\int_{ 0}^{T}\mathbb{E}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}\big|^2ds\big)
+	\end{aligned}
+	\]
 	 \end{pr}
 	 
 	 
