@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  15 MAR 2026 14:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  18 MAR 2026 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./Chapitre3PDM.tex
-(Chapitre3PDM.tex
+**./Chap1.tex
+(Chap1.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
-(C:\Program Files\MiKTeX\tex/latex/base\report.cls
-Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
-(C:\Program Files\MiKTeX\tex/latex/base\size12.clo
-File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+(C:\Program Files\MiKTeX\tex/latex/base\book.cls
+Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
+(C:\Program Files\MiKTeX\tex/latex/base\bk12.clo
+File: bk12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count187
 \c@chapter=\count188
@@ -483,9 +483,8 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count305
 \l__pdf_internal_box=\box54
-)
-(Chapitre3PDM.aux)
-\openout1 = `Chapitre3PDM.aux'.
+) (Chap1.aux)
+\openout1 = `Chap1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
@@ -523,13 +522,13 @@ LaTeX Info: Redefining \degres on input line 35.
 * \textheight=702.78308pt
 * \oddsidemargin=-1.1381pt
 * \evensidemargin=-1.1381pt
-* \topmargin=-38.1381pt
+* \topmargin=-33.0119pt
 * \headheight=12.0pt
-* \headsep=25.0pt
+* \headsep=19.8738pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=85.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=88.0pt
+* \marginparsep=7.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
@@ -542,9 +541,9 @@ LaTeX Info: Redefining \degres on input line 35.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 35.
-(Chapitre3PDM.out) (Chapitre3PDM.out)
+(Chap1.out) (Chap1.out)
 \@outlinefile=\write3
-\openout3 = `Chapitre3PDM.out'.
+\openout3 = `Chap1.out'.
 
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
@@ -567,11 +566,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 
 (C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))
-(Chapitre3PDM.toc
+)) (Chap1.toc
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3
 .
- (C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd
+
+(C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
@@ -615,149 +614,43 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 3.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ))
 \tf@toc=\write4
-\openout4 = `Chapitre3PDM.toc'.
+\openout4 = `Chap1.toc'.
 
  [1
 
 
 {C:/Users/nirintsoart/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Prog
-ram Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX/fonts/en
-c/dvips/lm/lm-mathit.enc}]
+ram Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}] [2
+
+]
 Chapitre 1.
-[2
-
-{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTeX/
-fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm
--mathex.enc}] [3] [4]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 169.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 169.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 169.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 169.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@overline' on input line 169.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 169.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 169.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 169.
-
-
-LaTeX Warning: Reference `lem:3.1.2)' on page 5 undefined on input line 174.
-
-[5]
-
-LaTeX Warning: Reference `(' on page 6 undefined on input line 239.
-
-[6] [7] [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-[10] [11]
-Overfull \hbox (2.33037pt too wide) detected at line 500
-[][]
- []
-
-
-Overfull \hbox (2.5475pt too wide) detected at line 508
-[][]
- []
-
-[12]
-Overfull \hbox (6.58449pt too wide) detected at line 536
-[][]
- []
-
-[13]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@overline' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@overline' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 591.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
-
-[14] [15] [16] [17] [18] (Chapitre3PDM.aux)
+[3{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTe
+X/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/
+lm-mathsy.enc}] (Chap1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-Package rerunfilecheck Info: File `Chapitre3PDM.out' has not changed.
-(rerunfilecheck)             Checksum: 2C1F2FCAC85D9EBAFF30E2162BA6778B;2041.
+Package rerunfilecheck Info: File `Chap1.out' has not changed.
+(rerunfilecheck)             Checksum: 1827966CE65D1E463506A1E389D65BAA;312.
  ) 
 Here is how much of TeX's memory you used:
- 14105 strings out of 474486
- 222898 string characters out of 5753552
- 1962542 words of memory out of 5000000
- 36100 multiletter control sequences out of 15000+600000
- 642349 words of font info for 94 fonts, out of 8000000 for 9000
+ 13975 strings out of 474486
+ 221143 string characters out of 5753552
+ 1931542 words of memory out of 5000000
+ 36027 multiletter control sequences out of 15000+600000
+ 594179 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,79p,776b,689s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,544b,461s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
-blic/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C
-:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/l
-m/lmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Progra
-m Files/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Program Files/MiKTeX/fonts/ty
-pe1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy10.pf
-b><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/Mi
-KTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
-c/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/rsfs/
-rsfs10.pfb>
-Output written on Chapitre3PDM.pdf (18 pages, 300169 bytes).
+blic/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:
+/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/am
+sfonts/symbols/msbm10.pfb>
+Output written on Chap1.pdf (3 pages, 104616 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
- 49 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 83 PDF objects out of 1000 (max. 8388607)
+ 14 named destinations out of 1000 (max. 500000)
+ 17 words of extra memory for PDF output out of 10000 (max. 10000000)
 

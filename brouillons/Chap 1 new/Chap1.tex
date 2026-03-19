@@ -1,0 +1,69 @@
+\documentclass[12pt,a4paper,twoside]{book}%      autres choix : book, report
+\usepackage[utf8]{inputenc}%           gestion des accents (source)
+\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+\usepackage[french]{babel}%          gestion du fran�ais
+\usepackage{textcomp}%                 caract�res additionnels
+\usepackage{mathtools,amssymb}
+\usepackage{amsthm}
+\usepackage{xurl}
+\usepackage{mathrsfs}
+\usepackage{amsmath}% packages de l'AMS + mathtools
+\usepackage{lmodern}
+\usepackage[bottom=2.5cm,left=2.5cm,right=2.5cm,top=2.5cm]{geometry}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagestyle{fancy}
+\fancyhf{}
+\theoremstyle{definition}
+\newtheorem{dfn}{Définition}[section]
+\newtheorem*{pr}{\textbf{Preuve}}
+\newtheorem{rem}{\textit{Remarque}}[section]
+\newtheorem{thm}[dfn]{\textit{Théorème}}
+\newtheorem{prop}[dfn]{\textit{Proposition}}
+\newtheorem{cor}[dfn]{\textit{Corollaire}}
+\newtheorem{lem}[dfn]{\textit{Lemme}}
+\newtheorem{exm}[dfn]{\textit{Exemple}}
+\newtheorem{prp}[dfn]{\textbf{Propriété}}
+\newtheorem{for}[dfn]{\textit{Formule}}
+\numberwithin{equation}{section}
+\newtheorem{ex}{Exemple}[subsection]
+%\setcounter{page}{1}
+\title{ \textbf{Théorème Central Limite et Principe de Déviations Modérées pour les Équations Différentielles Stochastiques de McKean-Vlasov)}}
+\begin{document}
+	\tableofcontents
+	\newpage
+	\chapter{Rappel et Préliminaire}
+\section{Quelque définition}
+\begin{dfn}
+Soit $(\Omega,\mathcal{F},\mathbb{P})$ un espace de probabilité et $\{\mathcal{F}_t,t\geq0\}$ une famille de sous-tribus de $\mathcal{F}$. On dit que $\{\mathcal{F}_t,t\geq0\}$ est une famille si c'est une famille croissante, au sens où $\mathcal{F}_s\subset\mathcal{F}_t$ si $s\leq t$.
+\end{dfn}
+\begin{rem}
+	Si $\{\mathcal{F}_t,t\geq0\}$ est une filtration sur un espace de probabilité $(\Omega,\mathcal{F},\mathbb{P})$, on dit que $(\Omega,\{\mathcal{F},t\geq 0\},\mathbb{P})$ est un espace de probabilité filtré.
+\end{rem}
+
+\begin{dfn}
+	Un processus stochastique $X(t,\omega)$ à valeurs dans un espace mesurable $(E,\mathcal{E})$ est une application de $T\times\Omega$ dans $E$ qui est mesurable par rapport à la mesure du produit $\lambda\cdot\mathbb{P}$ où $\lambda$ est la mesure de Lebesgue sur $T$. 
+\end{dfn}
+\begin{dfn}
+	On dit que le processus $X$ est $(\mathcal{F}_t)-$adapté qi $X_t$ est $\mathcal{F}_t-$mesurable pour tout $t\geq0.$
+\end{dfn}	
+\begin{dfn}
+	Une processus $X_t(\omega)$ sur $[0,T]\times\Omega$ est dite progressivement mesurable par rapport à la filtration $\mathcal{F}_t$ si pour tout $t\in[0,T]$ l'application:
+	\[
+	X: (s,\omega)\to X_t(\omega)
+	\]
+	de $[0,t]\times\Omega\to\mathbb{R}$ est $\mathcal{B}[0,t]\otimes\mathcal{F}_t-$mesurable.
+\end{dfn}
+\begin{prop}
+Toute processus stochastique adaptée est progressivement mesurable.
+\end{prop}
+\begin{pr}
+	Dans la livre (Calcul stochastique et modelés de diffusion)
+\end{pr} 
+\begin{dfn}
+	Mouvement brownien
+\end{dfn}
+\end{document}

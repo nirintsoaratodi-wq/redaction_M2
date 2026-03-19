@@ -43,7 +43,18 @@
 Soient \( |\cdot| \) et \( \langle \cdot, \cdot \rangle \) respectivement la norme euclidienne et le produit scalaire dans \( \mathbb{R}^d \)
 	\section{Quelque définition des espaces et distance}
 	\begin{dfn}
-		contenu...
+	Soit $T>0$ fixé. On note $\Omega = C([0,T],\mathbb{R}^d)$ l'espace des fonction continues $h : [0,T] \to\mathbb{R}^d$ telle que $h(0) = 0.$
+	
+	L'espace de Cameron-Martin, noté $\mathbb{H}$, est l'ensemble des fonction $h\in \Omega$ qui sont absolument continues et dont la dérivée (au sens de Lebesgue) est de carrée intégrable:
+	\[
+	\mathbb{H} = \big\{h\in C([0,T];\mathbb{R}^d):h(0)=\textbf{0},\dot{h}(t) \text{existe p.p }t ,\|h\|_H :=\Big(\int_{0}^{T}|\dot{h}(t)|^2dt\Big)^{\frac{1}{2}} \big\}
+	\] où \textbf{0} désigne le vecteur dont toutes les composantes sont nulles.
+	
+	On munit $\mathbb{H}$ du produit scalaire
+	\[
+	\langle h,k \rangle_{\mathbb{H}} := \int_{0}^{T}\dot{h}(t)\cdot \dot{k}(t)dt 
+	\]
+	Muni de cette structure, $\mathbb{H}$ est un espace de Hilbert séparable.
 	\end{dfn}
 	\begin{dfn}
 		Un espace métrique $X$ est une espace Polonais de $X$ est séparable et il existe une distance complète induisant la topologie de $X$.

@@ -238,14 +238,14 @@ telle que la solution puisse s'écrire comme une fonctionnelle du bruit directeu
 	 \end{pr}
 	 Premièrement,nous prouvons que la condition(b) du Lemme \ref({lem:3.1.2}) est satisfaite.
 	 
-	 \begin{lem}
+	 \begin{lem}\label{lem:3.2.5}
 	 	 Sous les hypothèses (H1) et (2.5) de (H2), pour tout nombre positif
 	 	$N<\infty$, la famille
 	 	\[K_N := \left\{ \Gamma^0 \left( \int_0^{\cdot} \dot{h}(s) ds \right); h \in S_N \right\},\]
 	 	est compacte dans \(C([0,T]; \mathbb{R}^d)\), où l'application \(\Gamma^0\) est définie dans le Théorème (\ref{thm:3.2.1}).
 	 \end{lem}
 	 \begin{pr}
-	 	\textbf{Preuve}\\ Pour tout \( N < \infty \), l'ensemble \( K_N \) est compact si la compacité de \( S_N \) et la continuité de l'application \(\Gamma^0\) de \( S_N \) vers \( C([0, T]; \mathbb{R}^d) \) sont vérifiées. Pour cela, il suffit de montrer que \(\Gamma^0\) est une application continue de \( S_N \) vers \( C([0, T]; \mathbb{R}^d) \). Soit \( h_n \to h \) dans \( S_N \) lorsque \( n \to \infty \). Alors
+	 	 Pour tout \( N < \infty \), l'ensemble \( K_N \) est compact si la compacité de \( S_N \) et la continuité de l'application \(\Gamma^0\) de \( S_N \) vers \( C([0, T]; \mathbb{R}^d) \) sont vérifiées. Pour cela, il suffit de montrer que \(\Gamma^0\) est une application continue de \( S_N \) vers \( C([0, T]; \mathbb{R}^d) \). Soit \( h_n \to h \) dans \( S_N \) lorsque \( n \to \infty \). Alors
 	 	\[
 	 	\begin{aligned}
 	 		Y_t^{h_n} - Y_t^h &= \int_0^t \nabla_{(Y_s^{h_n} - Y_s^h)} b_s (\cdot, \delta_{X_s^0}) (X_s^0) ds + \int_0^t \sigma_s (X_s^0, \delta_{X_s^0}) (\dot{h}_n(s) - \dot{h}(s)) ds\\
@@ -312,7 +312,7 @@ Ainsi, l'application $\Gamma^0$ est continue, ce qui complète de preuve.
 \end{pr}
 	 
 Avant de vérifier la condition (a), nous donnons une estimation pour le second moment de \(\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}\).	 
-\begin{lem}
+\begin{lem}\label{lem:3.2.6}
 	Supposons que \((\mathbf{H1})\) soit vérifiée. Alors, il existe un \(\varepsilon_{0}\in(0,1)\) tel que pour une certaine constante \(C_{T}\),
 	
 	\begin{equation}\label{eq:3.2.10}
@@ -346,12 +346,11 @@ Avant de vérifier la condition (a), nous donnons une estimation pour le second 
  	&\leq C_T\int_{0}^{T}|\overline{Y}_{t}^{\varepsilon,h_{\varepsilon}}|^2ds.
  \end{aligned}
  \]
- Maintenant, nous prenons l'espérance, pour tout $t\in [0,T]$ on a:
- \[ \mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_1^{\varepsilon,h_\varepsilon}(t)|^2
- \Big)\leq C_T\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds \]
-On a
-\[
-\begin{aligned}
+Maintenant, nous prenons l'espérance, pour tout $t\in [0,T]$ on a:
+ \[
+ \begin{aligned}
+  \mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_1^{\varepsilon,h_\varepsilon}(t)|^2
+ \Big)&\leq C_T\int_{0}^{T}\mathbb{E}|\overline{Y}_s^{\varepsilon,h_\varepsilon}|^2ds\\
 J_2^{\varepsilon,h_\varepsilon}(t) :& =\int_{0}^{t}\frac{1}{\lambda(\varepsilon)}\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_s^0})ds\\
 |J_2^{\varepsilon,h_\varepsilon}(t)|^2 : &= \Big|\int_{0}^{t}\frac{1}{\lambda(\varepsilon)}\sigma_{s}(Y_s^{\varepsilon,h_\varepsilon},\delta_{X_s^0})ds\Big| ^2\\
 \text{ pour tout }t\in [0;T] \text{ on a }\\
@@ -362,7 +361,7 @@ Cette inégalité nous conduit a utiliser l'inégalité de BGD, on obtient
 \[\begin{aligned}
 \mathbb{E}\Big(\sup_{0 \leq t \leq T}|J_2^{\varepsilon,h_\varepsilon}(t)|^2\Big)&\leq \frac{C}{\lambda^2(\varepsilon)}\mathbb{E}\Big(\int_{0}^{T}\Big\|\sigma_s(Y^{\varepsilon,h_\varepsilon}_s,\delta_{X_{s}^{0}})\Big\|^2ds\Big) \\
 &\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}\mathbb{E}\Big\|\sigma_s(Y^{\varepsilon,h_\varepsilon}_s,\delta_{X_{s}^{0}})\Big\|^2ds\\
-\text{ d'après l'hypothése \textbf{H1} }\\
+\text{ d'après l'hypothése (\textbf{H1}) }\\
 &\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}K^2(s)\mathbb{E}\Big(1+|Y_s^{\varepsilon,h_\varepsilon}|+W_2(\delta_{X_{s}^{0}},\delta_0)\Big)^2ds\\
 &\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}3K^2(s)\mathbb{E}\Big(1+|Y_s^{\varepsilon,h_\varepsilon}|^2+W_2^2(\delta_{X_{s}^{0}},\delta_0)\Big)ds\\
 &\leq \frac{C}{\lambda^2(\varepsilon)}\int_{0}^{T}3K^2(s)\mathbb{E}\Big(1 + |X_s^0 + \sqrt{\varepsilon}\lambda(\varepsilon)\overline{Y}_{s}^{\varepsilon,h_{\varepsilon}}|^2+|X_s^0|^2\Big)ds\\
@@ -413,7 +412,7 @@ Puisque $\frac{1}{\lambda^2(t)}\to 0$ lorsque $\varepsilon\to0$, on en déduit q
 \end{pr}
 Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{lem:3.1.2}).
 
-\begin{lem}
+\begin{lem}\label{lem:3.2.7}
 	Sous les hypothèses \textbf{(H1)} et \textbf{(2.5) de (H2)}, pour tout $N \in \mathbb{N}$, soient $h_\epsilon$ et $h$ des éléments de $\mathscr{A}_N$ tels que $h_\epsilon \to h$ lorsque $\epsilon \to 0$. Alors,
 	\[
 	\Gamma^\epsilon\left( \frac{1}{\lambda(\epsilon)} W + \int_0^{\cdot} \dot{h}_\epsilon(s)\, ds \right)
@@ -462,7 +461,7 @@ Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{
 	 	 &+\int_{0}^{t}\int_{0}^{1}\Big\|\nabla_{Y_s^h}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0)) -\nabla_{Y_s^h}b_s(\cdot,\delta_{X_s^0})(X_s^0)\Bigg\|drds
 	 \end{aligned}
 	 \]
-	 d'après l'hypothése \textbf{H1} et \textbf{H2} on a
+	 d'après l'hypothése (\textbf{H1}) et (\textbf{H2}) on a
 	 \[
 	 \begin{aligned}
 \Big\|\nabla_{(\overline{Y}_s^{\varepsilon,h_\varepsilon} - Y_s^h)}b_s(\cdot,\delta_{X_{s}^{0}})(X_s^0+r(Y_s^{\varepsilon,h_\varepsilon}-X_s^0))\Big\|&\leq	K(s)|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h|
@@ -516,7 +515,7 @@ Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{
 	 Ainsi, par (3.3)
 	\[
 	\begin{aligned}
-		\mathbb{E}\big(\sup_{0 \leq t \leq T}|I_2^{\varepsilon,h_\varepsilon}(t)|^2\big)&\leq C_T\big(\varepsilon\lambda^2(\varepsilon) + \int_{0}^{t}\mathbb{E}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2ds\big)
+		\mathbb{E}\big(\sup_{0 \leq t \leq T}|I_2^{\varepsilon,h_\varepsilon}(t)|^2\big)&\leq C_T\big(\varepsilon\lambda^2(\varepsilon) + \int_{0}^{T}\mathbb{E}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2ds\big)
 	\end{aligned}
 	\]
 	Pour l'estimation $I_3^{\varepsilon,h_\varepsilon}(t)$, d'apres l'inégalité de BDG
@@ -541,16 +540,219 @@ Nous sommes maintenant en position de vérifier la condition (a) du Lemme (\ref{
 		\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|I_3^{\varepsilon,h_\varepsilon}(t)\big|^2\big)&\leq C_T\big(\frac{1}{\lambda^2(\varepsilon)} +\varepsilon\int_{ 0}^{T}\mathbb{E}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}\big|^2ds\big)
 	\end{aligned}
 	\]
+	En prenant en compte les estimations ci-dessus, il s'ensuit que
+	\[
+	\begin{aligned}
+	\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h\big|^2\big)&\leq C_T\Big( \int_{0}^{T}\mathbb{E}\Big|\overline{Y}^{\varepsilon,h_\varepsilon}-Y_s^h\Big|^2ds + \varepsilon\lambda^2(\varepsilon) + \varepsilon\lambda^2(\varepsilon) \\&+ \int_{0}^{T}\mathbb{E}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2+\frac{1}{\lambda^2(\varepsilon)} +\varepsilon\int_{ 0}^{T}\mathbb{E}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}\big|^2ds\Big).
+	\end{aligned}
+	\]
+Puisque $h_\varepsilon \in \mathscr{A}_N$, d'après le lemme (\ref{lem:3.2.6}), on obtient :
+\[
+\begin{aligned}
+\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h\big|^2\big)&\leq C_T\Big( \frac{1}{\lambda^2(\varepsilon)} + \varepsilon(\lambda^2(\varepsilon)+ 1) + \int_{0}^{T}\mathbb{E}\big|\dot{h}_\varepsilon(s)-\dot{h}(s)\big|^2ds \\&+ \int_{0}^{T}\mathbb{E}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h\big|^2ds \Big).
+\end{aligned}
+\]
+On peut utiliser l'inégalité de Gronwall, on obtient
+
+\[
+\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon}-Y_s^h\big|^2\big)\leq C_T\Big(\frac{1}{\lambda^2(\varepsilon)}+ \varepsilon(\lambda^2(\varepsilon)+1) + \int_{0}^{T}\mathbb{E}\big|\overline{h}_s(s)-\overline{h}(s)\big|^2ds\Big)e^{TC_T}.
+\]
+En faisant tendre $\varepsilon \to 0$ et en utilisant (\ref{eq:3.2.2}), nous obtenons
+\[
+\mathbb{E}\big(\sup_{0 \leq t \leq T}\big|\overline{Y}_s^{\varepsilon,h_\varepsilon} - Y_s^h\big|\big) \to 0
+\]
+ce qui achève la preuve.
 	 \end{pr}
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	% \subsection{Principe de grandes déviations de $\overline{Y}^\varepsilon$	
+Nous sommes maintenant en mesure de démontrer le Lemme \ref{lem:3.2.2} .
+\subsection*{Preuve de lemme \ref{lem:3.2.2}}
+Sous les hypothèses du théorème \ref{thm:3.2.1}, nous allons vérifier que la famille de l'application mesurable $(\Gamma^\varepsilon)_{\varepsilon>0}$ satisfait les condition du lemme \ref{lem:3.1.2}.
+
+Soit $N	<\infty$ et soit $(h_\varepsilon)_{\varepsilon>0}\in \mathscr{A}_N$ telle que $h_\varepsilon\to h$ lorsque $ \varepsilon\to 0$.
+D'après le lemme \ref{lem:3.2.7} on a
+\[
+\Gamma^\epsilon\left( \frac{1}{\lambda(\epsilon)} W + \int_0^{\cdot} \dot{h}_\epsilon(s)\, ds \right)
+\xrightarrow[\epsilon \to 0]{\text{loi}}
+\Gamma^{0}\left( \int_0^{\cdot} \dot{h}(s)\, ds \right)
+\quad \text{dans } C([0,T];\mathbb{R}^d).
+\]
+Cette convergence correspond exactement à la condition (a) du lemme \ref{lem:3.1.2}.
+Ainsi, la premier hypothèse du lemme \ref{lem:3.1.2} est satisfaite	.
+
+Pour $N<\infty$, considérons l'ensemble
+	\[K_N := \left\{ \Gamma^0 \left( \int_0^{\cdot} \dot{h}(s) ds \right); h \in S_N \right\}.\]
+La lemme \ref{lem:3.2.5} affirme que cet ensemble est compact dans $C([0,T],\mathbb{R}^d)$ c'est précisément la condition (b) du lemme \ref{lem:3.1.2}.
+
+Ainsi, les conditions (a) et (b) du lemme \ref{lem:3.1.2} étant satisfaits on peut applique ce résultats abstrait.
+On en déduit que la famille $(\Gamma\varepsilon)_{\varepsilon>0}$ et donc $(\overline{Y}\varepsilon)_{\varepsilon>0}$ satisfait un principe de grandes déviations dans $C([0,T],\mathbb{R}^d)$, muni de la topologie de la norme uniforme avec la bonne fonction de taux donnée par
+\[
+I(g) = \inf_{\{h \in \mathbb{H}; g = \Gamma^0 (\int_{0}^{.} h(s) ds)\}}\frac{1}{2}\int_{0}^{T}|\dot{h}(s)|ds
+\]
+	 avec la convention \( \inf \emptyset = \infty \).
+	 \subsection{Équivalence exponentielle entre $\overline{X}^\varepsilon$ et $\overline{Y}^\varepsilon$}
+	 Afin de montrer que $\overline{X}^\varepsilon$ et $\overline{Y}^\varepsilon$ sont exponentiellement équivalents, nous commençons par établir le lemme suivant.
+	 \begin{lem}\label{lem:3.2.8}
+	 	Pour tout \(\delta > 0\), on a
+	 	\begin{equation}\label{eq:3.2.11}
+	 		\limsup_{\epsilon \to 0} \epsilon \log \left( \mathbb{P}\left( \sup_{0 \leq t \leq T} |\overline{X}_t^\epsilon - \overline{Y}^\epsilon_t| \geq \delta \right) \right) = -\infty.
+	 	\end{equation}
+	 \end{lem}
+	 	La démonstration du Lemme 4.6 s’appuie sur le lemme suivant, qui correspond au Lemme 5.6.18 de [8].
+	 	
+	 	\begin{lem}\label{lem:3.2.9}
+	 	Soient \(b_t\), \(\sigma_t\) des processus progressivement mesurables, \((w_t)_{t \geq 0}\) un mouvement brownien \(d\)-dimensionnel, et
+	 	\[
+	 	\mathrm{d} z_t = b_t \mathrm{d}t + \sqrt{\varepsilon} \sigma_t \mathrm{d} w_t, \quad t \geq 0,
+	 	\]
+	 	où \(z_0\) est déterministe. Soit \(\tau_1 \in [0,1]\) un temps d'arrêt par rapport à la filtration de \(\{w_t,\, t \in [0,1]\}\). Supposons que les coefficients de la matrice de diffusion \(\sigma\) sont uniformément bornés, et que pour certaines constantes \(M, B, \rho\) et pour tout \(t \in [0, \tau_1]\),
+	 	\[
+	 	|\sigma_t| \leq M (\rho^2 + |\omega|^2)^{1/2}, \quad |b_t| \leq B (\rho^2 + |z_t|^2)^{1/2}.
+	 	\]
+	 	Alors pour tout \(\delta > 0\) et tout \(\epsilon \leq 1\),
+	 	\[
+	 	\epsilon \log \mathbb{P} \left( \sup_{t \in [0,\tau_1]} |z_t| \geq \delta \right)
+	 	\leq K + \log \left( \frac{\rho^2 + |z_0|^2}{\rho^2 + \delta^2} \right),
+	 	\]
+	 	où \(K = 2B + M^2 (2 + d)\).
+	 	\end{lem}
+	\subsection*{Preuve de lemme \ref{lem:3.2.8}}
+ Sans perte de généralité, on peut choisir \(R > 0\) tel que la donnée initiale \(x\) soit dans la boule \(B_{R+1}(0)\) (de centre \(0\) et de rayon \(R+1\)). On suppose également que \(X^0_t\) ne quitte pas cette boule avant le temps \(T\). On définit le temps d'arrêt 
+ \[
+ \tau_R' = \inf \left\{ t : t \geq 0 \mid |\overline{X}^\epsilon_t| \vee |\overline{Y}^\epsilon_t| \geq R+1 \right\},
+ \]
+ puis on note $\tau_R = \min\{ T, \tau_R' \}.$
+Dans la suite, on considère \(\overline{z}_t := \overline{X}^\epsilon_t - \overline{Y}^\epsilon_t\), le nouveau processus satisfait l'équation suivante
+\begin{equation}\label{eq:4.7}
+	\mathrm{d} \overline{z}_t = \int_{0}^{t}b_s \, \mathrm{d}s + \sqrt{\varepsilon}\int_{0}^{t}  \sigma_t \, \mathrm{d} W_t, \quad \overline{z}_t = 0,
+\end{equation}
+où
+\[
+b_t := \frac{b_t\bigl(X^\epsilon_t, \mathscr{L}_{{X}_t^\epsilon }\bigr) - b_t\bigl(\tilde{Y}^\epsilon_t, \delta_{{X_t^0}}\bigr)}{\sqrt{\varepsilon} \lambda(\epsilon)}, \quad
+\sigma_t := \frac{\sigma_t\bigl(X^\epsilon_t, \mathscr{L}_{{X}^\epsilon_t}\bigr) - \sigma_t\bigl(\tilde{Y}^\epsilon_t, \delta_{\tilde{X_t^\epsilon}}\bigr)}{\sqrt{\varepsilon} \lambda(\epsilon)}.
+\]
+Notons que \(b_t\) et \(\sigma_t\) sont des processus progressivement mesurables. Si \(t \leq \tau_R\), alors d'après (2.6), on obtient
+\begin{align*}
+	|b_t| &= \frac{\left| b_t\bigl(X^\epsilon_t, \mathscr{L}_{{X}^\epsilon_t}\bigr) - b_t\bigl(X^\epsilon_t, \delta_{{X}_t^0}\bigr) + b_t\bigl(X^\epsilon_t, \delta_{{X_t^0}}\bigr) - b_t\bigl(\tilde{Y}^\epsilon_t, \delta_{{X}}\bigr) \right|}{\sqrt{\varepsilon} \lambda(\epsilon)} \\
+	&\leq \frac{K(t) W_t\left( \mathscr{L}^\epsilon_{{X}^\epsilon_t}, \delta_{{X_t^0}} \right)}{\sqrt{\varepsilon} \lambda(\epsilon)} + \frac{K(t) |X^\epsilon_t - \tilde{Y}^\epsilon_t|}{\sqrt{\varepsilon} \lambda(\epsilon)} \\
+	&\leq K(t) \bigl( \rho^2(\epsilon) + |\overline{z}_t|^2 \bigr)^{1/2}.
+\end{align*}
+
+où \(\rho^{2}(\varepsilon) = \sup_{0 \leq t \leq T} \mathbb{E}|\overline{X}_t|^2\). De même, nous avons
+\[
+|\sigma_t| \leq K(t) \left( \rho^2(\varepsilon) + |\overline{z}_t|^2 \right)^{1/2}.
+\] 	
+Notons que \(\overline{z}_0 = 0\). Pour tout \(\delta > 0\), \(\rho^\varepsilon\), et tout \(\epsilon\) suffisamment petit, nous déduisons du Lemme \ref{lem:3.2.9} que
+\[
+\epsilon \log \mathbb{P}\left( \sup_{t \in [0, \tau_d]} |\overline{z}_t| \geq \delta \right)
+\leq KT + \log\left( \frac{\rho^2(\epsilon)}{\rho^2(\epsilon) + \delta^2} \right).
+\]	 	
+De manière analogue à la preuve de (3.7), on peut montrer que \(\rho^2(\epsilon)\) converge vers \(0\) lorsque \(\epsilon \to 0\). Par conséquent, nous obtenons
+\begin{equation}\label{eq:3.2.13}
+	\limsup_{\epsilon \to 0} \epsilon \log \mathbb{P}\left( \sup_{t \in [0, \tau_R]} |\overline{z}_t| \geq \delta \right) = -\infty.
+\end{equation}	 	
+
+Maintenant, puisque
+\[
+\left\{ \|\overline{X}^\epsilon - \overline{Y}^\epsilon\|_\infty \geq \delta \right\}
+\subset \left\{ \tau_R \leq T \right\} \cup \left\{ \sup_{0 \leq t \leq \tau_R} |\overline{X}^\epsilon_t - \overline{Y}^\epsilon_t| \geq \delta \right\},
+\]
+nous pouvons conclure à condition de démontrer que
+\[
+\lim_{R \to \infty} \limsup_{\epsilon \to 0} \epsilon \log \left( \mathbb{P}(\tau_R < T) \right) = -\infty.
+\]
+Définissons \(\eta_R := \inf \{t: t \geq 0 : |\overline{Y}^\epsilon_t| \geq R \}\), c'est-à-dire le premier temps où \(\overline{Y}^\epsilon\) sort de la boule \(B_R(0)\) (de centre 0 et de rayon \(R\)).
+
+Soit \(\tau_R < T\), alors nous avons \(\{ |\overline{X}^\epsilon_{\tau_R}| \vee |\overline{Y}^\epsilon_{\tau_R}| = R+1 \}\).
+
+Si \(|\overline{Y}^\epsilon_{\tau_R}| = R+1\), alors nous avons immédiatement \(\eta_R < T\). Ceci implique que
+\[
+\mathbb{P}(\tau_R < T) \leq \mathbb{P}(\eta_R < T).
+\]
+Si \(|\overline{X}^\epsilon_{\tau_R}| = R+1\), on peut déduire que
+\begin{align*}
+	\mathbb{P}(\tau_R < T) 
+	&\leq \mathbb{P}\left( |\overline{X}^\epsilon_{\tau_R}| = R+1 \right) \\
+	&= \mathbb{P}\left( \left\{ \sup_{t \in [0, \tau_R]} |\overline{z}_t| \geq \frac{1}{2},\, |\overline{X}^\epsilon_{\tau_R}| = R+1 \right\} \right) \\
+	&\quad + \mathbb{P}\left( \left\{ \sup_{t \in [0, \tau_d]} |\overline{z}_t| < \frac{1}{2},\, |\overline{X}^\epsilon_{r_R}| = R+1 \right\} \right) \\
+	&\leq \mathbb{P}\left( \sup_{t \in [0, \tau_d]} |\overline{z}_t| \geq \frac{1}{2} \right) + \mathbb{P}(\eta_R < T).
+\end{align*}
+D'après \eqref{eq:3.2.13}, pour terminer la preuve, il suffit de montrer que la probabilité que \(\overline{Y}^\epsilon\) sorte de la boule \(B_R(0)\) est très petite lorsque \(\epsilon \to 0\), c’est-à-dire
+\[
+\lim_{R \to \infty} \limsup_{\epsilon \to 0} \epsilon \log \left( \mathbb{P}(\eta_R < T) \right) = -\infty.
+\]
+Rappelons que \(\overline{Y}^\epsilon\) satisfait un principe de grandes déviations (LDP) pour la norme uniforme avec une bonne fonction de taux \(I(g)\), donnée en (\ref{eq:3.2.3}). Alors, pour tout ensemble fermé \(F \subset C([0, T]; \mathbb{R}^d)\), nous avons
+\[
+\limsup_{\epsilon \to 0} \epsilon \log \mathbb{P}\{\overline{Y}^\epsilon \in F\} \leq - \inf_{g \in F} I(g).
+\]
+Par conséquent,
+\[
+\limsup_{\epsilon \to 0} \epsilon \log\left(\mathbb{P}(\eta_{R}<T)\right) 
+= \limsup_{\epsilon \to 0} \epsilon \log\left(\mathbb{P}\left[\sup_{0 \leq t \leq T} |\overline{Y}_{t}^{\epsilon}| \geq R\right]\right)
+\]
+\[
+\leq -\inf_{ \{\substack{h \in \mathbb{H}, g = \Gamma^{0}(\int_{0}^{\cdot}, \dot{h}(s)\mathrm{d}s), \|g\|_{\infty} \geq R}\}}
+\frac{1}{2} \int_{0}^{T} |\dot{h}(s)|^{2} \, \mathrm{d}s.
+\]
+
+Nous remarquons que l'infimum de \( I(g) \) sur l'ensemble des chemins sortant de la boule \( B_{R}(0) \) tend vers l'infini lorsque \( R \to \infty \).
+
+D'après (H1) et (3.3), nous obtenons que
+
+\[
+|g(t)| \leq \int_{0}^{t} 
+\left| \nabla_{g(s)} b_{s}(\cdot, \delta_{X_{s}^{0}})(X_{s}^{0}) + \sigma_{s}(X_{s}^{0}, \delta_{X_{s}^{0}}) \dot{h}(s) \right| \, \mathrm{d}s
+\]
+\[
+\leq \int_{0}^{t} K(s) \left( |g(s)| + (1 + |X_{s}^{0}|) |\dot{h}(s)| \right) \, \mathrm{d}s
+\]
+\[
+\leq C_{t} \left( \int_{0}^{t} |g(s)| \, \mathrm{d}s + \left( \int_{0}^{t} |\dot{h}(s)|^{2} \, \mathrm{d}s \right)^{1/2} \right),
+\]
+et, par l'inégalité de Gronwall, nous avons
+\[
+|g(t)| \leq C_{t} \left( \int_{0}^{t} |\dot{h}(s)|^{2} \, \mathrm{d}s \right)^{1/2} < \infty.
+\]	 	
+En faisant tendre \( R \to \infty \), on obtient que
+\[
+\left\{ h \in \mathbb{H} \,;\, g = \Gamma^{0}(\int_{0}^{\cdot}, \dot{h}(s) \, \mathrm{d}s), \, \|g\|_{\infty} \geq R \right\} = \emptyset,
+\]
+ce qui implique que \( \inf I(g) = -\infty \). Autrement dit, \( \overline{X}^{\epsilon} \) et \( \overline{Y}^{\epsilon} \) sont exponentiellement équivalents.
+
+Nous sommes maintenant en mesure de démontrer le Théorème \ref{thm:3.2.1}. 	
+	 	
+\subsection*{Preuve de théorème \ref{thm:3.2.1}}	 	
+Sous les hypothèses (\textbf{H1}) et (\textbf{H2}), nous allons montrer que la famille $(X_s^\varepsilon)_{\varepsilon>0}$ satisfait un principe de grandes déviations dans $C([0,T],\mathbb{R}^d)$ muni de la norme uniforme
+
+D'après le lemme \ref{lem:3.2.2}, la famille $(\overline{Y}\varepsilon)_{\varepsilon>0}$ satisfait un principe de grandes déviations dans $C([0,T],\mathbb{R}^d)$ avec la bonne fonction de taux $I$ définie par
+\[
+	I(g) := \inf_{\{h \in \mathbb{H}; g = \Gamma^0 (\int_{0}^{.} h(s) ds)\}} \left\{ \frac{1}{2} \int_0^T |\dot{h}(s)|^2 ds \right\}, \quad g \in C([0, T]; \mathbb{R}^d).
+\]
+D'après le lemme \ref{lem:3.2.8}, pour tout $\delta>0$ 
+\[
+\lim_{\varepsilon\to 0}\sup\varepsilon\log\big(\mathbb{P}(\sup\big|\overline{X}_t^\varepsilon-\overline{Y}_t^\varepsilon\big|\geq\delta)\big)=-\infty
+\] 	 	
+Cela signifie que les deux famille $(\overline{X}^\varepsilon)$ et $(\overline{Y}^\varepsilon)$ sont exponentiellement équivalentes dans $C([0,T],\mathbb{R}^d)$. On déduit que $(\overline{X}^\varepsilon)_{\varepsilon>0}$ satisfait un principe de grandes déviations dans $C([0,T],\mathbb{R}^d)$ avec la même fonction de taux $I$.
+Par définition de $\Gamma^0$, le chemin limite 
+\[
+Y^h : =\Gamma^0\big(\int_{0}^{\cdot}\dot{h}(s)ds\big)
+\]	 	
+est l'unique solution de l'équation déterministe
+\[
+dY^h_t = \big\{ \nabla_{Y^h_t}b_t(\cdot,\delta_{{X}_t^0})(X_t^0) + \sigma_s(X_t^0,\delta_{{X}_t^0})\dot{h}(t)
+\big\}dt
+\]	 	
+La fonction de taux est donc bien donnée par
+\[
+I(g) := \inf_{\{h \in \mathbb{H}; g = \Gamma^0 (\int_{0}^{.} h(s) ds)\}} \left\{ \frac{1}{2} \int_0^T |\dot{h}(s)|^2 ds \right\}, \quad g \in C([0, T]; \mathbb{R}^d).
+\]
+la convention $I(g)=\infty$ si l'ensemble est vide. Alors la famille $(X_t^0)$ satisfait un principe de grandes déviation sur $C([0,T],\mathbb{R}^d)$ muni de la topologie uniforme, avec la bonne fonction de taux $I$.
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
 \end{document}
