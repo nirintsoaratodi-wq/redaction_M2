@@ -35,8 +35,9 @@
 \begin{document}
 	\tableofcontents
 	\newpage
-	\chapter{Rappel et Préliminaire}
-\section{Quelque définition}
+	\chapter{Préliminaire et outils fondamentaux}
+\section{Formulation du problème}
+\subsection{Quelque définition}
 \begin{dfn}
 Soit $(\Omega,\mathcal{F},\mathbb{P})$ un espace de probabilité et $\{\mathcal{F}_t,t\geq0\}$ une famille de sous-tribus de $\mathcal{F}$. On dit que $\{\mathcal{F}_t,t\geq0\}$ est une famille si c'est une famille croissante, au sens où $\mathcal{F}_s\subset\mathcal{F}_t$ si $s\leq t$.
 \end{dfn}
@@ -57,13 +58,170 @@ Soit $(\Omega,\mathcal{F},\mathbb{P})$ un espace de probabilité et $\{\mathcal{
 	\]
 	de $[0,t]\times\Omega\to\mathbb{R}$ est $\mathcal{B}[0,t]\otimes\mathcal{F}_t-$mesurable.
 \end{dfn}
+\begin{thm}
+Si $X_t$ un processus stochastique adaptée est continu à droite, il est progressivement mesurable.
+\end{thm}
+\begin{pr}
+La démonstration complète du théorème est disponible dans la référence [8]
+\end{pr}
+\begin{dfn}
+Un processus $X_t$ est dit continu (resp $\mathbb{P}$-presque sûrement continu) si pour tout $\omega\in\Omega$ (resp pour $\mathbb{P}$-presque tout $\omega\in\Omega$), la fonction 
+\[
+t \longmapsto X_t(\omega)
+\] de $T=\mathbb{R}^+$ dans $E$ est continus.
+\end{dfn}
 \begin{prop}
-Toute processus stochastique adaptée est progressivement mesurable.
+	Si $(X_t)_{t\geq0}$ un processus stochastique défini sur un espace de probabilité $(\Omega,\mathcal{F},\mathbb{P})$ alors pour un $\omega\in\Omega$ fixé, l'application
+	\[
+	t\longmapsto X_t(\omega)
+	\]
+	est appelée la trajectoire (ou réalisation) du processus correspondant à l'issue $\omega$.
+\end{prop}
+\begin{dfn}
+	Un processus stochastique $W_t$ est un mouvement brownien ou un processus de Wiener standard si $W_0=0$ ( on dit que $W_t$ est issu de 0) e si pour tous réels $0<t_1<t_2<...<t_n$, les variables aléatoires $W_{t_1}-W_{t_0},...,B_{t_n}-W_{t_{n-1}}$ sont indépendantes et suivent un distribution gaussienne centré réduire (on dit que le brownien est standard si $m$=0 et $\sigma=1$) telle que 
+	\[
+	\begin{cases} 
+		\mathbb{E}(W_{t+h} - W_t) = 0 \\ 
+		\mathbb{E}(W_{t+h} - W_t)^2 = h 
+	\end{cases}
+	\]
+\end{dfn}
+\begin{rem}
+Dans un cadre plus général, lorsque le mouvement brownien n'est pas "standard" (c'est-à-dire ni centré, ni réduit), on introduit deux paramètres fondamentaux : la dérive $(m)$ et la volatilité $(\sigma)$.
+
+L'évolution de l'accroissement sur un intervalle $[t_{k-1},t_k]$ est alors régie par le système suivant:
+\[
+\begin{cases}
+	\mathbb{E}(W_{t_k} - W_{t_{k-1}}) = m(t_k - t_{k-1}) \\
+	\mathbb{E}\left((W_{t_k} - W_{t_{k-1}}) - m(t_k - t_{k-1})\right)^2 = \sigma^2(t_k - t_{k-1})
+\end{cases}
+\]
+\end{rem}
+\begin{prop}
+	Tout mouvement brownien est un processus à accroissements indépendantes c'est-a-dire: Pour tous $s=t_0\leq t_1 \leq t_2 \leq ...\leq t_n$, les variables aléatoires $W_{t_h}-W_{t_{h-1}}(h=1,...,n)$ sont indépendantes et indépendantes de la tribu $\mathcal{F}_s$. 
 \end{prop}
 \begin{pr}
-	Dans la livre (Calcul stochastique et modelés de diffusion)
-\end{pr} 
+ La démonstration complète du théorème est disponible dans la référence [8]
+\end{pr}
+\subsection{Espace de Cameron-Martin}
 \begin{dfn}
-	Mouvement brownien
+	Soit $T>0$ fixé. On note $\Omega = C([0,T],\mathbb{R}^d)$ l'espace des fonctions continues $h : [0,T] \to \mathbb{R}^d$ telles que $h(0) = 0$.
+	
+	L'espace de Cameron–Martin $\mathbb{H}$ est l'ensemble des fonctions $h \in \Omega$ qui sont absolument continues et dont la dérivée (au sens de Lebesgue) est de carré intégrable :
+	\[
+	\mathbb{H} = \left\{ h \in C([0,T];\mathbb{R}^d) \;:\; h(0)=\mathbf{0},\; h \text{ absolument continue},\; \dot{h} \in L^2([0,T];\mathbb{R}^d) \right\}.
+	\]
+	On munit $\mathbb{H}$ du produit scalaire
+	\[
+	\langle h,k \rangle_{\mathbb{H}} := \int_{0}^{T} \dot{h}(t) \cdot \dot{k}(t) \, dt, \qquad h,k \in \mathbb{H},
+	\]
+	et de la norme associée $\|h\|_{\mathbb{H}} = \sqrt{\langle h,h \rangle_{\mathbb{H}}}$.
 \end{dfn}
+
+\begin{prop}
+	L'espace $(\mathbb{H}, \langle\cdot,\cdot\rangle_{\mathbb{H}})$ est un espace de Hilbert séparable.
+\end{prop}
+\begin{dfn}
+	On note $\mathcal{A}$ l'ensemble des processus $h:\Omega\times[0,T]\to\mathbb{R}^d,\{\mathcal{F}_t\}$-prévisible, tels que pour $\mathbb{P}$-presque tout $\omega$, la trajectoire $t\to h(\omega,t)$ appartienne à $\mathbb{H}$.
+\end{dfn}
+	\begin{dfn}Pour chaque $N>0$, on définit
+	\[
+	S_N:=\Big\{h\in\mathbb{H}:\int_{0}^{T}|\dot{h}(s)|^2ds\leq N \Big\}.
+	\]
+	L'ensemble $S_N$ est muni de la topologie faible induite par $\mathbb{H}$.
+\end{dfn}
+\begin{dfn}
+Pour chaque $N>0$, on définit
+\[
+\mathcal{A}_{N}:=\big\{h\in\mathcal{A},h(\omega,\cdot)\in S_{N},\ \mathbb{P}\text{-p.s.}\big\}.
+\]
+Autrement dit, $\mathcal{A}_N$ est l'ensemble des processus prévisibles dont presque toutes les trajectoires sont dans $S_N$.
+\end{dfn}
+\begin{thm}[théorème de Cameron-Martin]
+\end{thm}
+\subsection{Dérivée au sens de Lion}
+
+\begin{dfn}
+	Soit $\mathcal{P}(\mathbb{R}^d)$ l'espace des mesures de probabilité sur $\mathbb{R}^d$.\\
+	On note $\mathcal{P}_2(\mathbb{R}^d)$ est le sous-ensemble des mesure de probabilité sur $\mathbb{R}^d$ possédant un moment d'ordre deux fini, c'est-à-dire:
+	\[
+	\mathcal{P}_2(\mathbb{R}^d) = \left\{ \mu \in\mathcal{P}(\mathbb{R}^d): \mu(|\cdot|^2) = \int_{\mathbb{R}^d} |x|^2\mu(dx)<\infty
+	\right\} 
+	\]
+	où $\mu(f):=\int fd\mu$ pour un fonction mesurable $f$
+\end{dfn}
+\begin{prop}
+	$\mathcal{P}_2(\mathbb{R}^d)$ est un espace polonais muni de la distance de Wasserstein $\mathbb{W}_2$
+\end{prop}
+\begin{dfn}
+		Soient $\mu$ et $\nu\in\mathcal{P}_2(\mathbb{R}^d)$, la distance de Wasserstein d'ordre 2 entre $\mu$ et $\nu$ est définie par la formule:
+	\[
+	\mathbb{W}_2(\mu, \nu) := \left( \inf_{\pi \in \mathcal{C}(\mu, \nu)} \int_{\mathbb{R}^d \times \mathbb{R}^d} |x - y|^2 \, \pi(dx, dy) \right)^{1/2}, 
+	\quad \mu, \nu \in \mathcal{P}_2(\mathbb{R}^d),
+	\]
+	où $\mathcal{C}(\mu,\nu)$ désigne l'ensemble des couplages de $\mu$ et $\nu$; c'est-à-dire que $\pi\in\mathcal{C}(\mu,\nu)$ est une mesure de probabilité sur $\mathbb{R}^d\times\mathbb{R}^d$ telle que $\pi(\cdot\times\mathbb{R}^d) = \mu$ et $\pi(\mathbb{R}^d\times\cdot)=\nu$.
+\end{dfn}
+\begin{prop}
+Soient $X$ et $Y$ deux variables aléatoires à valeurs dans $\mathbb{R}^d$, définies sur un même espace de probabilité, et telles que leurs lois $\mathcal{L}_X$ et $\mathcal{L}_Y \in\mathcal{P}_2(\mathbb{R}^d)$. Alors on a:
+\[
+\mathbb{W}_2(\mathcal{L}_X,\mathcal{L}_Y)\leq\big(\mathbb{E}|X-Y|^2\big)^{\frac{1}{2}}
+\]
+\end{prop}
+\begin{dfn}
+	Pour tout $\mu\in\mathcal{P}_2(\mathbb{R}^d)$, on définit l'espace tangent en $\mu$ par
+	\[
+	T_{\mu,2} = L^2(\mathbb{R})^d\longrightarrow \mathbb{R}^d :=\left\{\phi:\mathbb{R}^d\longrightarrow\mathbb{R}^d \text{ est mesurable avec }\int_{\mathbb{R}^d}|\phi(x)|^2\mu(dx)<\infty\right\}
+	\]
+	la norme associé est donnée par:
+	\[
+	\|\phi\|^2_{T_{\mu,2}}:=\int_{\mathbb{R}^d}|\phi(x)|^2\mu(dx)\] 
+\end{dfn}
+\begin{dfn}
+	Soit $f:\mathcal{P}_2(\mathbb{R}^d)\longrightarrow\mathbb{R}^d$ un fonction continue, et $I_d$ la carte identité sur $\mathbb{R}^d$
+	
+	\begin{enumerate}
+		\item Si, pour tout $\mu\in\mathcal{P}_2(\mathbb{R}^d)$, on a
+		\[
+		T_{\mu,2}\ni\phi \mapsto D^L_{\phi}f(\mu):=\lim_{\varepsilon\to 0}\frac{f(\mu\circ(I_d+\varepsilon\phi)^{-1})-f(\mu)}{\varepsilon}\in\mathbb{R}
+		\]
+		et que cette limite définit un fonctionnel linéaire borné, alors on dit que $f$ est intrinsèquement différentiable en $\mu$, et on note $D^L_{\phi}f(\mu)$ la dérivée intrinsèque de $f$ en $\mu$
+		
+		\item Si, pour tout $\mu\in\mathcal{R}_2(\mathbb{R})$, on a
+		\[
+		\lim_{\|\phi\|_{T_{\mu,2}} \to 0} \frac{|f(\mu \circ (I_d + \phi)^{-1}) - f(\mu) - D^L_\phi f(\mu)|}{\|\phi\|_{T_{\mu,2}}} = 0.
+		\]
+		alors on dit que $f$ est $L-$différentiable en $\mu$, et l'on note $D_\mu f(\mu)$ la $L-$dérivée (ou dérivée de Lions) de $f$ en $\mu$
+		\\ Dans ce cas, par le théorème de représentation de Riez, l'élément unique $D^Lf(\mu)\in T_{\mu,2}$ satisfaisant
+		\[
+		\langle D^L f(\mu), \phi \rangle_{T_{\mu,2}} := \int_{\mathbb{R}^d} \langle D^L f(\mu)(x), \phi(x) \rangle \mu(dx) = D^L_\phi f(\mu), \quad \forall \phi \in T_{\mu,2},
+		\]
+		\item  On écrit \( f \in C^1(\mathcal{P}_2(\mathbb{R}^d)) \) si \( f \) est \( L \)-différentiable en tout point \( \mu \in \mathcal{P}_2(\mathbb{R}^d) \), et la dérivée \( L \)-dérivée admet version \( D^L f(\mu)(x) \) jointe continu en \( (x, \mu) \in \mathbb{R}^d \times \mathcal{P}_2(\mathbb{R}^d) \). Si de plus, \( D^L f(\mu)(x) \) est bornée, on dénote \( f \in C_b^1(\mathcal{P}_2(\mathbb{R}^d)) \).
+		
+		Pour une fonction à valeurs vectorielles $f = (f_i)$, ou une fonction à valeurs matricielles $f = (f_{ij})$ avec des composantes $L$-différentiables, on écrit
+		\[
+		D^L_\phi f(\mu) = (D^L_\phi f_i(\mu)), \quad \text{ou} \quad D^L_\phi f(\mu) = (D^L_\phi f_{ij}(\mu)), \quad \mu \in \mathcal{P}_2(\mathbb{R}^d).
+		\] 
+	\end{enumerate}
+\end{dfn}
+\subsection{Quelques inégalités}
+\begin{lem}
+	Soit $g$ un fonction continue telle que pour tout $t\geq0$, on a:
+	pour tout $t\in[0,T]$
+	\[
+	 0\leq g(t)\leq \alpha(t)+\beta\int_{0}^{t}g(t)ds, \text{ avec } \alpha\geq0,\beta\geq0
+.	\]
+Pour une constante $\beta\geq0$ et pour une fonction $\alpha:[0,T]\to\mathbb{R}$ intégrable par rapport à la mesure de Lebesgue. On a alors
+pour tout $t\in[0,T]$
+\[
+ 0\leq g(t)\leq \alpha(t) +\beta\int_{0}^{t}\alpha(s)\exp(\beta(t-s))ds.
+\]
+En particulier, si $\alpha$ est une fonction constante, on trouve pour tout $t\in[0,T]$
+\[
+g(t)\leq\alpha\exp(\beta).
+\]
+\end{lem}
+
+
+
+
 \end{document}

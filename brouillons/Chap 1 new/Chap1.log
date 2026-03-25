@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  18 MAR 2026 19:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  24 MAR 2026 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -626,31 +626,36 @@ ram Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}] [2
 Chapitre 1.
 [3{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files/MiKTe
 X/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/
-lm-mathsy.enc}] (Chap1.aux)
+lm-mathsy.enc}] [4{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
+[5] [6] (Chap1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `Chap1.out' has not changed.
-(rerunfilecheck)             Checksum: 1827966CE65D1E463506A1E389D65BAA;312.
+(rerunfilecheck)             Checksum: 17E2555F041B1C8C74076A6384273AD2;1111.
  ) 
 Here is how much of TeX's memory you used:
- 13975 strings out of 474486
- 221143 string characters out of 5753552
- 1931542 words of memory out of 5000000
- 36027 multiletter control sequences out of 15000+600000
- 594179 words of font info for 64 fonts, out of 8000000 for 9000
+ 14030 strings out of 474486
+ 221881 string characters out of 5753552
+ 1940542 words of memory out of 5000000
+ 36049 multiletter control sequences out of 15000+600000
+ 614984 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,544b,461s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,544b,703s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
-blic/lm/lmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:
-/Program Files/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/
-fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/am
-sfonts/symbols/msbm10.pfb>
-Output written on Chap1.pdf (3 pages, 104616 bytes).
+blic/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Program Files/MiKTeX
+/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm
+/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy6.pfb
+><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Chap1.pdf (6 pages, 212756 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 17 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 41 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
