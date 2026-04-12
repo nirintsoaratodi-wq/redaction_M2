@@ -52,6 +52,13 @@ Soit $(\Omega,\mathcal{F},\mathbb{P})$ un espace de probabilité et $\{\mathcal{
 	On dit que le processus $X$ est $(\mathcal{F}_t)-$adapté qi $X_t$ est $\mathcal{F}_t-$mesurable pour tout $t\geq0.$
 \end{dfn}	
 \begin{dfn}
+	On dit que le processus $(X_t)$ est prévisible si, $X_t$ est $\mathcal{F}_{t^-}$-mesurable pour tout $t\geq0$, où
+	\[
+	\mathcal{F}_{t^-} =\sigma\Big(\bigcup_{s\leq t}\mathcal{F}_s\Big)
+	\]
+	est la tribu juste avant $t$ (limite à gauche de la filtration).
+\end{dfn}
+\begin{dfn}
 	Une processus $X_t(\omega)$ sur $[0,T]\times\Omega$ est dite progressivement mesurable par rapport à la filtration $\mathcal{F}_t$ si pour tout $t\in[0,T]$ l'application:
 	\[
 	X: (s,\omega)\to X_t(\omega)
@@ -77,6 +84,20 @@ t \longmapsto X_t(\omega)
 	\]
 	est appelée la trajectoire (ou réalisation) du processus correspondant à l'issue $\omega$.
 \end{prop}
+
+Dans la suite, nous rappelons la définition de la martingale et du mouvement brownien.
+\begin{dfn}
+Une famille adaptée $(M_t)_{t\geq0}$ de variable aléatoires intégrables (c'est-à-dire vérifiant $\mathbb{E}(|M_t|)<\infty$ pour tout $t$) est:
+\begin{itemize}
+	\item une martingale si, pour tout $s\leq t$, $\mathbb{E}(M_t|\mathcal{F}_s)=M_s$.
+	\item une sur-martingale si, pour tout $s\leq t$,$\mathbb{E}(M_t|\mathcal{F}_s)\leq M_s.$
+	\item une sous-martingale si, pour tout $s\leq t$, $\mathbb{E}(M_t|\mathcal{F}_s)\geq M_s.$. 
+\end{itemize}
+\begin{rem}
+	On déduit de cette définition que, si $(M_t)_{t\geq0}$ est une martingale, alors $\mathbb{E}(M_t)=\mathbb{E}(M_0)$, pour tout $t$.
+\end{rem}
+\end{dfn}
+
 \begin{dfn}
 	Un processus stochastique $W_t$ est un mouvement brownien ou un processus de Wiener standard si $W_0=0$ ( on dit que $W_t$ est issu de 0) e si pour tous réels $0<t_1<t_2<...<t_n$, les variables aléatoires $W_{t_1}-W_{t_0},...,B_{t_n}-W_{t_{n-1}}$ sont indépendantes et suivent un distribution gaussienne centré réduire (on dit que le brownien est standard si $m$=0 et $\sigma=1$) telle que 
 	\[
@@ -103,7 +124,16 @@ L'évolution de l'accroissement sur un intervalle $[t_{k-1},t_k]$ est alors rég
 \begin{pr}
  La démonstration complète du théorème est disponible dans la référence [8]
 \end{pr}
-\subsection{Espace de Cameron-Martin}
+Donnons des exemples de martingales que l'on peut construire à partir du mouvement brownien.
+\begin{prop}
+	Si $(X_t)_{t\geq0}$ est un $\mathcal{F}_t$-mouvement brownien standard, alors
+\begin{enumerate}
+	\item $(X_t)_{t\geq0}$ est une $\mathcal{F}_t$-martingale.
+	\item $(X_t^2-t)$ est une $\mathcal{F}_t$-martingale.
+\end{enumerate}
+
+\end{prop}
+\subsection{Espace de Cameron-Martin et changement de mesure}
 \begin{dfn}
 	Soit $T>0$ fixé. On note $\Omega = C([0,T],\mathbb{R}^d)$ l'espace des fonctions continues $h : [0,T] \to \mathbb{R}^d$ telles que $h(0) = 0$.
 	
@@ -137,8 +167,63 @@ Pour chaque $N>0$, on définit
 \]
 Autrement dit, $\mathcal{A}_N$ est l'ensemble des processus prévisibles dont presque toutes les trajectoires sont dans $S_N$.
 \end{dfn}
-\begin{thm}[théorème de Cameron-Martin]
+\begin{prop}[formule de Cameron-Martin]
+	On note $W$ la mesure de Wiener définie sur l'espace des fonctions continues $C(\mathbb{R}_+,\mathbb{R})$, et $\mathbb{H}$ l'espace de Cameron-Martin associé. Soit $h\in\mathbb{H}$. Alors, pour toute fonction mesurable positive $\Phi$ sur $C(\mathbb{R}_+,\mathbb{R})$, on a
+	\[
+	\int \Phi(\omega+h)W(d\omega)=\int \Phi(\omega)\exp\big(\int_{0}^{+\infty}\dot{h}(s)d\omega (s)-\frac{1}{2}\int_{0}^{+\infty}|\dot{h}(s)|^2ds\big)W(d\omega).
+	\]
+\end{prop}
+
+La formule de Cameron–Martin peut être vue comme un cas particulier du théorème de Girsanov, que nous présentons ci-dessous.
+
+\begin{thm}[Théorème de Girsanov]
+		Soit $(\Omega, \mathcal{F}, (\mathcal{F}_t)_{t \geq 0}, P)$ un espace probabilisé filtré satisfaisant les conditions usuelles. 
+		Soit $Q$ une mesure de probabilité sur $(\Omega, \mathcal{F})$ équivalente à $P$ sur $\mathcal{F}_\infty$.
+		
+		On définit, pour tout $t \geq 0$, le processus de densité
+		\[
+		D_t = \frac{dQ}{dP}\Big|_{\mathcal{F}_t}.
+		\]
+		Alors $(D_t)_{t \geq 0}$ est une martingale positive, uniformément intégrable, que l'on suppose de plus continue.
+		
+		Dans ce cas, il existe une unique martingale locale continue $L$ telle que
+		\[
+		D_t = \mathcal{E}(L)_t, \quad t \geq 0,
+		\]
+		où $\mathcal{E}(L)$ désigne l'exponentielle stochastique associée à $L$.
+		
+		Soit enfin $M$ une martingale locale continue sous $P$. Alors, sous la mesure $Q$, le processus
+		\[
+		\widetilde{M}_t = M_t - \langle M, L \rangle_t, \quad t \geq 0,
+		\]
+		est une martingale locale continue.	
 \end{thm}
+Nous présentons à présent une conséquence importante du théorème de Girsanov, qui décrit explicitement l'effet d'un changement de probabilité sur un mouvement brownien.
+
+\begin{cor}[Girsanov cas du mouvement brownien]
+		Soit $(W_t)_{t \geq 0}$ un mouvement brownien standard sous $P$. 
+		Soit $(\theta_t)_{t \geq 0}$ un processus adapté vérifiant les conditions d'intégrabilité appropriées (par exemple la condition de Novikov).
+		
+		On définit
+		\[
+		L_t = \int_0^t \theta_s \, dW_s,
+		\quad \text{et} \quad
+		D_t = \mathcal{E}(L)_t.
+		\]
+		
+		On introduit une nouvelle mesure de probabilité $Q$ définie par
+		\[
+		\frac{dQ}{dP}\Big|_{\mathcal{F}_t} = D_t.
+		\]
+		
+		Alors, sous la mesure $Q$, le processus
+		\[
+		\widetilde{W}_t = W_t - \int_0^t \theta_s \, ds
+		\]
+		est un mouvement brownien standard.
+
+\end{cor}
+
 \subsection{Dérivée au sens de Lion}
 
 \begin{dfn}
@@ -204,7 +289,7 @@ Soient $X$ et $Y$ deux variables aléatoires à valeurs dans $\mathbb{R}^d$, dé
 	\end{enumerate}
 \end{dfn}
 \subsection{Quelques inégalités}
-\begin{lem}
+\begin{lem}[Inégalité de Gronwall]
 	Soit $g$ un fonction continue telle que pour tout $t\geq0$, on a:
 	pour tout $t\in[0,T]$
 	\[
@@ -220,6 +305,278 @@ En particulier, si $\alpha$ est une fonction constante, on trouve pour tout $t\i
 g(t)\leq\alpha\exp(\beta).
 \]
 \end{lem}
+\begin{lem}[Inégalité de Hölder]
+		Soient $p,q > 1$ tels que $\frac{1}{p} + \frac{1}{q} = 1$. 
+	Soient $X$ et $Y$ deux variables aléatoires (ou fonctions mesurables) telles que 
+	$|X|^p$ et $|Y|^q$ soient intégrables.
+	
+	Alors, on a l’inégalité suivante :
+	\[
+	\mathbb{E}(|XY|) \leq \left(\mathbb{E}(|X|^p)\right)^{\frac{1}{p}} 
+	\left(\mathbb{E}(|Y|^q)\right)^{\frac{1}{q}}.
+	\]
+	
+\end{lem}
+\begin{lem}[Inégalité de Cauchy-Schwarz]
+		Soient $X$ et $Y$ deux variables aléatoires de carré intégrable.
+	
+	Alors, on a :
+	\[
+	\mathbb{E}(|XY|) \leq \left(\mathbb{E}(X^2)\right)^{\frac{1}{2}} 
+	\left(\mathbb{E}(Y^2)\right)^{\frac{1}{2}}.
+	\]
+\end{lem}
+
+\begin{thm}[Burkholder--Davis--Gundy]
+	Soit $(\Omega,\mathcal{F},(\mathcal{F}_t)_{t\geq 0},\mathbb{P})$ un espace probabilisé filtré satisfaisant les conditions usuelles. On note $\langle M,M\rangle$ la variation quadratique d’une martingale locale continue $M$.
+	
+	Alors, pour tout $p \in ]0,+\infty[$, il existe deux constantes positives $c_p$ et $C_p$, ne dépendant que de $p$, telles que, pour toute martingale locale continue $M=(M_t)_{t\geq 0}$ vérifiant $M_0 = 0$, on ait :
+	\[
+	c_p \, \mathbb{E}\big(\langle M,M\rangle_\infty^{\frac{p}{2}}\big)
+	\;\leq\;
+	\mathbb{E}\big((M^*_\infty)^p\big)
+	\;\leq\;
+	C_p \, \mathbb{E}\big(\langle M,M\rangle_\infty^{\frac{p}{2}}\big).
+	\]
+	
+	Ici, $M^*_\infty$ désigne le supremum maximal de la martingale, défini par
+	\[
+	M^*_\infty = \sup_{t \geq 0} |M_t|,
+	\]
+	et $\langle M,M\rangle_\infty$ représente la limite de la variation quadratique lorsque $t$ tend vers l’infini, c’est-à-dire
+	\[
+	\langle M,M\rangle_\infty = \lim_{t \to \infty} \langle M,M\rangle_t.
+	\]
+	
+	Les constantes $c_p$ et $C_p$ sont dites universelles, dans le sens où elles ne dépendent que du paramètre $p$ et peuvent être choisies de manière uniforme pour toutes les martingales locales continues définies sur un espace probabilisé filtré quelconque satisfaisant les conditions usuelles.
+\end{thm}
+\begin{prop}
+	Soit $p \geq 2$. Il existe une constante $C_p$ telle que, pour toute martingale locale continue $M$ vérifiant $M_0 = 0$, on ait :
+	\[
+	\mathbb{E}\big[(M^*_\infty)^p\big] \leq C_p \, \mathbb{E}\big(\langle M,M\rangle_\infty^{p/2}\big).
+	\]
+	
+\end{prop}
+
+\begin{prop}
+	Soit $p \geq 4$. Il existe une constante $c_p$ telle que :
+	\[
+	c_p \, \mathbb{E}\big(\langle M,M\rangle_\infty^{p/2}\big) \leq \mathbb{E}\big[(M^*_\infty)^p\big].
+	\]
+\end{prop}
+
+\section{Les équations différentielles stochastiques}
+Dans cette section, nous rappelons les équations différentielles stochastiques classiques ainsi que les équations différentielles stochastiques de type McKean–Vlasov, en précisant les principales hypothèses nécessaires à leur étude.
+
+Dans toute la suite, nous nous plaçons sur un espace de probabilité filtré $(\Omega,\mathcal{F},(\mathcal{F})_{t\geq0}, \mathbb{P})$ satisfaisant les conditions usuelles.
+\subsection{Formule d'Itô}
+\begin{dfn}
+	On appelle processus d'Itô, un processus $(X_t)_{0\leq t\leq T}$ à valeurs dans $\mathbb{R}$ tel que
+	\[
+	\mathbb{P}p.s \forall t\leq T\text{   } X_t = X_0 + \int_{0}^{t}K_sds+\int_{0}^{t}H_sdW_s
+	\]
+	avec:
+	\begin{itemize}
+		\item $X_0$ $\mathcal{F}_0$-mesurable.
+		\item $(K_t)_{0\leq t\leq T}$ et $(H_s)_{0\leq t\leq T}$ des processus adaptés à $\mathcal{F}_t$.
+		\item $\int_{0}^{T}|K_s|ds<+\infty \text{  }\mathbb{P}p.s$.
+		\item $\int_{0}^{T}|H_s|^2ds<+\infty\text{  }\mathbb{P}p.s$.
+	\end{itemize}
+\end{dfn}
+
+La proposition suivante montre qu'une martingale continue de variation finie est nécessairement constante.
+\begin{prop}
+Soit \((M_t)_{0 \leq t \leq T}\) une martingale continue telle que 
+\[
+M_t = \int_0^t K_s \, ds, \quad \text{avec } \mathbb{P}\text{ p.s. } \int_0^T |K_s| \, ds < +\infty,
+\]
+alors :
+\[
+\mathbb{P}\text{ p.s. } \quad \forall t \leq T, \, M_t = 0.
+\]
+\end{prop}
+
+Le théorème suivant, appelé formule d’Itô, est l’outil central du calcul stochastique :
+\begin{thm}[ Formule Itô]
+		Soit $(X_t)_{0 \le t \le T}$ un processus d'Itô de la forme
+		\[
+		X_t = X_0 + \int_0^t K_s \, ds + \int_0^t H_s \, dW_s,
+		\]
+		et $f$ une fonction deux fois continûment différentiable sur $\mathbb{R}$. On a
+		\[
+		f(X_t) = f(X_0) + \int_0^t f'(X_s) \, dX_s + \frac{1}{2} \int_0^t f''(X_s) \, d\langle X, X \rangle_s,
+		\]
+		où, par définition,
+		\[
+		\langle X, X \rangle_t = \int_0^t H_s^2 \, ds,
+		\]
+		et
+		\[
+		\int_0^t f'(X_s) \, dX_s = \int_0^t f'(X_s) K_s \, ds + \int_0^t f'(X_s) H_s \, dW_s.
+		\]
+		De même, si $f(t,x) \mapsto f(t,x)$ est une fonction deux fois différentiable en $x$ et une fois différentiable en $t$, ces dérivées étant continues en $(t,x)$ (on dit dans ce cas que $f$ est de classe $C^{1,2}$), on a
+		\[
+		f(t, X_t) = f(0, X_0) + \int_0^t f_s'(s, X_s) \, ds 
+		+ \int_0^t f_x'(s, X_s) \, dX_s + \frac{1}{2} \int_0^t f_{xx}''(s, X_s) \, d\langle X, X \rangle_s.
+		\]
+\end{thm}
+\subsection{Équation différentielle stochastique}
+\begin{dfn}
+Soient $d$ et $m$ des entiers positifs, et soient $\sigma$ et $b$ des fonctions mesurables localement bornées définies sur $\mathbb{R}_+\times\mathbb{R}^d$ et prenant leurs valeurs respectivement dans $M_{d\times m}(\mathbb{R})$ et dans $\mathbb{R}^d$.
+
+L'équation différentielle stochastique associée à $(b,\sigma)$ et s'écrit formellement
+\begin{equation}\label{eq:1.2.1}
+X_t = Z+\int_{0}^{t}b(s,X_s)ds +\int_{0}^{t}\sigma(s,X_s)dW_s.
+\end{equation}
+Une solution de (\ref{eq:1.2.1}) porte le nom diffusion.
+\end{dfn}
+ Nous allons étudier quelques propriétés des solutions de ces équations.
+ \begin{dfn}
+ On considère deux fonction $b$ et $\sigma$, $b:\mathbb{R}^+\times\mathbb{R}\textrightarrow \mathbb{R},\sigma:\mathbb{R}^+\times\mathbb{R}\textrightarrow \mathbb{R}$, $X_0$ un variable aléatoire $\mathcal{F}_0$-mesurable et $(W_t)_{t\geq0}$ un $\mathcal{F}_t$-mouvement brownien. Une solution à l'équation (\ref{eq:1.2.1}) est un processus stochastique (diffusion) $(X_t)_{t\geq0}$ continu $\mathbb{F}_t$-adapté, qui vérifie:
+ \begin{itemize}
+ 	\item Pour tout $t\geq0$, les intégrales $\int_{0}^{t}b(s,X_s)ds$ et $\int_{0}^{t}\sigma(s,X_s)dW_s$ ont un sens
+ 	\[
+ 	\int_{0}^{t}|b(s,X_s)|ds<+\infty\text{ et }\int_{0}^{t}|\sigma(s,X_s)|^2dW_s<+\infty \mathbb{P}\text{  }p.s
+ 	\]
+ 	\item $(X_t)_{t\geq0}$ vérifie (\ref{eq:1.2.1}) c'est-à-dire:
+ 	\[
+ 	\forall t\geq0\text{    }\mathbb{P}\text{    }p.s. X_t=Z+\int_{0}^{t}b(s,X_s)ds +\int_{0}^{t}\sigma(s,X_s)dW_s.
+ 	\]
+ \end{itemize}
+ \end{dfn}
+ \begin{rem}
+ 	On ré-écrit formellement l'équation (3.10) sous la forme:
+ 	\[
+ 	\begin{cases}
+ 		dX_t &= b(t, X_t)dt + \sigma(t, X_t)dW_t \\
+ 		X_0 &= Z
+ 	\end{cases}
+ 	\]
+ \end{rem}
+Le théorème suivant donne des conditions suffisantes sur \( b \) et \( \sigma \) pour avoir un résultat d’existence et d’unicité pour (\ref{eq:1.2.1}).
+
+\begin{thm}
+	Si \( b \) et \( \sigma \) sont des fonctions continues, telles qu'il existe \( K < +\infty \), avec
+	\begin{enumerate}
+		\item \( |b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K|x - y| \)
+		\item \( |b(t,x)| + |\sigma(t,x)| \leq K(1 + |x|) \)
+		\item \( \mathbb{E}(Z^2) < +\infty \),
+	\end{enumerate}
+	alors, pour tout \( T \geq 0 \), l'équation (\ref{eq:1.2.1}) admet une solution unique dans l'intervalle \([0,T]\). De plus cette solution \((X_s)_{0 \leq s \leq T}\) vérifie
+	\[
+	\mathbb{E} \left( \sup_{0 \leq s \leq T} |X_s|^2 \right) < +\infty.
+	\]
+	L'unicité signifie que si \((X_t)_{0 \leq t \leq T}\) et \((Y_t)_{0 \leq t \leq T}\) sont deux solutions de l'équation (\ref{eq:1.2.1}), alors \( \mathbb{P}.p.s. \ \forall 0 \leq t \leq T, \ X_t = Y_t. \)
+\end{thm}
+
+Le théorème suivant établit un lien entre les différentes notions d'existence et d'unicité.
+
+\begin{thm}[Yamada–Watanabe]
+	Si l’existence faible et l’unicité trajectorielle ont lieu, alors l’unicité faible a également lieu. De plus, pour tout choix de l’espace de probabilité filtré \((\Omega, \mathcal{F}, (\mathcal{F}_t), \mathbb{P})\) et du mouvement brownien \((\mathcal{F}_t)\)-adapté $W$, il existe pour tout \(x \in \mathbb{R}^d\) une solution forte (unique) de l’équation (\ref{eq:1.2.1}).
+\end{thm}
+
+\subsection{Équation différentielle stochastique de type McKean-Vlasov}
+Nous rappelons l’équation différentielle stochastique de McKean–Vlasov, définie sur l’espace euclidien $(\mathbb{R}^d, \langle \cdot, \cdot \rangle ,|\cdot|)$. 
+Soit $(\Omega,\mathcal{F}_t,\{\mathcal{F}_t\}_{t\geqslant 0},\mathbb{P})$ un espace de probabilité filtré complet et $\mathcal{L}_{X^\varepsilon_t}$ désigne la loi du processus stochastique $X^\varepsilon_t$.
+\begin{dfn}
+	On appelle équation différentielle stochastique de type Mckean-Vlasov (MV-SDE) sur $(\mathbb{R}^d, \langle \cdot, \cdot \rangle ,|\cdot|)$ une équation de la forme:
+	\begin{equation}\label{eq:1.2.2}
+		dX_t^\varepsilon = b_t(X_t^\varepsilon,\mathcal{L}(X_t^\varepsilon))dt +\sqrt{\varepsilon}\sigma_t(X_t^\varepsilon,\mathcal{L}(X_t^\varepsilon))dW_t,\text{    } X_0^\varepsilon=x
+	\end{equation}
+	où $\varepsilon > 0$ est appelé le para
+	mètre d'échelle.Ici, $W_t$ est une mouvement brownien dimension $d$ défini sur un espace de probabilité filtré et :
+	\[
+	\begin{aligned}
+	&b:[0,\infty) \times \mathbb{R}^d\times\mathcal{P}_2(\mathbb{R}^d)\longrightarrow\mathbb{R}^d\\
+	&\sigma:[0,\infty) \times \mathbb{R}^d\times\mathcal{P}_2(\mathbb{R}^d)\longrightarrow\mathbb{R}^{d\otimes d}
+	\end{aligned}
+	\]
+\end{dfn}
+Nous considérons les hypothèses suivantes.
+\subsubsection{Hypothèses sur les coefficients}
+\textbf{(H1)} Les coefficients $b : [0, \infty) \times \mathbb{R}^d \times \mathcal{P}_2(\mathbb{R}^d) \to \mathbb{R}^d$ et $\sigma : [0, \infty) \times \mathbb{R}^d \times \mathcal{P}_2(\mathbb{R}^d) \to \mathbb{R}^{d \otimes d}$ sont continus. Il existe une fonction croissante $K : [0, \infty) \to [0, \infty)$ telle que
+\begin{equation}\label{eq:1.2.3}
+	\begin{aligned}
+	&\max\left\{ \|\nabla b_t(\cdot, \mu)(x)\|, \| D^L b_t(x, \cdot)(\mu) \|_{T_{\mu,2}} \right\} \leq K(t),\\ &\quad t \geq 0,\ x \in \mathbb{R}^d,\ \mu \in \mathcal{P}_2(\mathbb{R}^d),
+	\end{aligned}
+\end{equation}
+\begin{equation}\label{eq:1.2.4}
+	\begin{aligned}
+	&\|\sigma_t(x, \mu) - \sigma_t(y, \nu)\|\leq K(t)(|x - y| + \mathbb{W}_2(\mu, \nu)),\\ &\quad t \geq 0,\ x, y \in \mathbb{R}^d,\ \mu, \nu \in \mathcal{P}_2(\mathbb{R}^d),
+	\end{aligned}
+\end{equation}
+et
+\begin{equation}\label{eq:1.2.5}
+	|b_t(0, \delta_0)| + \|\sigma_t(0, \delta_0)\| \leq K(t), \quad t \geq 0.
+\end{equation}
+
+\textbf{(H2)} Le coefficient $b_t(x, \mu)$ est différentiable par rapport à $x$ et $\mu$, respectivement, et les fonctions dérivées satisfont
+\begin{equation}\label{eq:1.2.6}
+	\|\nabla b_t(., \mu)(x) - \nabla b_t(., \nu)(y)\| \leq K(t)(|x - y| + \mathbb{W}_2(\mu, \nu)),
+\end{equation}
+\[
+\begin{aligned}
+	&\left| \mathbb{E}\left[ \langle D^L b_t(x, \cdot)(\mathcal{L}_X)(X), \phi \rangle \right] 
+	- \mathbb{E}\left[ \langle D^L b_t(y, \cdot)(\mathcal{L}_Y)(Y), \phi \rangle \right] \right| \\
+	&\leq K(t)\left( |x - y| + \mathbb{W}_2(\mathcal{L}_X, \mathcal{L}_Y) + \left( \mathbb{E}[|X - Y|^2] \right)^{1/2} \right) \left( \mathbb{E}[|\phi|^2] \right)^{1/2}
+\end{aligned}
+\]
+
+pour tout $t \geq 0$, $x, y \in \mathbb{R}^d$, $\mu, \nu \in \mathcal{P}_2(\mathbb{R}^d)$ et $X, Y, \phi \in L^2(\Omega \to \mathbb{R}^d, \mathbb{P}$
+\begin{rem}
+	D'après (H1), on a pour tout $t\geq0$ $x,y\in\mathbb{R}^d,\mu,\nu\in\mathcal{P}_2(\mathbb{R}^d)$ que:
+	\begin{equation}\label{eq:1.2.7}
+		|b_t(x, \mu) - b_t(y, \nu)| \leq K(t)(|x - y| + \mathbb{W}_2(\mu, \nu)).
+	\end{equation}
+\end{rem}
+
+Intuitivement, lorsque le paramétré $\varepsilon$ tend vers 0 dans (1.2.6), le terme de diffusion disparaître et on obtient l'équation différentielle ordinaire suivante:
+\begin{equation}\label{eq:1.2.8}
+	dX_t^0=b_t(X^0_t,\delta_{X_t^0})dt.
+\end{equation}
+avec la même donnée initiale que (\ref{eq:1.2.2}), c'est-à-dire $X_0^0=x$. Comme $x$ est déterministe, on déduit que $\delta_{X^0_\cdot}$ est une mesure de Dirac centrée sur la trajectoire $X^0$.
+
+\section{Principe des grandes déviation}
+Le principe de grandes déviations (PGD) décrit le comportement asymptotique, lorsque $\varepsilon \to 0$, d’une famille de mesures de probabilité $(\mu_{\varepsilon})$ définies sur un espace mesurable $(E,\mathcal{B})$, à l’aide d’une fonction de taux. Plus précisément, cette caractérisation repose sur des bornes exponentielles asymptotiques supérieures et inférieures des probabilités $\mu_{\varepsilon}(\Gamma)$, pour des ensembles mesurables $\Gamma \subset E$.
+Dans toute la suite, l’espace $E$ est supposé être un espace topologique, de sorte que les notions d’ouverts et de fermés y sont bien définies. Nous nous intéressons principalement aux ensembles boréliens, c’est-à-dire aux éléments de la tribu borélienne $\mathcal{B}(E)$.
+Afin d’éviter toute difficulté liée à la mesurabilité, tous les espaces probabilisés considérés dans ce travail sont supposés complétés. Par abus de notation, $\mathcal{B}(E)$ désignera toujours la tribu borélienne complétée.
+\begin{dfn}
+Une fonction $I$ est une application semi-continue inférieurement
+\[
+I:E\longrightarrow[0,+\infty)
+\] (c'est-à-dire que, pour tout $\alpha\in[0,+\infty)$, l'ensemble de niveau
+\[
+\Phi_I(\alpha) = \{ x\in E:I(x)\leq\alpha\}
+\] est un sous-ensemble fermé de $E$).
+
+Une bonne fonction de taux est une fonction de taux telle que tous les ensembles de niveau $\Phi_I(\alpha)$ soient des sous-ensembles compacts de $E$.
+\end{dfn}
+\begin{rem}
+Si $E$ est une espace métrique, la propriété de semi-continuité inférieure peut être vérifiée à l'aide des suites, c'est-à-dire que $I$ est semi-continue inférieurement si et seulement si
+\[
+\lim_{x_n\to x}\inf I(x_n)\geq I(x),\text{      pour tout }x\in E.
+\]
+\end{rem}
+
+La définition suivante donne le principe de grandes déviations dans un cadre général.
+\begin{dfn}[Principe de grandes déviations]
+	Soit $E$ un espace métrique muni de sa tribu borélienne $\mathcal{B}(E)$, et soit $(\mu_\varepsilon)_{\varepsilon>0}$ une famille de mesures de probabilité sur $E$.
+	
+	On dit que $(\mu_\varepsilon)$ satisfait un principe de grandes déviations avec une bonne fonction de taux $I$ si, pour tout $\Gamma \in \mathcal{B}(E)$,
+	\[
+	-\inf_{x \in \Gamma^\circ} I(x) 
+	\le \liminf_{\varepsilon \to 0} \varepsilon \log \mu_\varepsilon(\Gamma) 
+	\le \limsup_{\varepsilon \to 0} \varepsilon \log \mu_\varepsilon(\Gamma) 
+	\le -\inf_{x \in \overline{\Gamma}} I(x).
+	\]
+	Ici, $\Gamma^\circ$ désigne l'intérieur de $\Gamma$ et $\overline{\Gamma}$ son adhérence.
+\end{dfn}
+Les inégalités ci-dessus sont appelées respectivement borne inférieure et borne supérieure du principe de grandes déviations.
+
+De manière heuristique, cette définition signifie que la probabilité des événements rares décroît exponentiellement avec une vitesse gouvernée par la fonction de taux $I$.
+
+
+
 
 
 

@@ -2,7 +2,7 @@
 
 ***lien*** 'file:///C:/Users/nirintsoart/Desktop/chez-moi/Dossier/GFS/S9/GRANDES%20DEVIATION/Livre/Calcul%20stochastique%20et%20mod%C3%A8\_%20(Z-Library)%20(2).pdf'
 
-**Description: il y a une formule de cameron-martin dans la bas et lemme de Gronwall**
+**Description: il y a une formule de cameron-martin dans la bas et lemme de Gronwall page 85**
 
 
 
@@ -29,6 +29,8 @@ Déscription: dans la bas il y a aussi de formule de cameron-Martin
 5\. **Stability of Mc Kean-Vlasov stochastic differential equations and applicationsZ**
 
 ***Lien:*** 'file:///C:/Users/nirintsoart/Desktop/chez-moi/Dossier/GFS/Memoire/R%C3%A9daction/chapitre2/Livre%20de%20reference/EDSMV%20avec%20west.pdf'
+
+Déscription : Démonstration de propriété distance de Wasserstein
 
 
 
@@ -108,5 +110,49 @@ Déscription : qui parle cette large déviation et principe de déviation modere
 
 
 
-**16.**
+**16.REAL AND COMPLEX ANALYSIS Walter Rudin**
+
+***Lien:* 'file:///C:/Users/nirintsoart/Desktop/chez-moi/Memoire/Note%20et%20livre%20reference/real-and-complex-analysis.pdf'**
+
+**Déscription : dans cette livre les inégalités de Hölder et inégalité de Cauchy s**
+
+
+
+**17. Jean-François Le Gall Brownian Motion, Martingales, and Stochastic Calculus**
+
+**Lien: 'file:///C:/Users/nirintsoart/Desktop/chez-moi/Memoire/Note%20et%20livre%20reference/2016\_BrownianMotionMartingalesAndSt.pdf'**
+
+**Déscription :' formule de cameron-martin dans le page 139 proposition5.24**
+
+
+
+**18. Daniel Revuz MarcYor Continuous Martingales and Brownian Motion**
+
+**Lien : file:///C:/Users/nirintsoart/Desktop/chez-moi/Dossier/GFS/Memoire/R%C3%A9daction/Chapitre3/Livre%20reference/Livre/Continuous%20Martingales%20and%20Brownian%20Motion%20(Grundlehren%20der%20--%20Daniel%20Revuz,%20Marc%20Yor%20(auth.)%20--%20(%20WeLib.org%20)%20(1).pdf**
+
+**déscription : théorème de girsanov**
+
+
+
+
+
+**19. Damien lamberton gernard Lapeyre: introduction au calcul stochastique applique a la finance**
+
+***Lien* : file:///C:/Users/nirintsoart/Downloads/Introduction%20au%20Calcul%20Stoc\_%20(Z-Library).pdf**
+
+**Déscription: Calcul D'itô, formule d'ito et equation differentielle stochastique**
+
+
+
+
+
+
+
+
+
+
+
+**Rémarque:**
+
+**Dans le livre Large Deviations Techniques and Applications, Second Edition -- Amir Dembo, Ofer Zeitouni -- ( WeLib.org ) il dit le théory de Freidlin–Wentzell c'est très importants dans pour étudie le principe de grandes déviation pour les solutions de type somme X\_t^\\varepsilon page 212**
 
