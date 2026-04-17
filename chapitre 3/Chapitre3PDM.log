@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  15 MAR 2026 14:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  17 APR 2026 18:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -630,98 +630,94 @@ Chapitre 1.
 fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm
 -mathex.enc}] [3] [4]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 169.
+(Font)              <14.4> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 169.
+(Font)              <10> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 169.
+(Font)              <7> on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 169.
+(hyperref)                removing `math shift' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@overline' on input line 169.
+(hyperref)                removing `\@@overline' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 169.
+(hyperref)                removing `superscript' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 169.
+(hyperref)                removing `\varepsilon' on input line 168.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 169.
+(hyperref)                removing `math shift' on input line 168.
 
 
-LaTeX Warning: Reference `lem:3.1.2)' on page 5 undefined on input line 174.
+LaTeX Warning: Reference `lem:3.1.2)' on page 5 undefined on input line 173.
 
 [5]
 
-LaTeX Warning: Reference `(' on page 6 undefined on input line 239.
+LaTeX Warning: Reference `(' on page 6 undefined on input line 238.
 
-[6] [7] [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-[10] [11]
-Overfull \hbox (2.33037pt too wide) detected at line 500
-[][]
- []
-
-
-Overfull \hbox (2.5475pt too wide) detected at line 508
+[6] [7] [8] [9] [10] [11]
+Overfull \hbox (2.33037pt too wide) detected at line 499
 [][]
  []
 
 [12]
-Overfull \hbox (6.58449pt too wide) detected at line 536
+Overfull \hbox (2.5475pt too wide) detected at line 507
+[][]
+ []
+
+
+Overfull \hbox (6.58449pt too wide) detected at line 535
 [][]
  []
 
 [13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
+(hyperref)                removing `math shift' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@overline' on input line 591.
+(hyperref)                removing `\@@overline' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 591.
+(hyperref)                removing `superscript' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 591.
+(hyperref)                removing `\varepsilon' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
+(hyperref)                removing `math shift' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
+(hyperref)                removing `math shift' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@overline' on input line 591.
+(hyperref)                removing `\@@overline' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 591.
+(hyperref)                removing `superscript' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\varepsilon' on input line 591.
+(hyperref)                removing `\varepsilon' on input line 590.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 591.
+(hyperref)                removing `math shift' on input line 590.
 
 [14] [15] [16] [17] [18] (Chapitre3PDM.aux)
  ***********
@@ -736,13 +732,13 @@ Package rerunfilecheck Info: File `Chapitre3PDM.out' has not changed.
 (rerunfilecheck)             Checksum: 2C1F2FCAC85D9EBAFF30E2162BA6778B;2041.
  ) 
 Here is how much of TeX's memory you used:
- 14105 strings out of 474486
- 222898 string characters out of 5753552
- 1962542 words of memory out of 5000000
+ 14104 strings out of 474486
+ 222889 string characters out of 5753552
+ 1965542 words of memory out of 5000000
  36100 multiletter control sequences out of 15000+600000
  642349 words of font info for 94 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,14n,79p,776b,689s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,79p,776b,675s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
 blic/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C
@@ -755,9 +751,9 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/Mi
 KTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/rsfs/
 rsfs10.pfb>
-Output written on Chapitre3PDM.pdf (18 pages, 300169 bytes).
+Output written on Chapitre3PDM.pdf (18 pages, 299250 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
+ 284 PDF objects out of 1000 (max. 8388607)
+ 54 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

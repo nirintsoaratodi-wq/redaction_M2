@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  10 APR 2026 20:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  17 APR 2026 18:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -666,22 +666,30 @@ Overfull \hbox (1.21927pt too wide) in paragraph at lines 540--543
 te-ment asymp-to-tique, lorsque
  []
 
-[11] [12] (Chap1.aux)
+[11] [12] [13]
+
+LaTeX Warning: Citation `[8]' on page 14 undefined on input line 663.
+
+[14] (Chap1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Chap1.out' has not changed.
-(rerunfilecheck)             Checksum: 8F3EE038A6B889F9A82707BA295879C0;2502.
+(rerunfilecheck)             Checksum: 5B0ED15E7D682E7BC0E62AB943ABBA43;2502.
  ) 
 Here is how much of TeX's memory you used:
- 14134 strings out of 474486
- 223620 string characters out of 5753552
+ 14154 strings out of 474486
+ 223818 string characters out of 5753552
  1943542 words of memory out of 5000000
- 36100 multiletter control sequences out of 15000+600000
+ 36104 multiletter control sequences out of 15000+600000
  615359 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,12n,79p,585b,605s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,12n,79p,603b,709s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/M
 iKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
 blic/lm/lmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C
@@ -693,9 +701,9 @@ Files/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX/fonts/type
 ><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiK
 TeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Chap1.pdf (12 pages, 271983 bytes).
+Output written on Chap1.pdf (14 pages, 287517 bytes).
 PDF statistics:
- 286 PDF objects out of 1000 (max. 8388607)
- 90 named destinations out of 1000 (max. 500000)
+ 314 PDF objects out of 1000 (max. 8388607)
+ 106 named destinations out of 1000 (max. 500000)
  89 words of extra memory for PDF output out of 10000 (max. 10000000)
 

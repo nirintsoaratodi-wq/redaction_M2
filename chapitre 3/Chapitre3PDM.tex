@@ -38,6 +38,9 @@
 	 
 	  
 	  \section{Principe de déviation modère}
+	  Le théorème suivant, dû à [4 Dembo], met en évidence le principe des déviations modérées, qui constitue une échelle intermédiaire entre le théorème central limite et le principe des grandes déviations. Ce résultat permet d’étudier des fluctuations de taille modérée, situées entre le régime normal des grandes fluctuations typiques et celui des événements rares. Il fournit ainsi un cadre théorique naturel pour relier l’approximation gaussienne à l’analyse asymptotique des probabilités très petites.
+	  
+	  
 	  \begin{thm}[Déviations modérées]\label{thm:3.1.1}
 	  	Soit \( X_1, \ldots, X_n \) une suite de vecteurs aléatoires i.i.d. à valeurs dans \(\mathbb{R}^d\) telle que \(\Lambda_X(\lambda) := \log E[e^{i\lambda(X_i)}] < \infty\) dans une boule autour de l'origine, \(E(X_i) = 0\), et \(\mathbf{C}\), la matrice de covariance de \(X_1\), soit inversible.  
 	  	On fixe une suite \(a_n \to 0\) telle que \(na_n \to \infty\) quand \(n \to \infty\), et on pose \(Z_n := \sqrt{\frac{a_n}{n}} \sum_{i=1}^n X_i = \sqrt{na_n}\hat{S}_n\).  
@@ -51,9 +54,8 @@
 	  	\end{aligned}
   	\end{equation}
 	  \end{thm}
-	  \begin{pr}
-	  	La preuve complète de ce théorème peut être consultée dans [Livre de démbo]
-	  \end{pr}
+	  
+	  
 	 \begin{rem}
 	 	Le théorème (\ref{thm:3.1.1}) est représentatif de ce qu'on appelle le Principe des Déviations Modérées (MDP), dans lequel, pour une certaine fonction $\gamma(\cdot)$ et pour toute une gamme de suites $a_n\to 0$, les sites $\{\gamma(a_n)Y_n\}$ satisfont un Principe de Grandes Déviations avec la même fonction de taux. Ici, $Y_n=\sqrt{n}\hat{S}_n \text{ et } \gamma(a)=a^{\frac{1}{2}}$ (comme dans d'autres situations où $Y_n$ obéit au théorème de la limite centrale).
 	 \end{rem}
@@ -129,10 +131,7 @@ Premièrement, notons que $\mathcal{L}_{X_t^\varepsilon}$ converge en loi vers $
 	 
 	 Nous présentons ici l'équation contrôlée associée au système ; elle constitue le pivot de l'analyse asymptotique et de la détermination de la fonction de taux.
 	
-	 \subsection{Construction de l’équation contrôlée associée}
-	 \begin{thm}
-	 	Yamada-watanabe
-	 \end{thm} 
+	 \subsection{Construction de l’équation contrôlée associée} 
 	D'après le théorème de Yamada-Watanabe, l'unicité en loi et l'unicité trajectorielle de l'équation satisfaite par $\overline{Y}^\varepsilon$  garantissent l'existence d'une application mesurable
 	
 \[

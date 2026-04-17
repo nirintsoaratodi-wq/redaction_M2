@@ -536,7 +536,7 @@ Intuitivement, lorsque le paramétré $\varepsilon$ tend vers 0 dans (1.2.6), le
 \end{equation}
 avec la même donnée initiale que (\ref{eq:1.2.2}), c'est-à-dire $X_0^0=x$. Comme $x$ est déterministe, on déduit que $\delta_{X^0_\cdot}$ est une mesure de Dirac centrée sur la trajectoire $X^0$.
 
-\section{Principe des grandes déviation}
+\section{Principe de grandes déviations}
 Le principe de grandes déviations (PGD) décrit le comportement asymptotique, lorsque $\varepsilon \to 0$, d’une famille de mesures de probabilité $(\mu_{\varepsilon})$ définies sur un espace mesurable $(E,\mathcal{B})$, à l’aide d’une fonction de taux. Plus précisément, cette caractérisation repose sur des bornes exponentielles asymptotiques supérieures et inférieures des probabilités $\mu_{\varepsilon}(\Gamma)$, pour des ensembles mesurables $\Gamma \subset E$.
 Dans toute la suite, l’espace $E$ est supposé être un espace topologique, de sorte que les notions d’ouverts et de fermés y sont bien définies. Nous nous intéressons principalement aux ensembles boréliens, c’est-à-dire aux éléments de la tribu borélienne $\mathcal{B}(E)$.
 Afin d’éviter toute difficulté liée à la mesurabilité, tous les espaces probabilisés considérés dans ce travail sont supposés complétés. Par abus de notation, $\mathcal{B}(E)$ désignera toujours la tribu borélienne complétée.
@@ -552,9 +552,9 @@ I:E\longrightarrow[0,+\infty)
 Une bonne fonction de taux est une fonction de taux telle que tous les ensembles de niveau $\Phi_I(\alpha)$ soient des sous-ensembles compacts de $E$.
 \end{dfn}
 \begin{rem}
-Si $E$ est une espace métrique, la propriété de semi-continuité inférieure peut être vérifiée à l'aide des suites, c'est-à-dire que $I$ est semi-continue inférieurement si et seulement si
+Si $E$ est un espace métrique, la propriété de semi-continuité inférieure peut être vérifiée à l'aide des suites, c'est-à-dire que $I$ est semi-continue inférieurement si et seulement si
 \[
-\lim_{x_n\to x}\inf I(x_n)\geq I(x),\text{      pour tout }x\in E.
+\liminf_{x_n \to x} I(x_n) \geq I(x),\text{      pour tout }x\in E.
 \]
 \end{rem}
 
@@ -574,6 +574,110 @@ La définition suivante donne le principe de grandes déviations dans un cadre g
 Les inégalités ci-dessus sont appelées respectivement borne inférieure et borne supérieure du principe de grandes déviations.
 
 De manière heuristique, cette définition signifie que la probabilité des événements rares décroît exponentiellement avec une vitesse gouvernée par la fonction de taux $I$.
+
+Le résultat suivant permet de transférer un principe de grandes déviations à travers une application continue. La fonction de taux associée est alors obtenue en minimisant la fonction de taux initiale sur l’ensemble des antécédents de chaque point.
+
+\begin{thm}
+	Soient $E$ et $F$ deux espaces topologiques de Hausdorff et 
+	\[
+	f: E\longrightarrow F
+	\] une application continue.
+	Soit $I:E\longrightarrow [0,\infty]$ une bonne fonction de taux.
+	\begin{itemize}
+		\item[(a)] Pour tout $y\in F$, on définit:
+		\[
+		I'(y)=\inf\{I(x):x\in E,y=f(x)\}.
+		\]
+		Alors $I'$ est une bonne fonction de taux sur $F$, où, comme d'habitude, l'infimum sur l'ensemble vide pris égal à +$\infty$.
+		\item[(b)] Si $I$ gouverne le principe de grandes déviations associé à une famille de mesures de probabilité $(\mu_\varepsilon)$ sur $E$, alors $I'$ gouverne le principe de grandes déviations associé à la famille de mesures $(\mu_\varepsilon\circ f^{-1})$ sur $F$.
+	\end{itemize}
+\end{thm}
+Le théorème suivant, issu du livre [de Dembo et Zeitouni], établit un lien fondamental entre le mouvement brownien et le principe de grandes déviations. Il constitue un exemple classique de processus stochastique satisfaisant un principe de grandes déviations.
+
+Soit $(W_t)_{t\in[0,1]}$ un mouvement brownien standard à valeurs dans $\mathbb{R}^d$. On considère le processus
+\[
+W^\varepsilon(t)=\sqrt{\varepsilon}\, W_t,
+\]
+et on note $\nu^\varepsilon$ la mesure de probabilité induite par $W^\varepsilon(\cdot)$ sur l’espace $C_0([0,1],\mathbb{R}^d)$ des fonctions continues nulles en $0$.
+
+\begin{thm}[Théorème de Schilder]
+	La famille $(\nu^\varepsilon)_{\varepsilon>0}$ satisfait un principe de grandes déviations dans $C_0([0,1],\mathbb{R}^d)$ avec une bonne fonction de taux $I_w$ définie par
+	\[
+	I_W(h) =
+	\begin{cases}
+		\displaystyle \frac{1}{2} \int_{0}^{1} |\dot{h}(t)|^2 dt & \text{si } h \in \mathbb{H}, \\
+		+\infty & \text{sinon},
+	\end{cases}
+	\]
+	où $\mathbb{H}$ désigne l’espace de Cameron-Martin.
+\end{thm}
+\paragraph{Principe de contraction}
+Le théorème suivant est connu sous le nom de principe de contraction. Il permet de déduire un principe de grandes déviations pour l’image d’une famille de mesures par une application continue, à partir du principe de grandes déviations vérifié sur l’espace de départ. La nouvelle fonction de taux s’obtient alors en prenant, pour chaque point d’arrivée, l’infimum de l’ancienne fonction de taux sur l’ensemble de ses antécédents.
+
+\begin{thm}\label{thm:contraction}
+	Soient $E$ et $F$ deux espaces topologiques de Hausdorff, et soit
+	$f:E\longrightarrow F$ une application continue.
+	Soit $I:E\longrightarrow [0,+\infty]$ une bonne fonction de taux.
+	\begin{itemize}
+		\item[(a)] Pour tout $y\in F$, on définit
+		\[
+		I'(y)=\inf\{I(x): x\in E,\ f(x)=y\},
+		\]
+		en convenant que l'infimum d'un ensemble vide vaut $+\infty$.
+		Alors $I'$ est une bonne fonction de taux sur $F$.
+		
+		\item[(b)] Si $I$ gouverne le principe de grandes déviations associé à une famille de mesures de probabilité $(\mu_\varepsilon)$ sur $E$, alors $I'$ gouverne le principe de grandes déviations associé à la famille $(\mu_\varepsilon\circ f^{-1})$ sur $F$.
+	\end{itemize}
+\end{thm}
+Ce résultat montre que le principe de grandes déviations est stable par application continue. La nouvelle fonction de taux est obtenue en minimisant la fonction de taux initiale sur l’ensemble des antécédents de chaque point.
+\begin{rem}
+ 	\begin{enumerate}
+ 		\item Ce théorème reste valable si $\mathcal{B}_E\nsubseteq \mathcal{B}$ (c'est-à-dire quand $\mathcal{B}_E$ n'est pas inclus dans $\mathcal{B}$), puisque pour tout ensemble mesurable $A\subset F$, on a toujours
+ 		\[
+ 		f^{-1}(A^\circ) \subset (f^{-1}(A))^\circ \text{ et } f^{-1}(\overline{A}) \subset \overline{f^{-1}(A)}
+ 		\]
+ 		\item Les bonnes de la partie (b) du théorème \ref{thm:contraction} tiennent même si $I$ n'est pas une bonne fonction de taux. Notez cependant que sans cette propriété, $I$ peut cesser d'être une fonction de taux (cf. l'exemple $E=F=\mathbb{R},\text{ } I(x)=0\text{ et } f(x)=e^x$).
+ 		\item Le théorème est vérifier dès lorsque $f$ est continue sur $D_I$. Cette observation permet d'envisager une extension du principe de contraction à une classe d'application approximativement continues
+ 	\end{enumerate}
+\end{rem}
+
+\paragraph{Équivalence exponentielle} 
+Afin d'étendre le principe de contraction au-delà du cas continu, il semble naturel d'envisager des approximations par des fonctions continues. Il est toutefois utile d'aborder une question plus vaste : à quelle condition le PGD (Principe de Grandes Déviations) pour une famille de lois $\{\tilde{\mu}_\epsilon\}$ peut-il être déduit du PGD d'une famille $\{\mu_\epsilon\}$ ? L'application aux contractions approchées découlera de ces résultats généraux.
+\begin{dfn}\label{def_exp_equ}
+	Soit $(\mathcal{Y},d)$ un espace métrique. Les mesures de probabilité $\{\mu_\epsilon\}$ et $\{\tilde{\mu}_\epsilon\}$ sur $\mathcal{Y}$ sont dites exponentiellement équivalentes s'il existe des espaces de probabilité $\{(\Omega, \mathcal{B}_\epsilon, P_\epsilon)\}$ et deux familles de variables aléatoires $\{Z_\epsilon\}$ et $\{\tilde{Z}_\epsilon\}$ à valeurs dans $\mathcal{Y}$, de lois jointes $\{P_\epsilon\}$ et de lois marginales respectives $\{\mu_\epsilon\}$ et $\{\tilde{\mu}_\epsilon\}$, telles que la condition suivante soit satisfaite :
+	Pour tout $\delta> 0$, l'ensemble $\{\omega : (\tilde{Z}_\epsilon, Z_\epsilon) \in \Gamma_\delta\}$ est $\mathcal{B}_\epsilon$-mesurable, et 
+	\begin{equation}
+		\limsup_{\epsilon \to 0} \epsilon \log P_\epsilon(\Gamma_\delta) = -\infty,
+	\end{equation}
+	où
+	\begin{equation}
+		\Gamma_\delta := \{(\tilde{y}, y) : d(\tilde{y}, y) > \delta\} \subset \mathcal{Y} \times \mathcal{Y}.
+	\end{equation}
+\end{dfn}
+\begin{rem}
+	\begin{itemize}
+		\item [(a)] Les variables aléatoires $\{Z_\epsilon\}$ et $\{\tilde{Z}_\epsilon\}$ de la Définition \ref{def_exp_equ} sont dites exponentiellement équivalentes.
+		\item [(b)] Il est relativement aisé de vérifier que la condition de mesurabilité est satisfaite dès lors que $\mathcal{Y}$ est un espace séparable, ou lorsque les lois $\{P_\epsilon\}$ sont induites par des processus stochastiques séparables à valeurs réelles et que $d$ est la norme supremum. En ce qui concerne le PGD, des mesures exponentiellement équivalentes sont indistinctes, comme l'atteste le théorème suivant.
+	\end{itemize}
+\end{rem}
+Le théorème suivant, extrait de \cite{[8]}, affirme que deux familles de mesures exponentiellement équivalentes satisfont le même principe de grandes déviations.
+
+\begin{thm}
+	Si un principe de grandes déviations avec une bonne fonction de taux $I(\cdot)$ 
+	est vérifié pour la famille de probabilités $\{\mu_\varepsilon\}$, et si 
+	$\{\mu_\varepsilon\}$ est exponentiellement équivalente à $\{\tilde{\mu}_\varepsilon\}$, 
+	alors le même principe de grandes déviations est vérifié pour $\{\tilde{\mu}_\varepsilon\}$.
+	
+\end{thm}
+Le résultat suivant constitue une application du principe de contraction aux processus de diffusion. Il permet d’établir un principe de grandes déviations pour la solution d’une équation différentielle stochastique, à partir de celui vérifié par le mouvement brownien.
+
+Soit $\{x_t^\varepsilon\}_{t \in [0,1]}$ l’unique solution de l’équation différentielle stochastique
+\[
+dx_t^\varepsilon = b(x_t^\varepsilon)\,dt + \sqrt{\varepsilon}\,dw_t, \quad x_0^\varepsilon = 0,
+\]
+où $b : \mathbb{R} \to \mathbb{R}$ est une fonction lipschitzienne.
+
+
 
 
 

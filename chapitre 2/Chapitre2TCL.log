@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  15 MAR 2026 19:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.8.19)  15 APR 2026 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -726,14 +726,8 @@ L3 programming layer <2024-01-04>
 
 LaTeX Warning: There were undefined references.
 
-
-Package rerunfilecheck Warning: File `Chapitre2TCL.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Chapitre2TCL.out':
-(rerunfilecheck)             Before: EE76BA216806F93315BB65FF8561864F;1857
-(rerunfilecheck)             After:  881B57A33CA362065D7E7D5927FEC31C;1872.
+Package rerunfilecheck Info: File `Chapitre2TCL.out' has not changed.
+(rerunfilecheck)             Checksum: 881B57A33CA362065D7E7D5927FEC31C;1872.
  ) 
 Here is how much of TeX's memory you used:
  14134 strings out of 474486
@@ -755,7 +749,7 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Program Files/Mi
 KTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
 c/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb>
-Output written on Chapitre2TCL.pdf (25 pages, 346815 bytes).
+Output written on Chapitre2TCL.pdf (25 pages, 346830 bytes).
 PDF statistics:
  373 PDF objects out of 1000 (max. 8388607)
  90 named destinations out of 1000 (max. 500000)

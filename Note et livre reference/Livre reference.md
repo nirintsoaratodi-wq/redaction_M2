@@ -144,7 +144,11 @@ Déscription : qui parle cette large déviation et principe de déviation modere
 
 
 
+**20. Large Deviations Techniques and Applications Amir Dembo Ofer Zeitouni**
 
+**lien : file:///C:/Users/nirintsoart/Desktop/chez-moi/Dossier/GFS/Memoire/Livre\_imp/Livre%20reference/Large%20Deviations%20Techniques%20and%20Applications,%20Second%20Edition%20--%20Amir%20Dembo,%20Ofer%20Zeitouni%20--%20(%20WeLib.org%20).pdf**
+
+**Déscription : toutes les théories de grande déviations même Freidlin–WentzellTheory**
 
 
 
